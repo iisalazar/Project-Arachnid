@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<div class="ui vertical footer segment">
+	<div class="ui container">
+		<div class="ui stackable inverted divided equal height stackable grid">
+			<div class="three wide column">
+					<h3 class="ui inverted header">SECTIONS</h3>
+					<div class="ui inverted link list">
+						<a class="item" href="{% url 'main:index' %}">Home</a>
+						<a class="item" href="{% url 'main:admissions' %}">Admissions</a>
+						<a class="item" href="{% url 'main:news' %}">News</a>
+						<div class="item">
+							Archives
+							<div class="ui inverted link list">
+								<a class="item" href="documents.html">Documents</a>
+							</div>
+						</div>
+						<a class="item" href="{% url 'main:organizations' %}">Organizations</a>
+						<div class="item">
+							Research
+							<div class="ui list">
+								<a class="item" href="appliedScience.html">Applied Science</a>
+								<a class="item" href="lifeScience.html">Life Science</a>
+							</div>
+						</div>
+						<a class="item" href="{% url 'main:about' %}">About</a>
+						<a class="item" href="{% url 'main:faqs' %}">FAQs</a>
+					</div>
+			</div>
+			<div class="four wide column">
+				<h3 class="ui inverted header">REACH US ON</h3>
+				<div class="ui inverted link list">
+					<div class="row" id="footerReach">
+					<a href="#" class="item"><img src="{% static 'img/facebook.png' %}"></a>
+					<a href="#" class="item"><img src="{% static 'img/twitter.png' %}"></a>
+					<a href="#" class="item"><img src="{% static 'img/youtube.png' %}"></a>
+					<a href="#" class="item"><img src="{% static 'img/instagram.png' %}"></a>
+					</div>
+				</div>
+				<div class="ui divider"></div>
+				<h3 class="ui inverted header">CONTACT US</h3>
+				<div class="column description"><i class="call icon"></i> 0929 xxx xxxx</div>
+				<div class="column description"><i class="mail icon"></i> quescimail@gmail.com</div>
+		</div>
+				<div class="seven wide column">
+						<br>
+						<div class="text container" id="footerQsci">Quezon Science High School</div>
+						<div class="description aligned center"><i class="marker icon"></i> Brgay. Isabang, Tayabas City, Quezon Province</div>
+						<div class="ui divider"></div>
+						<p id="footerRights">All Rights Reserved 2017</p>
+				</div>
+		</div>
+		</div>
+	</div>

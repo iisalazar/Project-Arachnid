@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+  <meta name="description" content="Quezon Science High School"/>
+  <meta name="author" content="Quezon Science High School"/>
+  <meta name="keywords" content="quezon,science,honor,excellence,service"/>
+	<title>
+		{% block title %}
+
+		{% endblock %}
+	</title>
+
+	<link rel="stylesheet" href="{% static 'dist/semantic.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+
+</head>
+<body>
+
+	<!-- Hidden Sidebar Menu -->
+	<div class="ui vertical sidebar inverted menu">
+			<div class="item">
+					<a href="{% url 'main:index' %}">
+					<i class="home icon"></i>
+					Home
+					</a>
+			</div>
+			<div class="item">
+					<a href="{% url 'main:admissions' %}">
+					<i class="heartbeat icon"></i>
+					Admissions
+					</a>
+			</div>
+			<div class="item">
+					<a href="{% url 'main:news' %}">
+					<i class="newspaper icon"></i>
+					News
+					</a>
+			</div>
+			<div class="ui dropdown item">
+				Archives
+				<i class="ui dropdown icon"></i>
+				<div class="menu">
+					<a class="item" href="#">Documents</a>
+					<div class="ui divider"></div>
+					<a class="item" href="#">Images</a>
+				</div>
+			</div>
+			<a class="item" href="{% url 'main:organizations' %}">Organizations</a>
+			<div class="ui dropdown item">
+				Research
+				<i class="ui dropdown icon"></i>
+				<div class="menu">
+					<a class="item" href="appliedScience.html">Applied Science</a>
+					<div class="ui divider"></div>
+					<a class="item" href="lifeScience.html">Life Science</a>
+				</div>
+			</div>
+			<div class="item">
+					<a href="{% url 'main:about' %}">
+					<i class="universal access icon"></i>
+					About
+					</a>
+			</div>
+			<div class="item">
+				<a href="{% url 'main:faqs' %}">
+					<i class="help circle icon"></i>
+					FAQs
+				</a>
+			</div>
+	</div>
+
+	<!--Folowing Menu -->
+	<div class="ui top fixed primary inverted menu">
+			<div class="ui container">
+					<a class="toc item">
+							<i class="sidebar icon"></i>
+							Menu
+					</a>
+					<a class="header right item" href="{% url 'main:index' %}">
+							<img class="logo" src="{% static 'img/logo.png' %}" alt=""> QSHS
+					</a>
+			</div>
+	</div>
+
+		<!-- Page Contents -->
+
+			<div class="ui large top main menu" id="def-navbar">
+				<div class="ui container">
+					<a class="header item" href="index.html"><img class="logo" src="{% static 'img/logo.png' %}">QSHS</a>
+					<a class="item" href="{% url 'main:index' %}">Home</a>
+						<a class="item" href="{% url 'main:admissions' %}">Admissions</a>
+						<a class="item" href="{% url 'main:news' %}">News</a>
+						<div class="ui dropdown item">
+							Archives
+							<i class="ui dropdown icon"></i>
+							<div class="menu">
+								<a class="item" href="#">Documents</a>
+								<div class="ui divider"></div>
+								<a class="item" href="#">Images</a>
+							</div>
+						</div>
+						<div class="ui dropdown item">
+							Research
+							<i class="ui dropdown icon"></i>
+							<div class="menu">
+								<a class="item" href="appliedScience.html">Applied Science</a>
+								<div class="ui divider"></div>
+								<a class="item" href="lifeScience.html">Life Science</a>
+							</div>
+						</div>
+						<a class="item" href="{% url 'main:organizations' %}">Organizations</a>
+						<a class="item" href="{% url 'main:about' %}">About</a>
+						<a class="item" href="{% url 'main:faqs' %}">FAQs</a>
+				</div>
+			</div>
+
+			{% block main_content %}
+
+			{% endblock %}
+
+			{% include 'main/footer.html' %}
+		<script src="{% static 'js/jquery.min.js'%}"></script>
+		<script type="text/javascript" src="{% static 'dist/semantic.js'%}"></script>
+		<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

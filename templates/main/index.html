@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+  Quezon Science High School
+{% endblock %}
+{% block main_content %}
+    <div class="dimmed pusher">
+        <div class="ui masthead center aligned segment">
+          <div class="ui container">
+            <div class="ui green secondary large pointing menu"  id="home-navbar">
+                <a class="item" href="index.html"><img class="logo" src="{% static 'img/logo.png' %}"></a>
+                <a class="active item" href="{% url 'main:index' %}">Home</a>
+                <a class="item" href="{% url 'main:admissions' %}">Admissions</a>
+                <a class="item" href="{% url 'main:news' %}">News</a>
+                <div class="ui dropdown item">
+    							Archives
+    							<i class="ui dropdown icon"></i>
+    							<div class="menu">
+    								<a class="item" href="#">Documents</a>
+    								<div class="ui divider"></div>
+    								<a class="item" href="#">Images</a>
+    							</div>
+    						</div>
+                <a class="item" href="{% url 'main:organizations' %}">Organizations</a>
+                <div class="ui dropdown item">
+    							Research
+    							<i class="ui dropdown icon"></i>
+    							<div class="menu">
+    								<a class="item" href="appliedScience.html">Applied Science</a>
+    								<div class="ui divider"></div>
+    								<a class="item" href="lifeScience.html">Life Science</a>
+    							</div>
+    						</div>
+                <a class="item" href="{% url 'main:about' %}">About</a>
+                <a class="item" href="{% url 'main:faqs' %}">FAQs</a>
+                <div class="right menu">
+                  <div class="item">
+                    <a class="ui inverted blue button">
+                        <i class="sign in icon"></i>
+                        Log in
+                    </a>
+                  </div>
+                  <div class="item">
+                    <a class="ui inverted green button">
+                        <i class="add user icon"></i>
+                        Sign Up
+                    </a>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="ui text container">
+            <h1 class="ui header">Quezon Science High School</h1>
+            <div class="ui horizontal section divider">
+                <h3>Honorem | Excellencia | Servitium</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANNOUNCEMETS -->
+
+        <div class="ui feature vertical stripe segments">
+              <div class="ui middle aligned stackable internally celled grid container">
+                <div class="row">
+                  <div class="center aligned column">
+                    <h1 class="ui header">
+                      Announcements
+                    </h1>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="ui left floated seven wide computer sixteen wide tablet column">
+                    <div class="ui raised segment">
+                      <div class="ui center aligned header">
+                        Events / Activities
+                      </div>
+                      <div class="row">
+                        <p class="description">
+                          Legend:
+                        </p>
+                      </div>
+                      <iframe src="https://calendar.google.com/calendar/b/1/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=2fbgkeqn958tjfrfjvciuqdobg%40group.calendar.google.com&amp;color=%2328754E&amp;ctz=Asia%2FManila" style="border-width:0" width="100%" height="300" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                  </div>
+                  <div class="ui right floated six wide computer eight wide centered tablet column">
+                    <div class="ui raised segment" style="height: 368px;">
+                      <div class="ui center aligned header">
+                        Issues
+                      </div>
+
+                      <div class="ui segment feed">
+                        <div class="event">
+                          <div class="content">
+                            <div class="summary">
+                              <a href="#">
+                                Graduation
+                              </a>
+                              <div class="date">
+                                Issued March 69, 2018
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+<!-- ###################### I'M HERE ########################## -->
+                        <div class="event">
+                          <div class="content">
+                            <div class="summary">
+                              <a class="user" href="#">
+                                Announcement Title
+                              </a>
+                              <div class="date">
+                                Issued March 69, 2018
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="event">
+                          <div class="content">
+                            <div class="summary">
+                              <a class="user" href="#">
+                                Announcement Title
+                              </a>
+                              <div class="date">
+                                Issued March 69, 2018
+                              </div>
+                            </div>
+                            <div class="extra text">
+                              Short description
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="event">
+                          <div class="content">
+                            <div class="summary">
+                              <a class="user" href="#">
+                                Issued Announcement Title
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <!-- FACILITIES -->
+
+        <div class="ui vertical stripe inverted stacked segment" id="endorsements">
+          <div class="ui two column stackable internally celled grid container">
+            <div class="row">
+              <div class="ui left floated five wide column">
+                <h3 class="ui header">Facilities</h3>
+                <div class="ui fluid card">
+                  <div class="ui image" id="CHANGEimage">
+                    <img src="img/qshs/worms-eye.jpg" alt="DefaultImage - Shot of QSHS Main Building">
+                  </div>
+                  <div class="content">
+                    <div class="ui header" id="CHANGEheader">
+                      ACASDZC
+                    </div>
+                    <div class="meta" id="CHANGEdate">
+                      Taken: Feb. 30, 1969
+                    </div>
+                    <div class="description" id="CHANGEdescription">
+                      INSERT CONTENT
+                      INSERT CONTENT
+                      INSERT CONTENT
+                      INSERT CONTENT
+                      INSERT CONTENT
+                      INSERT CONTENT
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ui right floated ten wide column">
+                <div class="ui middle aligned centered four column grid">
+                  <div class="row">
+                    <div class="column">
+                      <div class="ui fluid card">
+                        <div class="image" id="hoverImage">
+                          <img src="img/qshs/SHS 3.jpg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="ui fluid card">
+                        <div class="image" id="hoverImage2">
+                          <img src="img/qshs/Room + Main 3.jpg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="ui fluid card">
+                        <div class="image" id="hoverImage3">
+                          <img src="img/avatar/nan.jpg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="ui fluid card">
+                        <div class="image" id="hoverImage4">
+                          <img src="img/qshs/Comlab3.jpg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Second Row -->
+                  <div class="row">
+                    <div class="column">
+                      <div class="ui fluid card">
+                        <div class="image" id="hoverImage5">
+                          <img src="img/qshs/Speech Lab.JPG" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="ui fluid card">
+                        <div class="image" id="hoverImage6">
+                          <img src="img/qshs/Dorm.jpg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="ui fluid card">
+                        <div class="image" id="hoverImage7">
+                          <img src="img/qshs/Cafeteria.jpg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="ui fluid card">
+                        <div class="image" id="hoverImage8">
+                          <img src="img/qshs/Garden.jpg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Fourth Row -->
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENDORSE -->
+        <div class="ui vertical stripe stacked segment" id="enroll">
+          <div class="ui center aligned grid container">
+              <div class="row">
+                <h3 class="ui header">
+                  Become a QUESAYANO NOW <i class="exclamation icon"></i>
+                </h3>
+              </div>
+              <div class="row">
+                <p class="ui description">Come and join our community as we train our students excel in the fields of Science, Mathematics and Technology.</p>
+              </div>
+              <div class="row">
+                <a class="ui big green button" href="admissions.html">Enroll Now! <i class="ui angle right icon"></i></a>
+              </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}

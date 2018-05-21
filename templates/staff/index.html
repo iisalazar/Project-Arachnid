@@ -1,0 +1,11 @@
+{% extends 'staff/base_staff.html'%}
+{% block main_content %}
+{% if files %}
+  {% for file in files %}
+    <a href="{{ file.file.url }}">{{ file.file }}</a>
+    <h1>{{ file.url }}</h1>
+  {% endfor %}
+{% else %}
+<h1>Error</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,408 @@
+@font-face{
+	font-family: "Raleway Light";
+	src: local(Raleway Light), url("../fonts/Raleway-Light.ttf");
+	src: url("../fonts/Raleway-Light.ttf?#iefix") format("truetype");
+}
+@font-face{
+	font-family: "Raleway Thin";
+	src: local(Raleway Thin), url("../fonts/Raleway-Thin.ttf");
+	src: url("../fonts/Raleway-Thin.ttf?#iefix") format("truetype");
+}
+@font-face{
+	font-family: "Code Bold";
+	src: local(Code Bold), url("../fonts/code-bold.otf");
+	src: url("../fonts/code-bold.otf?#iefix") format("opentype");
+}
+@font-face{
+	font-family: "Code Light";
+	src: local(Code Light), url("../fonts/code-light.otf");
+	src: url("../fonts/code-light.otf?#iefix") format("opentype");
+}
+
+/*Landing page */
+
+#def-navbar {
+
+	width: 100%;
+	height: 75px;
+	border-radius: 10px;
+	border-style: solid;
+	border-color: white;
+	/*margin-top: 10px;*/
+}
+
+#def-navbar .right .menu .item {
+	margin: 0;
+}
+
+#def-navbar .item{
+	font-family: Raleway Light;
+	color: black;
+}
+
+#home-navbar {
+	width: 100%;
+	height: 70px;
+	opacity: 1;
+	border-radius: 10px;
+	/*margin-top: 10px;*/
+}
+
+#home-navbar .right .menu .item {
+	margin: 0;
+}
+
+#home-navbar .item{
+	font-family: Raleway Light;
+	color:white;
+}
+
+.ui.header {
+	font-family: Code Bold;
+}
+
+.ui.text
+{
+	font-family: Raleway Light;
+}
+
+.fixed.primary.inverted.menu {
+	display: none;
+}
+
+
+.ui.menu .item img.logo {
+	margin-right: 0.75em;
+}
+
+/*	*/
+.news{
+	padding-top:5em;
+}
+
+#teachers {
+	color: black;
+}
+
+#orgs .row .column{
+	margin: 1.6em auto;
+}
+
+#qsci{
+	font-family:Code Bold;
+}
+#qsci p:hover{
+	color:green;
+}
+
+#navbar-left{
+	font-family: Raleway Light;
+}
+#main{
+	margin-bottom:6em;
+}
+
+
+
+.masthead.segment {
+	background: linear-gradient(
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.4)
+    ), url(../img/qshs/side-pic.jpg) no-repeat center;
+	background-size: 100% 100%;
+	min-height: 800px;
+	background-attachment: fixed;
+}
+
+.masthead .logo.item img {
+  margin-right: 1em;
+}
+
+.masthead .ui.menu .ui.button {
+  margin-left: 0.5em;
+}
+
+
+/* CSS transfered from HTML */
+
+.masthead .ui.text.container {
+	margin-top: 15em;
+}
+
+.masthead .ui.text.container img.logo
+{
+	margin-right: 1.5px;
+	height: 50px;
+	width: 50px;
+}
+
+.masthead h1.ui.header {
+	font-family: Code Bold;
+	color: #fff;
+	font-size: 40px;
+  font-weight: normal;
+}
+
+.masthead h3 {
+	font-family: Code Light;
+	font-weight: bold;
+	color: white;
+  font-size: 15px;
+}
+
+/* Page content */
+
+
+/*
+#programSection {
+	background: #378752;
+	background-size: cover;
+}
+
+researchSection {
+	background: #378752;
+}
+*/
+
+.ui.menu:last-child {
+	margin-bottom: 110px;
+}
+
+
+/*Update*/
+
+.ui.vertical.stripe.inverted
+{
+	background: #fffafa;
+}
+
+.ui.vertical.stripe {
+	margin: 2em 0em;
+  padding: 2em 0em;
+}
+
+.ui.vertical.stripe h1 {
+	font-size: 3.5em;
+}
+
+.ui.vertical.stripe h3 {
+  font-size: 2em;
+}
+
+.ui.vertical.stripe .description {
+	font-family: Raleway;
+}
+
+.ui.vertical.stripe .button + h3,
+.ui.vertical.stripe p + h3 {
+  margin-top: 3em;
+}
+.ui.vertical.stripe .floated.image {
+  clear: both;
+}
+.ui.vertical.stripe p {
+  font-size: 1.33em;
+}
+.ui.vertical.stripe .inverted.divider {
+	color: #fff;
+}
+
+.ui.vertical.stripe .horizontal.divider {
+  margin: 3em 0em;
+}
+
+
+.quote.stripe.segment {
+  padding: 0em;
+}
+.quote.stripe.segment .grid .column {
+  padding-top: 5em;
+  padding-bottom: 5em;
+}
+
+#assistance-endpoint{
+	margin-bottom: 5em;
+}
+
+#second-panel h1.ui.header{
+	margin-top: 2em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+}
+#about-endpoint{
+	margin-top:10em;
+	margin-bottom:11em;
+}
+
+.ui.button {
+	font-family: Code Bold;
+	font-weight: bold;
+}
+
+/*Footer*/
+
+
+.ui.footer.segment {
+	background: #326d48;
+	/*background: #6fc920*/
+  padding: 5em 0em 4em 0em;
+	color: #f5f5f5;
+}
+.footer.segment .inverted.header{
+	font-family: Code Bold;
+	font-size:17px;
+}
+
+.footer.segment .item{
+	font-family: Raleway Thin;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+
+
+#footerReach {
+	letter-spacing: 5px;
+}
+
+#footerQsci {
+	 font-family: Code Bold;
+	 color: #fff;
+	 font-size: 20px;
+}
+
+#footerRights {
+	font-family: Raleway Light;
+	font-size: 15px;
+}
+
+a.back-to-top {
+	display: none;
+	width: 70px;
+	height: 70px;
+	text-indent: -9999px;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+	bottom: 25px;
+	background: #326d48 url(../img/arrow.png) no-repeat center 43%;
+	border: 3px solid #326d48;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	z-index: 9999999999999;
+	border-radius: 35px;
+}
+
+a:hover.back-to-top {
+	background-color: #326d48;
+}
+
+
+/*Customized css*/
+
+@media only screen and (max-width: 1024px) {
+
+		#def-navbar {
+			display: none;
+		}
+
+		#home-navbar {
+			display: none;
+		}
+
+
+		.fixed.primary.inverted.menu {
+	    	display: inline-block;
+				z-index: 999999999;
+				width: 100%;
+				opacity: 0.80;
+	    }
+
+}
+
+
+@media only screen and (max-width: 768px) {
+
+
+  .masthead.segment {
+      min-height: 600px;
+			width: 100%:
+    }
+
+		.masthead .ui.text.container {
+			margin-top: 15em;
+		}
+
+	.masthead h1.ui.header {
+	  font-size: 35px;
+	}
+
+	.masthead h3 {
+	  font-size: 15px;
+	  font-weight: bold;
+	}
+
+	.ui.vertical.stripe {
+		margin: 4em 0em;
+	  padding: 8em 0em;
+	}
+
+	.ui.vertical.stripe h1 {
+		font-size: 2.5em;
+	}
+
+	.ui.vertical.stripe h3 {
+	  font-size: 1.75em;
+	}
+	.ui.vertical.stripe .description {
+		font-size: 1.25em;
+	}
+	.ui.vertical.stripe .button + h3,
+	.ui.vertical.stripe p + h3 {
+	  margin-top: 3em;
+	}
+	.ui.vertical.stripe .floated.image {
+	  clear: both;
+	}
+	.ui.vertical.stripe p {
+	  font-size: 1.33em;
+	}
+	.ui.vertical.stripe .horizontal.divider {
+	  margin: 3em 0em;
+	}
+
+
+}
+
+@media only screen and (max-width: 500px) {
+
+	.masthead.segment {
+		min-height: 500px;
+		background: #326d48;
+		width: 100%;
+	}
+
+	.masthead .ui.text.container {
+		margin-top: 12em;
+	}
+	.masthead h1.ui.header {
+		font-size: 30px;
+	}
+	.masthead h3{
+		font-size: 12.5px;
+	}
+}
+
+/* 1.0.1 edition */
+.ui.vertical.sidebar.menu{
+	padding-top: 3em;
+}
+
+
+
+
+.ui.attached.segment .ui.compact.segment
+{
+	padding: 2em;
+}

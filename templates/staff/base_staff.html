@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'dist/semantic.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    {% block title %}
+      Dashboard
+    {% endblock %}
+  </head>
+  <body>
+    <div class="ui container">
+      <div class="ui secondary menu">
+        <a href="{% url 'staff:index' %}" class="item">Dashboard</a>
+        <div class="right item">
+          <a href="{% url 'staff:announcements' %}" class="item">Announcements</a>
+          <a href="{% url 'staff:announcements' %}" class="item">Announcemnts</a>
+          <a href="{% url 'staff:announcements' %}" class="item">Announcemnts</a>
+        </div>
+      </div>
+      {% block main_content %}
+
+      {% endblock %}
+    </div>
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'dist/semantic.js'%}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
