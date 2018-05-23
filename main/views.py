@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView
+
 # Create your views here.
 
-class IndexView(TemplateView):
+class IndexView(TemplateView):    
     template_name = 'main/index.html'
 
 class AdmissionView(TemplateView):

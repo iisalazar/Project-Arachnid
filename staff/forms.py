@@ -1,8 +1,12 @@
 from django import forms
 from . import models
 
-class FileFieldForm(forms.ModelForm):
-
+class AnnouncementForm(forms.ModelForm):
     class Meta:
-        model = models.FileUpload
-        fields = '__all__'
+        model = models.Announcement
+        fields = ('title', 'description', 'file')
+        widgets = {
+        	'title': forms.TextInput(),
+        	'description': forms.Textarea(),
+        	'file': forms.FileInput()
+        }

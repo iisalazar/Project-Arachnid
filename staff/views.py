@@ -1,36 +1,37 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView, FormView
 from django.urls import reverse_lazy
-from .forms import FileFieldForm
-from .models import FileUpload
+from .forms import AnnouncementForm
+from .models import Announcement
+from django.contrib.auth.mixins import LoginRequiredMixin
+from reportlab.pdfgen import canvas
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 
-class IndexView(ListView):
-    model = FileUpload
+class IndexView(LoginRequiredMixin, TemplateView):
+    redirect_field_name='staff/index.html'
     template_name = 'staff/index.html'
-    context_object_name = 'files'
+
+class AnnouncementListView(LoginRequiredMixin, ListView):
+    redirect_field_name='staff/index.html'
+    model = Announcement
+    context_object_name= 'announcements'
     def get_queryset(self):
-        return FileUpload.objects.all
+        return Announcement.objects.order_by('-date_created')
 
-class AnnouncetListView(ListView):
-    model = FileUpload
-    template_name = 'staff/announcements.html'
-    context_object_name = 'files'
-    def get_queryset(self):
-        return FileUpload.objects.all
+class AnnouncementCreateView(LoginRequiredMixin, CreateView):
+    redirect_field_name='staff/index.html'
+    model = Announcement
+    form_class = AnnouncementForm
 
-class FileFieldView(FormView):
-    form_class = FileFieldForm
-    template_name = 'staff/upload.html'  # Replace with your template.
-    success_url = reverse_lazy('staff:announcements')
+@login_required
+def view_file(request, pk):
+    announcement = get_object_or_404(Announcement, pk=pk)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="{}.pdf"'.format(announcement.file)
 
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        files = request.FILES.getlist('file_field')
-        if form.is_valid():
-            file = FileUpload(file=request.FILES['file'])
-            file.save()
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+    p = canvas.Canvas(response)
+    p.showPage()
+    p.save()
+    return response

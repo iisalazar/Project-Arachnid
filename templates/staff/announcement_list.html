@@ -1,0 +1,24 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block announcement %}
+	active
+{% endblock %}
+{% block main_content %}
+	<a href="{% url 'staff:create_announcement' %}" class="ui orange button">Add file</a>
+  <div class="ui segment">
+    <table class="ui celled two column table">
+    	{% for announcement in announcements %}
+    	<tr>
+    		<td>
+    			{{ announcement.title }}
+    		</td>
+    		<td>
+    			<a href="{% url 'staff:view_file' pk=announcement.pk %}"><i class="ui file icon"></i> {{ announcement.file.url }}</a>
+    		</td>
+    	</tr>
+    	<a href="{{ announcement.file.url }}">File</a>
+    	{% endfor %}
+    </table>
+    
+  </div>
+{% endblock %}

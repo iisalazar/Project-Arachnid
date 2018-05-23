@@ -12,12 +12,17 @@
   </head>
   <body>
     <div class="ui container">
-      <div class="ui secondary menu">
-        <a href="{% url 'staff:index' %}" class="item">Dashboard</a>
+      <div class="ui secondary pointing menu">
+        <a href="{% url 'staff:index' %}" class="header item">Dashboard</a>
         <div class="right item">
-          <a href="{% url 'staff:announcements' %}" class="item">Announcements</a>
-          <a href="{% url 'staff:announcements' %}" class="item">Announcemnts</a>
-          <a href="{% url 'staff:announcements' %}" class="item">Announcemnts</a>
+          <a href="{% url 'staff:announcements' %}" class="{% block announcement%} {%endblock%}item">Announcements</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'staff:logout' %}" class="item">Logout</a>
+          {% else %}
+          <a href="{% url 'staff:login' %}" class="item">Login</a>
+          {% endif %}
+          <!-- <a href="{% url 'staff:announcements' %}" class="item">Announcemnts</a> -->
+          <!-- <a href="{% url 'staff:announcements' %}" class="item">Announcemnts</a> -->
         </div>
       </div>
       {% block main_content %}

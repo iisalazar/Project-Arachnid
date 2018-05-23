@@ -27,5 +27,4 @@ urlpatterns = [
         views.FAQsView.as_view(),
         name="faqs"
     )
-    
 ]
