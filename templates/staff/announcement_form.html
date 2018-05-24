@@ -1,8 +1,6 @@
 {% extends 'staff/base_staff.html' %}
 
 {% block main_content %}
-
-
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

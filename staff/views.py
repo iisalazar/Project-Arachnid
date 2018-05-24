@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView, FormView
 from django.urls import reverse_lazy
-from .forms import AnnouncementForm
-from .models import Announcement
+from .forms import AnnouncementForm, NewsForm
+from .models import Announcement, News
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
@@ -25,6 +25,7 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     model = Announcement
     form_class = AnnouncementForm
 
+
 @login_required
 def view_file(request, pk):
     announcement = get_object_or_404(Announcement, pk=pk)
@@ -35,3 +36,34 @@ def view_file(request, pk):
     p.showPage()
     p.save()
     return response
+
+# ------------------- News Views ------------------- #
+
+class NewsListView(LoginRequiredMixin, ListView):
+    redirect_field_name = 'staff/index.html'
+    model = News
+    context_object_name = "news"
+    def get_queryset(self):
+        return News.objects.order_by('-created_date')
+
+class NewsCreateView(LoginRequiredMixin, CreateView):
+    redirect_field_name = 'staff/news_list.html'
+    model = News
+    form_class = NewsForm
+
+class NewsUpdateView(LoginRequiredMixin, UpdateView):
+    redirect_field_name = 'staff/news_list.html'
+    model = News
+    form_class = NewsForm
+    pk_url_kwarg = 'pk'
+
+class NewsDeleteView(LoginRequiredMixin, DeleteView):
+    model = News
+    pk_url_kwarg = 'pk'
+    success_url = reverse_lazy('staff:news')
+
+@login_required
+def publish_news(request, pk):
+    news = get_object_or_404(News, pk=pk)
+    news.publish()
+    return redirect('staff:index')

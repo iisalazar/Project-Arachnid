@@ -1,0 +1,11 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block main_content %}
+  <div class="ui segment">
+    <form class="ui form" method="post">
+      {% csrf_token %}
+      <h3 class="ui header red">Are you sure you want to delete {{ object }}?</h3>
+      <input type="submit" value="Confirm" class="ui danger button">
+    </form>
+  </div>
+{% endblock %}

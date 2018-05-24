@@ -1,8 +1,42 @@
-<h1>asdsadadsa</h1>
-
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" name="" value="Submit">
-  
-</form>
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'dist/semantic.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+	<div class="ui login raised segment">
+		<div class="ui container">
+			<div class="ui centered grid">
+				<div class="row">
+					<h2 class="ui header">Login</h2>
+				</div>
+				<div class="ui divider"></div>
+				<div class="ui row">
+					<form class="ui form" method="post">
+            {% csrf_token %}
+						<div class="field">
+							<label for="username" class="label">Username: </label>
+							<input type="text" name="username" placeholder="Username">
+						</div>
+						<div class="field">
+							<label for="password" class="label">Password </label>
+							<input type="password" name="password" placeholder="Password">
+						</div>
+						<div class="field">
+							<div class="ui buttons">
+								<button type="submit" class="ui teal button">Login</button>
+								<div class="or"></div>
+								<a href="{% url 'password_change' %}" class="ui green button">Sign Up</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{% static 'dist/semantic.js' %}"></script>
+</body>
+</html>

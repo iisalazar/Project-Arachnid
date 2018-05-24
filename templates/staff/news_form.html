@@ -1,0 +1,60 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block title %}
+  Create News
+{% endblock %}
+
+{% block news %}
+  active
+{% endblock %}
+
+{% block main_content %}
+
+  <div class="ui segment">
+    <form class="ui equal width form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="field">
+        <h3 class="">NOTE: The date this news is created is automatically filled by the server</h3>
+      </div>
+      <div class="ui fields">
+        <div class="ui segment field">
+          {{ form.author }}
+          <div class="ui pointing label">
+            Name of the author
+          </div>
+        </div>
+        <div class="ui segment field">
+          {{ form.author_additional_info }}
+          <div class="ui pointing label">
+            (Optional) Addition Info. of the author
+          </div>
+        </div>
+      </div>
+      <div class="ui fields">
+        <div class="field">
+          <label>Headline of the News</label>
+          {{ form.headline }}
+        </div>
+        <div class="field">
+          <label>Headline Image</label>
+          {{ form.headline_image }}
+        </div>
+      </div>
+      <div class="ui fields">
+        <div class="field">
+          <label>Body of the News</label>
+          {{ form.body_text }}
+        </div>
+      </div>
+      <div class="ui fields">
+        <div class="field">
+          {{ form.other_image }}
+        </div>
+      </div>
+      <input type="submit" name="" value="Create" class="ui green button">
+    </form>
+  </div>
+
+
+
+{% endblock %}

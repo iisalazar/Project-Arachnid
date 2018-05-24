@@ -247,4 +247,10 @@ $(document).ready(function() {
 
       });
 
+      $('.ui.form').form({
+        fields: {
+          author: 'empty'
+        }
+      });
+
 });

@@ -3,12 +3,19 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>
+      {% block title %}
+        Dashboard
+      {% endblock %}
+    </title>
     <link rel="stylesheet" href="{% static 'dist/semantic.css' %}">
+    <!--
+    <link rel="stylesheet" href="{% static 'medium-editor/css/medium-editor.css' %}">
+    <link rel="stylesheet" href="{% static 'medium-editor/css/themes/defaul.css' %}">
+    -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
-    {% block title %}
-      Dashboard
-    {% endblock %}
   </head>
   <body>
     <div class="ui container">
@@ -16,6 +23,7 @@
         <a href="{% url 'staff:index' %}" class="header item">Dashboard</a>
         <div class="right item">
           <a href="{% url 'staff:announcements' %}" class="{% block announcement%} {%endblock%}item">Announcements</a>
+          <a href="{% url 'staff:news' %}" class="{% block news %} {%endblock%}item">News</a>
           {% if user.is_authenticated %}
           <a href="{% url 'staff:logout' %}" class="item">Logout</a>
           {% else %}
@@ -31,6 +39,11 @@
     </div>
     <script src="{% static 'js/jquery.min.js'%}"></script>
     <script type="text/javascript" src="{% static 'dist/semantic.js'%}"></script>
+    <script type="text/javascript" src="{% static 'medium-editor/js/medium-editor.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script type="text/javascript">
+    var elements = document.querySelectorAll('.editable'),
+    editor = new MediumEditor(elements);
+    </script>
   </body>
 </html>

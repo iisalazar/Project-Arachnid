@@ -1,0 +1,99 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block title %}
+  List of News
+{% endblock %}
+
+{% block news %}
+  active
+{% endblock %}
+
+{% block main_content %}
+  <div class="ui raised segment">
+    <div class="ui grid">
+      <div class="row">
+        <div class="center aligned column">
+          <h1 class="ui header">List of all news</h1>
+        </div>
+      </div>
+      <div class="row">
+        <a href="{% url 'staff:create_news' %}" class="ui orange button">Add News</a>
+      </div>
+      <div class="ui row stackable center aligned two column internally celled grid">
+        <div class="ui eight wide computer sixteen wide tablet column">
+          <div class="row">
+            <div class="column">
+              <h4 class="ui header">Unpublished News</h4>
+            </div>
+          </div>
+          <table class="ui three column celled table">
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Headline</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for news in news %}
+              <tr>
+                {% if not news.published_date %}
+                <td>
+                  {% if news.author %} {{ news.author }} {% else %} None {% endif %}
+                </td>
+                <td>
+                  {{ news.headline|safe|truncatechars:15 }}
+                </td>
+                <td>
+                  <div class="ui buttons">
+                      <a href="{% url 'staff:publish' pk=news.pk %}" class="ui green button">Publish</a>
+                      <div class="or"></div>
+                      <a href="{% url 'staff:delete_news' pk=news.pk %}" class="ui red button">Delete</a>
+                  </div>
+                </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="ui eight wide computer sixteen wide tablet column">
+          <div class="row">
+            <div class="column">
+              <h4 class="ui header">Published News</h4>
+            </div>
+          </div>
+          <table class="ui three column celled table">
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Headline</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for news in news %}
+              <tr>
+                {% if news.published_date %}
+                <td>
+                  {% if news.author %} {{ news.author }} {% else %} None {% endif %}
+                  {{ news.pk }}
+                </td>
+                <td>
+                  {{ news.headline|safe|truncatechars:10 }}
+                </td>
+                <td>
+                  <div class="ui buttons">
+                      <a href="{% url 'staff:update_news' pk=news.pk %}" class="ui orange button">Update</a>
+                      <div class="or"></div>
+                      <a href="{% url 'staff:delete_news' pk=news.pk %}" class="ui red button">Delete</a>
+                  </div>
+                </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
