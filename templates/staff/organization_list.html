@@ -1,0 +1,37 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block organization %}
+  active
+{% endblock %}
+{% block title %}Organizations{% endblock %}
+{% block main_content %}
+
+  <div class="ui container">
+    <div class="ui segment">
+      <a href="{% url 'staff:create_organization' %}" class="ui green icon labeled button"><i class="ui plus icon"></i>Create Organization</a>
+      <table class="ui celled two column table">
+        <thead>
+          <th>Name</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          {% for org in organizations %}
+          <tr>
+            <td>
+              {{ org.name }}
+            </td>
+            <td>
+              <div class="ui buttons">
+                <a href="{% url 'staff:delete_organization' pk=org.pk%}" class="ui red button">Delete</a>
+                <a href="{% url 'staff:update_organization' pk=org.pk%}" class="ui orange button">Update</a>
+                <a href="{% url 'staff:organization_detail' pk=org.pk %}" class="ui blue button">Details</a>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

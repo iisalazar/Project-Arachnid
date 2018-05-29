@@ -34,3 +34,45 @@ class News(models.Model):
 
     def __str__(self):
         return self.headline + "- Written by" +self.author
+
+class Organization(models.Model):
+    name = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to="organization/" + str(name).lower() + "/logo", null=True)
+    acronym = models.CharField(max_length=10)
+    adviser = models.CharField(max_length=100)
+    president = models.CharField(max_length=100)
+    vice_president = models.CharField(max_length=100)
+    secretary = models.CharField(max_length=100)
+    treasurer = models.CharField(max_length=100)
+    auditor = models.CharField(max_length=100)
+    pio = models.CharField(max_length=100)
+    g7_rep = models.CharField(max_length=100)
+    g8_rep = models.CharField(max_length=100)
+    g9_rep = models.CharField(max_length=100)
+    g10_rep = models.CharField(max_length=100)
+    g11_rep = models.CharField(max_length=100)
+    g12_rep = models.CharField(max_length=100)
+
+    adviser_picture = models.ImageField(upload_to="organiation/" + str(name).lower() + "/profiles", null=True, blank=True)
+    pres_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    vp_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    sec_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    tres_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    aud_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    pio_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    g7_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    g8_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    g9_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    g10_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    g11_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    g12_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+
+
+    #org_pictures = models.ImageField(upload_to="organization/" + str(name).lower() + "/pictures", null=True)
+    description = models.CharField(max_length=1000, blank=True)
+
+    def get_absolute_url(self):
+        return reverse('staff:organizations')
+
+    def __str__(self):
+        return self.name

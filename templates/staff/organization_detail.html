@@ -1,0 +1,77 @@
+{% extends 'staff/base_staff.html' %}
+{% load staticfiles %}
+{% block title %}
+  Details - {{ organization.name }}
+{% endblock %}
+{% block organization %}
+  active
+{%endblock%}
+{% block main_content %}
+  <div class="ui segment">
+    <div class="ui container">
+      <div class="ui celled grid">
+        <div class="row">
+          <div class="right floated three wide column">
+              <img src="{{ organization.logo.url }}" alt="logo" width="100px" height="100px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <h2>Name: {{ organization.name }}</h2>
+            <h2>Acronym: {{ organization.acronym }}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <table class="ui table">
+            <thead>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Picture</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  {{ organization.adviser }}
+                </td>
+                <td>
+                  Adviser
+                </td>
+                <td>
+                  {% if organization.adviser_picture %}
+                  <img src="{{ organization.adviser_picture.url }}" alt="Adviser" width="100px" height="100px">
+                  {% else %}
+                  <img src="{% static 'img/avatar/tom.jpg' %}" alt="Adviser" width="100px" height="100px">
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {{ organization.president }}
+                </td>
+                <td>
+                  President
+                </td>
+                <td>
+                  {% if organization.pres_picture %}
+                  <img src="{{ organization.pres_picture.url }}" alt="Adviser" width="100px" height="100px">
+                  {% else %}
+                  <img src="{% static 'img/avatar/tom.jpg' %}" alt="Adviser" width="100px" height="100px">
+                  {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="ui six wide right floated column">
+            <div class="ui buttons">
+              <a href="{% url 'staff:update_organization' pk=organization.pk %}" class="ui orange button">Update Information</a>
+              <div class="or"></div>
+              <a href="{% url 'staff:delete_organization' pk=organization.pk %}" class="ui red button">Delete Organization</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

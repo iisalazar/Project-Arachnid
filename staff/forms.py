@@ -21,3 +21,26 @@ class NewsForm(forms.ModelForm):
             'headline': forms.Textarea(attrs={'class': 'editable medium-editor-textarea', 'placeholder': 'Write headline'}),
             'body_text': forms.Textarea(attrs={'class': 'editable medium-editor-textarea'}),
         }
+
+class OrganizationForm(forms.ModelForm):
+    class Meta:
+        model = models.Organization
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Name of Organization'}),
+            'acronym': forms.TextInput(attrs={'placeholder': 'E.g. RobITech, YAG'}),
+            'adviser': forms.TextInput(),
+            'president': forms.TextInput(),
+            'vice_president': forms.TextInput(),
+            'secretary': forms.TextInput(),
+            'treasurer': forms.TextInput(),
+            'auditor': forms.TextInput(),
+            'pio': forms.TextInput(),
+            'g7_rep': forms.TextInput(),
+            'g8_rep': forms.TextInput(),
+            'g9_rep': forms.TextInput(),
+            'g10_rep': forms.TextInput(),
+            'g11_rep': forms.TextInput(),
+            'g12_rep': forms.TextInput(),
+            'description': forms.Textarea(),
+        }

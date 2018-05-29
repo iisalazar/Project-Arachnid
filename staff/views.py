@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView, FormView
 from django.urls import reverse_lazy
-from .forms import AnnouncementForm, NewsForm
-from .models import Announcement, News
+from .forms import AnnouncementForm, NewsForm, OrganizationForm
+from .models import Announcement, News, Organization
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
@@ -67,3 +67,34 @@ def publish_news(request, pk):
     news = get_object_or_404(News, pk=pk)
     news.publish()
     return redirect('staff:index')
+
+
+# ------------------- Organization Views ------------------- #
+
+class OrganizationListView(LoginRequiredMixin, ListView):
+    redirect_field_name = 'staff/index.html'
+    model = Organization
+    context_object_name = 'organizations'
+    def get_queryset(self):
+        return Organization.objects.order_by('name')
+
+class OrganizationCreateView(LoginRequiredMixin, CreateView):
+    redirect_field_name = 'staff/index.html'
+    model = Organization
+    form_class = OrganizationForm
+
+class OrganizationUpdateView(LoginRequiredMixin, UpdateView):
+    redirect_field_name = 'staff/index.html'
+    model = Organization
+    form_class = OrganizationForm
+    pk_url_kwarg = 'pk'
+
+class OrganizationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Organization
+    pk_url_kwarg = 'pk'
+    success_url = reverse_lazy('staff:organizations')
+
+class OrganizationDetailView(LoginRequiredMixin, DetailView):
+    model = Organization
+    context_object_name = "organization"
+    pk_url_kwarg = 'pk'

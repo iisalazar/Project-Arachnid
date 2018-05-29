@@ -1,0 +1,19 @@
+{% extends 'staff/base_staff.html' %}
+{% block title %}
+  Cofirm delete - {{ object }}
+{% endblock %}
+{% block main_content %}
+<div class="ui contaienr">
+  <div class="ui segment">
+    <form class="ui form" method="post">
+      {% csrf_token %}
+      <h3 class="ui header">Are you sure you want to delete {{ object }}?</h3>
+      <div class="ui grid">
+        <div class="ui right floated column">
+          <button type="submit" name="button" class="ui red icon labeled button"><i class="ui delete icon"></i>Confirm</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

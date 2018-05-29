@@ -1,0 +1,189 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block organization %}
+  active
+{% endblock %}
+{% block title %}Organizations{% endblock %}
+{% block main_content %}
+  <div class="ui container">
+    <div class="ui segment">
+      {% if object %}
+      <div class="ui orange right ribbon label">
+        Updating an organization
+      </div>
+      {% else %}
+      <div class="ui red right ribbon label">
+        New Organization
+      </div>
+      {% endif %}
+      <div class="ui attached segment">
+        {% if object %}
+          <h3 class="ui header">Update {{ object }}</h3>
+        {% else %}
+          <h3 class="ui header">Create A New Organization</h3>
+        {% endif %}
+        {% if form.errors %}
+        <div class="ui warning message">
+          {{ form.errors }}
+        </div>
+        {% endif %}
+      </div>
+      <form class="ui equal width attached fluid segment form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="ui fields">
+          <div class="ui field">
+            <label for="name">Name of Organization</label>
+            {{ form.name }}
+          </div>
+          <div class="ui field">
+            <label for="acronym">Acronym</label>
+            {{ form.acronym }}
+          </div>
+          <div class="ui field">
+            <label for="">Logo</label>
+            {{ form.logo }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="adviser">Adviser</label>
+            {{ form.adviser }}
+          </div>
+          <div class="ui field">
+            <label for="adviser_picture">Adviser's Profile Picture</label>
+            {{ form.adviser_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="president">President</label>
+            {{ form.president }}
+          </div>
+          <div class="ui field">
+            <label for="pres_picture">President's Picture</label>
+            {{ form.pres_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="vice_president">Vice President</label>
+            {{ form.vice_president }}
+          </div>
+          <div class="ui field">
+            <label for="vp_picture">Vice's Picture</label>
+            {{ form.vp_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="secretary">Secretary</label>
+            {{ form.secretary }}
+          </div>
+          <div class="ui field">
+            <label for="sec_picture">Secretary's Picture</label>
+            {{ form.vp_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="tresurere">Treasurer</label>
+            {{ form.treasurer }}
+          </div>
+          <div class="ui field">
+            <label for="tres_picture">Tresurer's Picture</label>
+            {{ form.tres_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="vice_president">Auditor</label>
+            {{ form.auditor }}
+          </div>
+          <div class="ui field">
+            <label for="vp_picture">Auditor's Picture</label>
+            {{ form.aud_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="pio">P.I.O.</label>
+            {{ form.pio }}
+          </div>
+          <div class="ui field">
+            <label for="pio_picture">PIO's Picture</label>
+            {{ form.pio_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="g7_rep">G7 Representative</label>
+            {{ form.g7_rep }}
+          </div>
+          <div class="ui field">
+            <label for="g7_picture">G7 Picture</label>
+            {{ form.g7_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="g8_rep">G8 representative</label>
+            {{ form.g8_rep }}
+          </div>
+          <div class="ui field">
+            <label for="g8_picture">G8 Picture</label>
+            {{ form.g8_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="g9_rep">G9 Representative</label>
+            {{ form.g9_rep }}
+          </div>
+          <div class="ui field">
+            <label for="g9_picture">G9 Picture</label>
+            {{ form.g9_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="g10_rep">G10 Representative</label>
+            {{ form.g10_rep }}
+          </div>
+          <div class="ui field">
+            <label for="g10_picture">G10 Rep Picture</label>
+            {{ form.g10_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="g11_representative">G11 Representative</label>
+            {{ form.g11_rep }}
+          </div>
+          <div class="ui field">
+            <label for="g11_picture">G11 Rep Picture</label>
+            {{ form.g11_picture }}
+          </div>
+        </div>
+        <div class="ui fields">
+          <div class="ui required field">
+            <label for="g12_rep">G12 Representative</label>
+            {{ form.g12_rep }}
+          </div>
+          <div class="ui field">
+            <label for="g12_picture">G12 Rep Picture</label>
+            {{ form.g12_picture }}
+          </div>
+        </div>
+        <div class="ui field">
+          <label for="description">Description</label>
+          {{ form.description }}
+        </div>
+        {% if object %}
+        <input type="submit" value="Update" class="ui orange inverted button">
+        {% else %}
+        <input type="submit" value="Create" class="ui green inverted button">
+        {% endif %}
+      </form>
+    </div>
+  </div>
+{% endblock %}
