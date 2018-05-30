@@ -22,6 +22,13 @@ urlpatterns = [
     path('organizations/update/<int:pk>/', views.OrganizationUpdateView.as_view(), name="update_organization"),
     path('organization/details/<int:pk>/', views.OrganizationDetailView.as_view(), name="organization_detail"),
 
+    path('research/', views.ResearchListView.as_view(), name="research"),
+    path('research/create/', views.ResearchCreateView.as_view(), name="create_research"),
+    path('research/delete/<int:pk>/', views.ResearchDeleteView.as_view(), name="delete_research"),
+    path("research/update/<int:pk>/", views.ResearchUpdateView.as_view(), name="update_research"),
+    path("research/details/<int:pk>/", views.ResearchDetailView.as_view(), name="research_detail"),
+    path('research/details/<int:pk>/add_proponent/', views.add_proponent_to_research, name="add_proponent_to_research"),
+
     path('accounts/login/', auth_view.login, name="login"),
     path('accounts/logout/', auth_view.logout, name="logout", kwargs={'next_page': '/'})
 ]

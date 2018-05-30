@@ -1,0 +1,90 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block title %}
+  Research Details
+{% endblock %}
+
+{% block research %}
+  active
+{% endblock %}
+
+{% block main_content %}
+
+<div class="ui container">
+  <div class="ui segment">
+    <div class="ui grid">
+      <div class="row">
+        <div class="left floated four wide column">
+          <h4 class="ui header">
+            {{ research_paper.title }}
+          </h4>
+        </div>
+        <div class="right floated four wide column">
+          <div class="ui buttons">
+            <a href="{% url 'staff:update_research' pk=research_paper.pk %}" class="ui orange button">Update</a>
+            <a href="{% url 'staff:delete_research' pk=research_paper.pk %}" class="ui red button">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="ui table">
+      <tbody>
+        <tr>
+          <td>
+            Title
+          </td>
+          <td>
+            {{ research_paper.title|truncatechars:50 }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Published Date
+          </td>
+          <td>
+            {{ research_paper.published_date|date:"d M Y"}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            File
+          </td>
+          <td>
+            <a href="{{ research_paper.file.url }}">{{ research_paper.title }}</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Category
+          </td>
+          <td>
+            {% if research_paper.category == "Applied" %}
+            {{ research_paper.category }}
+            {% else %}
+            Error
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Proponents
+          </td>
+          <td>
+            {% for proponent in research_paper.researchpaperproponents.all %}
+            {{ proponent.last_name }},
+            {% endfor %}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Abstract
+          </td>
+          <td>
+            {{ research_paper.abstract|truncatechars:100 }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

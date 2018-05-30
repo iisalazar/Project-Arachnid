@@ -1,0 +1,56 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block title %}
+  {% if object %}
+  Update Research Paper
+  {% else %}
+  Create Research Paper
+  {% endif %}
+{% endblock %}
+
+{% block research %}
+  active
+{% endblock %}
+
+{% block main_content %}
+  <div class="ui container">
+    <div class="ui segment">
+      <div class="ui attached segment">
+        {% if object or form.errors %}
+        <h2 class="ui header">Update a Research</h2>
+        {{ form.errors }}
+        {% else %}
+        <h2 class="ui header">Create a Research</h2>
+        {% endif %}
+      </div>
+      <form class="ui attached segment form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="ui field">
+          <label for="title">Title of the Study</label>
+          <input type="text" name="title" placeholder="E.g. The Utilization of Malunggay as Nuclear Bomb">
+        </div>
+        <div class="ui field">
+          <label for="published_date">Date of Publication</label>
+          <input type="date" name="published_date">
+        </div>
+        <div class="ui field">
+          <label for="file">File (in pdf)</label>
+          {{ form.file }}
+        </div>
+        <div class="ui field">
+          <label for="category">Category</label>
+          {{ form.category }}
+        </div>
+        <div class="ui field">
+          <label for="abstact">Abstract</label>
+          {{ form.abstract }}
+        </div>
+        {% if object %}
+        <input type="submit" value="Update" class="ui orange button">
+        {% else %}
+        <input type="submit" value="Create" class="ui green button">
+        {% endif %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

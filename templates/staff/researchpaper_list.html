@@ -1,0 +1,65 @@
+{% extends 'staff/base_staff.html' %}
+{% block title%}
+  Research Papers
+{% endblock %}
+{% block research %}
+  active
+{% endblock %}
+
+{% block main_content %}
+  <div class="ui container">
+    <div class="ui segment">
+      <div class="ui grid">
+        <div class="row">
+          <div class="ui four wide right floated column">
+            <a href="{% url 'staff:create_research' %}" class="ui green button">Create Research Paper</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <table class="ui table">
+              <thead>
+                <th>
+                  Title
+                </th>
+                <th>
+                  Proponents
+                </th>
+                <th>
+                  Category
+                </th>
+                <th>
+                  Action
+                </th>
+              </thead>
+              <tbody>
+                {% for research in research_papers %}
+                <tr>
+                  <td>
+                    {{ research.title }}
+                  </td>
+                  <td>
+                    {% for proponent in research.researchpaperproponents %}
+                    {{ proponent.last_name }},
+                    {% endfor %}
+                  </td>
+                  <td>
+                    {{ research.category }}
+                  </td>
+                  <td>
+                    <div class="ui buttons">
+                      <a href="{% url 'staff:research_detail' pk=research.pk%}" class="ui blue button">Details</a>
+                      <a href="{% url 'staff:delete_research' pk=research.pk %}" class="ui red button">Delete</a>
+                      <a href="{% url 'staff:add_proponent_to_research' pk=research.pk %}" class="ui green button">Add Proponent</a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

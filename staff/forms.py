@@ -44,3 +44,24 @@ class OrganizationForm(forms.ModelForm):
             'g12_rep': forms.TextInput(),
             'description': forms.Textarea(),
         }
+
+CATEGORY_CHOICES = (
+    ("Applied", "Applied Science"),
+    ("Life", "Life Science")
+)
+
+class ResearchForm(forms.ModelForm):
+    class Meta:
+        model = models.ResearchPaper
+        fields = '__all__'
+        widgets = {
+            'title': forms.TextInput(),
+            'abstract': forms.Textarea(),
+            'published_date': forms.DateInput(),
+            'category': forms.Select(choices=CATEGORY_CHOICES)
+        }
+
+class ResearchProponentForm(forms.ModelForm):
+    class Meta:
+        model = models.ResearchPaperProponents
+        fields = ('first_name', 'middle_name', 'last_name')

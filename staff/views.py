@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView, FormView
 from django.urls import reverse_lazy
-from .forms import AnnouncementForm, NewsForm, OrganizationForm
-from .models import Announcement, News, Organization
+from .forms import AnnouncementForm, NewsForm, OrganizationForm, ResearchForm, ResearchProponentForm
+from .models import Announcement, News, Organization, ResearchPaper
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
@@ -98,3 +98,48 @@ class OrganizationDetailView(LoginRequiredMixin, DetailView):
     model = Organization
     context_object_name = "organization"
     pk_url_kwarg = 'pk'
+
+
+# ------------------- Research Views ------------------- #
+
+class ResearchListView(LoginRequiredMixin, ListView):
+    redirect_field_name = 'staff/index.html'
+    model = ResearchPaper
+    context_object_name = "research_papers"
+    def get_queryset(self):
+        return ResearchPaper.objects.order_by('-title')
+
+class ResearchCreateView(LoginRequiredMixin, CreateView):
+    redirect_field_name = 'staff/index.html'
+    model = ResearchPaper
+    form_class = ResearchForm
+
+class ResearchUpdateView(LoginRequiredMixin, UpdateView):
+    redirect_field_name = 'staff/index.html'
+    model = ResearchPaper
+    form_class = ResearchForm
+    pk_url_kwarg = 'pk'
+
+class ResearchDeleteView(LoginRequiredMixin, DeleteView):
+    model = ResearchPaper
+    pk_url_kwarg = 'pk'
+    success_url = reverse_lazy('staff:research')
+
+class ResearchDetailView(LoginRequiredMixin, DetailView):
+    model = ResearchPaper
+    context_object_name = 'research_paper'
+    pk_url_kwarg = 'pk'
+
+@login_required
+def add_proponent_to_research(request, pk):
+    research_paper = get_object_or_404(ResearchPaper, pk=pk)
+    if request.method == "POST":
+        form = ResearchProponentForm(request.POST)
+        if form.is_valid():
+            proponent = form.save(commit=False)
+            proponent.research = research_paper
+            proponent.save()
+            return redirect('staff:research_detail', pk=research_paper.pk)
+    else:
+        form = ResearchProponentForm()
+        return render(request, 'staff/researchpaperproponents_form.html', {'form': form})

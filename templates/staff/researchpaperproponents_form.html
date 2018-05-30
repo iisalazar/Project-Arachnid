@@ -1,0 +1,17 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block research %}
+  active
+{% endblock %}
+
+{% block main_content %}
+  <div class="ui container">
+    <div class="ui segment">
+      <form class="ui form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add" class="ui green button">
+      </form>
+    </div>
+  </div>
+{% endblock %}

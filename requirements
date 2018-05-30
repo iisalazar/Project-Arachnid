@@ -2,3 +2,5 @@
   - found on github
 + Pillow
   - pip install pillow
++ Django-cleanup
+  - pip install django-cleanup
