@@ -23,6 +23,7 @@
           <div class="ui buttons">
             <a href="{% url 'staff:update_research' pk=research_paper.pk %}" class="ui orange button">Update</a>
             <a href="{% url 'staff:delete_research' pk=research_paper.pk %}" class="ui red button">Delete</a>
+            <a href="{% url 'staff:add_proponent_to_research' pk=research_paper.pk %}" class="ui green button">Add Proponent</a>
           </div>
         </div>
       </div>
@@ -58,11 +59,9 @@
             Category
           </td>
           <td>
-            {% if research_paper.category == "Applied" %}
-            {{ research_paper.category }}
-            {% else %}
-            Error
-            {% endif %}
+            <div class="ui basic {% if research_paper.category == 'Applied'%}blue{%else%}green{% endif %} label">
+              {{ research_paper.category }}
+            </div>
           </td>
         </tr>
         <tr>
@@ -70,9 +69,15 @@
             Proponents
           </td>
           <td>
-            {% for proponent in research_paper.researchpaperproponents.all %}
-            {{ proponent.last_name }},
-            {% endfor %}
+            {% if research_paper.proponents.all %}
+              {% for proponent in research_paper.proponents.all %}
+                {{ proponent.first_name|slice:"1"}}.{{ proponent.middle_name|slice:"1"}}. {{ proponent.last_name }},
+              {% empty %}
+                No Proponents
+              {% endfor %}
+            {% else %}
+            Error
+            {%endif%}
           </td>
         </tr>
         <tr>

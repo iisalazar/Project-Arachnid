@@ -25,6 +25,7 @@ class News(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
+
     def publish(self):
         self.published_date = timezone.now()
         self.save()
@@ -84,8 +85,8 @@ class ResearchPaper(models.Model):
     )
     Applied = "Applied"
     Life = "Life"
-    title = models.CharField(max_length=500)
-    abstract = models.CharField(max_length=100)
+    title = models.CharField(max_length=10000)
+    abstract = models.CharField(max_length=10000)
     published_date = models.DateTimeField(default=timezone.now)
     file = models.FileField(upload_to="research_papers/" + str(title).lower(), validators=[FileExtensionValidator(['pdf'])],)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=50, default=None)
@@ -96,8 +97,8 @@ class ResearchPaper(models.Model):
     def __str__(self):
         return self.title + " - " + self.category
 
-class ResearchPaperProponents(models.Model):
-    research = models.ForeignKey(ResearchPaper, on_delete=models.CASCADE)
+class ResearchProponent(models.Model):
+    research = models.ForeignKey(ResearchPaper, on_delete=models.CASCADE, related_name="proponents")
     first_name = models.CharField(max_length=100)
     middle_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView, FormView
 from django.urls import reverse_lazy
 from .forms import AnnouncementForm, NewsForm, OrganizationForm, ResearchForm, ResearchProponentForm
-from .models import Announcement, News, Organization, ResearchPaper
+from .models import Announcement, News, Organization, ResearchPaper, ResearchProponent
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required

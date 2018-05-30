@@ -19,6 +19,8 @@
 	src: url("../fonts/code-light.otf?#iefix") format("opentype");
 }
 
+
+
 /*Landing page */
 
 #def-navbar {
@@ -125,8 +127,8 @@
 
 /* CSS transfered from HTML */
 
-.masthead .ui.text.container {
-	margin-top: 15em;
+.masthead.segment .ui.text.container {
+	margin-top: 25em;
 }
 
 .masthead .ui.text.container img.logo
@@ -405,4 +407,29 @@ a:hover.back-to-top {
 .ui.attached.segment .ui.compact.segment
 {
 	padding: 2em;
+}
+
+/************ FOR NEWS ************/
+#news_container {
+	margin: 0 20em 0 20em;
+}
+
+.news.meta
+{
+	font-size: 15px;
+}
+
+.news.content {
+	text-align: center;
+}
+
+.news.content .ui.headline.image {
+	height: 500px;
+	width: 100%;
+}
+
+.news.content .body
+{
+	padding: 1em 0 1em 0;
+	text-align: left;
 }

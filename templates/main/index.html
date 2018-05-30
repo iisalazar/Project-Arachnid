@@ -8,7 +8,7 @@
         <div class="ui masthead center aligned segment">
           <div class="ui container">
             <div class="ui green secondary large pointing menu"  id="home-navbar">
-                <a class="item" href="index.html"><img class="logo" src="{% static 'img/logo.png' %}"></a>
+                <a class="item" href="{% url 'main:index' %}"><img class="logo" src="{% static 'img/logo.png' %}"></a>
                 <a class="active item" href="{% url 'main:index' %}">Home</a>
                 <a class="item" href="{% url 'main:admissions' %}">Admissions</a>
                 <a class="item" href="{% url 'main:news' %}">News</a>
@@ -26,9 +26,9 @@
     							Research
     							<i class="ui dropdown icon"></i>
     							<div class="menu">
-    								<a class="item" href="appliedScience.html">Applied Science</a>
+    								<a class="item" href="{% url 'main:applied_science' %}">Applied Science</a>
     								<div class="ui divider"></div>
-    								<a class="item" href="lifeScience.html">Life Science</a>
+    								<a class="item" href="{% url 'main:life_science' %}">Life Science</a>
     							</div>
     						</div>
                 <a class="item" href="{% url 'main:about' %}">About</a>

@@ -63,5 +63,5 @@ class ResearchForm(forms.ModelForm):
 
 class ResearchProponentForm(forms.ModelForm):
     class Meta:
-        model = models.ResearchPaperProponents
+        model = models.ResearchProponent
         fields = ('first_name', 'middle_name', 'last_name')

@@ -1,0 +1,46 @@
+{% extends 'base_2.html'%}
+{% block title %}
+  Life Science
+{% endblock %}
+{% block main_content %}
+  <div class="ui container segment">
+    <a href="{% url 'main:life_science' %}" class="ui basic icon labeled button"><i class="ui angle double left icon"></i>All Papers</a>
+    <div class="ui stackable celled grid">
+      <div class="center aligned row">
+        <div class="column">
+          <h1 class="ui header">
+            {{ object.title }}
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ten wide computer left floated sixteen wide tablet column">
+          <div class="ui raised segment">
+            <h2 class="ui header">Abstract</h2>
+            <div class="ui divider"></div>
+            {{ object.abstract }}
+          </div>
+        </div>
+        <div class="six wide computer rigt floated sixteen wide tablet column">
+          <div class="ui raised segment">
+            <h2 class="ui header">Proponent{{ objects.proponents.all|pluralize}}</h2>
+            <ul class="ui list">
+              {% for proponent in object.proponents.all %}
+              <li class="ui item">{{ proponent.first_name|slice:"1"}}. {{ proponent.middle_name|slice:"1" }}. {{proponent.last_name }}</li>
+              {% endfor %}
+            </ul>
+            <h2 class="ui header">Published: </h2>
+            <p class="ui description">{{ object.published_date|date:"M d, Y"}}</p>
+            <div class="ui labeled button">
+              <a href="{{ object.file.url }}" class="ui green icon button">Download</a>
+              <div class="ui basic green label">
+                <i class="ui download icon"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

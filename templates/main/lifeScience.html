@@ -12,55 +12,41 @@
 	<br>
 
 	<div class="ui container">
-		<div class="researchCategory">
 			<div class="ui secondary pointing menu">
-				<a class="item" href="appliedScience.html">Physical Science</a>
-				<a class="active item" href="lifeScience.html">Life Science</a>
+				<a class="item" href="{% url 'main:applied_science' %}">Physical Science</a>
+				<a class="active item" href="{% url 'main:life_science' %}">Life Science</a>
 			</div>
-		</div>
-		<br><br>
-
-		<div class="lifeScience">
-			<div class="ui container">
 				<div class="ui relaxed divided items">
+          {% for paper in research_paper %}
 					<div class="item">
-						<div class="ui small image">
-							<img src="assets/images/wireframe/image.png">
-						</div>
 						<div class="content">
-							<a class="header" href="physical1.html">Hahaha</a>
+							<a class="ui header" href="{% url 'main:life_science_detail' pk=paper.pk %}">{{ paper.title }}</a>
 							<div class="meta">
-								<p>Jake Calubayan</p>
+								<p>
+									{% for proponent in paper.proponents.all %}
+		                {{ proponent.first_name|slice:"1"}}.{{ proponent.middle_name|slice:"1"}}. {{ proponent.last_name }},
+		              {% empty %}
+		                No Proponents
+		              {% endfor %}
+								</p>
+								<p>Published on {{ paper.published_date|date:"d M, Y"}}</p>
 							</div>
 							<div class="description">
-								Life nga ba siya? HAHAHAHA
+								{{ paper.abstract|truncatechars:200 }}
 							</div>
 							<div class="extra">
-								<div class="ui label green">Life</div>
+								<div class="ui label green">
+									Applied / Physical
+								</div>
+								<a class="ui right floated orange button" href="{% url 'main:life_science_detail' pk=paper.pk %}">
+                  Details
+                  <i class="ui right arrow icon"></i>
+								</a>
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="ui small image">
-							<img src="assets/images/wireframe/image.png">
-						</div>
-						<div class="content">
-							<a class="header" href="physical1.html">Hahaha</a>
-							<div class="meta">
-								<p>Jake Calubayan</p>
-							</div>
-							<div class="description">
-								Life nga ba siya? HAHAHAHA
-							</div>
-							<div class="extra">
-								<div class="ui label green">Life</div>
-							</div>
-						</div>
-					</div>
+					{% endfor %}
 				</div>
-			</div>
-		</div>
-		<br><br><br><br>
 
 	</div>
 

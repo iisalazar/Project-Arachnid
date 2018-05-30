@@ -1,0 +1,16 @@
+{% extends 'base_2.html' %}
+{% block main_content %}
+  <div id="news_container">
+    <div class="news meta">
+      <p>{{ news.author }}</p>
+      <p>{{ news.published_date|date:"d M, Y"}}</p>
+    </div>
+    <div class="news content">
+      <h1 class="ui header">{{ news.headline|safe}}</h1>
+      <img src="{{ news.headline_image.url }}" alt="headline_image" class="ui headline image">
+      <div class="body">
+        {{ news.body_text|safe }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
