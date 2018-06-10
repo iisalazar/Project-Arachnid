@@ -74,22 +74,26 @@
                   <div class="ui left floated seven wide computer sixteen wide tablet column">
                     <div class="ui raised segment">
                       <div class="ui center aligned header">
-                        Events / Activities
+                        Latest News
                       </div>
-                      <div class="row">
-                        <p class="description">
-                          Legend:
-                        </p>
+                      <div class="row segments">
+                        {% for news in news %}
+                          <div class="ui segment">
+                            <a href="{% url 'main:news_detail' pk=news.pk %}">
+                              {{ news.headline|safe }}
+                            </a>
+                          </div>
+                        {% endfor %}
                       </div>
-                      <iframe src="https://calendar.google.com/calendar/b/1/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=2fbgkeqn958tjfrfjvciuqdobg%40group.calendar.google.com&amp;color=%2328754E&amp;ctz=Asia%2FManila" style="border-width:0" width="100%" height="300" frameborder="0" scrolling="no"></iframe>
+                      <!--<iframe src="https://calendar.google.com/calendar/b/1/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=2fbgkeqn958tjfrfjvciuqdobg%40group.calendar.google.com&amp;color=%2328754E&amp;ctz=Asia%2FManila" style="border-width:0" width="100%" height="300" frameborder="0" scrolling="no"></iframe>-->
                     </div>
                   </div>
                   <div class="ui right floated six wide computer eight wide centered tablet column">
-                    <div class="ui raised segment" style="height: 368px;">
+                    <div class="ui raised segment">
                       <div class="ui center aligned header">
-                        Issues
+                        Announcements
                       </div>
-
+                      <!--
                       <div class="ui segment feed">
                         <div class="event">
                           <div class="content">
@@ -103,53 +107,27 @@
                             </div>
                           </div>
                         </div>
-<!-- ###################### I'M HERE ########################## -->
-                        <div class="event">
-                          <div class="content">
-                            <div class="summary">
-                              <a class="user" href="#">
-                                Announcement Title
-                              </a>
-                              <div class="date">
-                                Issued March 69, 2018
+ ###################### I'M HERE ########################## -->
+                        {% for announcement in announcements %}
+                          <div class="ui event segment">
+                            <div class="content">
+                              <div class="summary">
+                                <a href="#">
+                                  {{ announcement.title }}
+                                </a>
+                                <div class="date">
+                                  {{ announcement.date_created }}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-
-                        <div class="event">
-                          <div class="content">
-                            <div class="summary">
-                              <a class="user" href="#">
-                                Announcement Title
-                              </a>
-                              <div class="date">
-                                Issued March 69, 2018
-                              </div>
-                            </div>
-                            <div class="extra text">
-                              Short description
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="event">
-                          <div class="content">
-                            <div class="summary">
-                              <a class="user" href="#">
-                                Issued Announcement Title
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-
+                        {% endfor %}
                       </div>
 
                     </div>
                   </div>
                 </div>
               </div>
-        </div>
 
         <!-- FACILITIES -->
 
@@ -263,7 +241,7 @@
                 <p class="ui description">Come and join our community as we train our students excel in the fields of Science, Mathematics and Technology.</p>
               </div>
               <div class="row">
-                <a class="ui big green button" href="admissions.html">Enroll Now! <i class="ui angle right icon"></i></a>
+                <a class="ui big green button" href="{% url 'main:admissions' %}">Enroll Now! <i class="ui angle right icon"></i></a>
               </div>
           </div>
         </div>

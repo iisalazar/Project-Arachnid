@@ -13,6 +13,10 @@
 
 		{% endblock %}
 	</title>
+	<style>
+		{% block style %}
+		{% endblock %}
+	</style>
 
 	<link rel="stylesheet" href="{% static 'dist/semantic.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
@@ -93,29 +97,29 @@
 					<a class="header item" href="index.html"><img class="logo" src="{% static 'img/logo.png' %}">QSHS</a>
 					<div class="ui right item">
 						<a class="item" href="{% url 'main:index' %}">Home</a>
-							<a class="item" href="{% url 'main:admissions' %}">Admissions</a>
-							<a class="item" href="{% url 'main:news' %}">News</a>
-							<div class="ui dropdown item">
+							<a class="{% block admission %} {%endblock%}item" href="{% url 'main:admissions' %}">Admissions</a>
+							<a class="{% block news %} {%endblock%}item" href="{% url 'main:news' %}">News</a>
+							<div class="ui dropdown {% block archives %} {% endblock %}item">
 								Archives
 								<i class="ui dropdown icon"></i>
 								<div class="menu">
-									<a class="item" href="#">Documents</a>
+									<a class="{% block archive_documents %} {% endblock %}item" href="#">Documents</a>
 									<div class="ui divider"></div>
-									<a class="item" href="#">Images</a>
+									<a class="{% block archive_images %} {% endblock %}item" href="#">Images</a>
 								</div>
 							</div>
-							<div class="ui dropdown item">
+							<div class="ui dropdown {% block research %} {%endblock%}item">
 								Research
 								<i class="ui dropdown icon"></i>
 								<div class="menu">
-									<a class="item" href="{% url 'main:applied_science' %}">Applied Science</a>
+									<a class="{% block research_applied %} {%endblock%}item" href="{% url 'main:applied_science' %}">Applied Science</a>
 									<div class="ui divider"></div>
-									<a class="item" href="{% url 'main:life_science' %}">Life Science</a>
+									<a class="{% block research_life %} {% endblock %}item" href="{% url 'main:life_science' %}">Life Science</a>
 								</div>
 							</div>
-							<a class="item" href="{% url 'main:organizations' %}">Organizations</a>
-							<a class="item" href="{% url 'main:about' %}">About</a>
-							<a class="item" href="{% url 'main:faqs' %}">FAQs</a>
+							<a class="{% block org %} {% endblock %} item" href="{% url 'main:organizations' %}">Organizations</a>
+							<a class="{% block about %} {% endblock %} item" href="{% url 'main:about' %}">About</a>
+							<a class="{% block faq %} {% endblock %} item" href="{% url 'main:faqs' %}">FAQs</a>
 							{% if user.is_authenticated %}
 							<a href="{% url 'admin:index' %}" class="ui item">Admin</a>
 							<a href="{% url 'staff:index' %}" class="item">Staff</a>

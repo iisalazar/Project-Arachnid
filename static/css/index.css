@@ -424,8 +424,12 @@ a:hover.back-to-top {
 }
 
 .news.content .ui.headline.image {
-	height: 500px;
+	height: 100px;
 	width: 100%;
+}
+.news.content .ui.cover.image
+{
+	height: 50px;
 }
 
 .news.content .body

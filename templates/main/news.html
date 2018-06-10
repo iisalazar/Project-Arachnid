@@ -2,6 +2,11 @@
 {% block title %}
   News
 {% endblock %}
+
+{% block news %}
+  active
+{% endblock %}
+
 {% block main_content %}
 	<div class="news">
 	<center>
@@ -19,6 +24,9 @@
         </div>
         <div class="content">
           <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>
+          <div class="description">
+            {{ news.lead_text }}
+          </div>
           <div class="meta">
             <p>
               Published {{ news.published_date|date:"M d, Y" }} by
@@ -28,9 +36,6 @@
               Anonymous
               {% endif %}
             </p>
-          </div>
-          <div class="description">
-            {{ news.body_text|safe|truncatechars:200 }}
           </div>
         </div>
       </div>

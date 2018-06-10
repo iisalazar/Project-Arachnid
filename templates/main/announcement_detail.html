@@ -1,0 +1,20 @@
+{% extends 'base_2.html' %}
+{% block title %}
+  Announcement
+{% endblock %}
+{% block main_content %}
+  <div class="ui container segments">
+    <div class="ui segment stackable grid">
+      <div class="row">
+        <div class="ui left floated center aligned four wide column">
+          {{ announcement.title }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="ui center aligned eight wide computer sixteen wide tablet column">
+          {{ announcement.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

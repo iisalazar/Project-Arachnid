@@ -4,21 +4,34 @@
 	active
 {% endblock %}
 {% block main_content %}
-	<a href="{% url 'staff:create_announcement' %}" class="ui orange button">Add file</a>
-  <div class="ui segment">
-    <table class="ui celled two column table">
-    	{% for announcement in announcements %}
-    	<tr>
-    		<td>
-    			{{ announcement.title }}
-    		</td>
-    		<td>
-    			<a href="{% url 'staff:view_file' pk=announcement.pk %}"><i class="ui file icon"></i> {{ announcement.file.url }}</a>
-    		</td>
-    	</tr>
-    	<a href="{{ announcement.file.url }}">File</a>
-    	{% endfor %}
-    </table>
-    
-  </div>
+	<div class="ui grid segments">
+		<div class="row">
+			<div class="four wide right floated right aligned column">
+				<a href="{% url 'staff:create_announcement' %}" class="ui orange button">Create Announcement</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<div class="ui segment">
+			    <table class="ui celled two column table">
+			    	{% for announcement in announcements %}
+			    	<tr>
+			    		<td>
+			    			{{ announcement.title }}
+			    		</td>
+			    		<td>
+								{% if announcement.file %}
+			    			<a href="{% url 'staff:view_file' pk=announcement.pk %}"><i class="ui file icon"></i> {{ announcement.file.url }}</a>
+								{% else %}
+								No file attached
+								{%endif%}
+			    		</td>
+			    	</tr>
+			    	{% endfor %}
+			    </table>
+
+			  </div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

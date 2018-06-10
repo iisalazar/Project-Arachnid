@@ -1,11 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView
 from staff.models import Announcement, News, Organization, ResearchPaper
 from django.utils import timezone
 # Create your views here.
 
-class IndexView(TemplateView):
-    template_name = 'main/index.html'
+def index(request):
+    announcements = get_list_or_404(Announcement.objects.order_by('-date_created')[:5])
+    news = get_list_or_404(News.objects.order_by('-published_date')[:5])
+    return render(request, 'main/index.html', {'announcements': announcements, 'news': news})
+
+class AnnouncementDetailView(DetailView):
+    model = Announcement
+    context_object_name = "announcement"
+    pk_url_kwarg = 'pk'
 
 class AdmissionView(TemplateView):
     template_name = 'main/admissions.html'
@@ -23,8 +30,20 @@ class NewsDetailView(DetailView):
     context_object_name = "news"
     pk_url_kwarg = 'pk'
 
-class OrganizationView(TemplateView):
+class OrganizationListView(ListView):
     template_name = 'main/orgs.html'
+    model = Organization
+    context_object_name = "organizations"
+    def get_queryset(self):
+        return Organization.objects.all
+
+class OrganizationDetailView(DetailView):
+    template_name = 'main/orgs_detail.html'
+    model = Organization
+    context_object_name = "organization"
+    pk_url_kwarg = "pk"
+
+
 
 class AppliedListView(ListView):
     template_name = 'main/appliedScience.html'
@@ -62,9 +81,3 @@ class FAQsView(TemplateView):
 #############################
 # THIS IS FOR THE STAFF APP #
 #############################
-
-class StaffIndexView(TemplateView):
-    template_name = 'staff/index.html'
-
-class AnnouncementView(ListView):
-    template_name = 'staff/announcements.html'

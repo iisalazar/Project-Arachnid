@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import FileExtensionValidator
+from django.core.validators import *
 from django.utils import timezone
 from django.urls import reverse
 # Create your models here.
@@ -7,8 +7,14 @@ from django.urls import reverse
 class Announcement(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=500)
-    file = models.FileField(blank=True, validators=[FileExtensionValidator(['pdf', 'doc', 'docx'])], upload_to="announcement_documents")
+    file = models.FileField(blank=True, null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'docx'])], upload_to="announcement_documents")
     date_created = models.DateTimeField(default=timezone.now)
+
+    def is_recent(self):
+        if timezone.now().day <= self.date_created.day + 1 :
+            return True
+        else:
+            return False
 
     def get_absolute_url(self):
         return reverse('staff:announcements')
@@ -18,10 +24,19 @@ class Announcement(models.Model):
 class News(models.Model):
     author = models.CharField(max_length=100, blank=True)
     author_additional_info = models.CharField(max_length=100, blank=True)
+
+    lead_text = models.CharField(max_length=10000, blank=True)
+    opening = models.CharField(max_length=10000)
+
     headline = models.CharField(max_length=200)
     headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
+
+    cover_photo = models.ImageField(upload_to="news_pictures/%Y/%m/%d/cover", blank=True, null=True)
     body_text = models.CharField(max_length=10000)
+
     other_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
+    other_image_label = models.CharField(max_length=10000, blank=True, null=True)
+
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -37,9 +52,38 @@ class News(models.Model):
         return self.headline + "- Written by" +self.author
 
 class Organization(models.Model):
+    LEVEL = (
+        ("Main", "Main"),
+        ("Core Subject", "Core Subject"),
+        ("Social Science", "Social Science"),
+        ("Music and Arts", "Music and Arts"),
+    )
     name = models.CharField(max_length=100)
+    category = models.CharField(choices=LEVEL, max_length=50, blank=True, null=True)
     logo = models.ImageField(upload_to="organization/" + str(name).lower() + "/logo", null=True)
     acronym = models.CharField(max_length=10)
+
+    #org_pictures = models.ImageField(upload_to="organization/" + str(name).lower() + "/pictures", null=True)
+    description = models.CharField(max_length=10000000, blank=True)
+    def get_absolute_url(self):
+        return reverse('staff:organizations')
+
+    def __str__(self):
+        return self.name
+
+class OrganizationOfficer(models.Model):
+    organization = models.ForeignKey(Organization, related_name="officers", on_delete=models.CASCADE)
+
+    SY_CHOICES = [
+        (x,x) for x in range(timezone.now().year-1, timezone.now().year+1)
+    ]
+
+    school_year = models.PositiveIntegerField(validators=[
+        MinValueValidator(2018),
+        MaxValueValidator(timezone.now().year)
+        ], choices=SY_CHOICES,
+    )
+
     adviser = models.CharField(max_length=100)
     president = models.CharField(max_length=100)
     vice_president = models.CharField(max_length=100)
@@ -54,29 +98,33 @@ class Organization(models.Model):
     g11_rep = models.CharField(max_length=100)
     g12_rep = models.CharField(max_length=100)
 
-    adviser_picture = models.ImageField(upload_to="organiation/" + str(name).lower() + "/profiles", null=True, blank=True)
-    pres_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    vp_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    sec_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    tres_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    aud_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    pio_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    g7_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    g8_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    g9_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    g10_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    g11_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
-    g12_picture = models.ImageField(upload_to="organization/" + str(name).lower() + "/profiles", null=True, blank=True)
+    adviser_picture = models.ImageField(upload_to="organiation/" + str(organization.name).lower() + "/profiles", null=True, blank=True)
+    pres_picture = models.ImageField(upload_to="organization/" + str(organization.name).lower() + "/profiles", null=True, blank=True)
+    vp_picture = models.ImageField(upload_to="organization/" + str(organization.name).lower() + "/profiles", null=True, blank=True)
+    sec_picture = models.ImageField(upload_to="organization/" + str(organization.name).lower() + "/profiles", null=True, blank=True)
+    tres_picture = models.ImageField(upload_to="organization/" + str(organization.name).lower() + "/profiles", null=True, blank=True)
+    aud_picture = models.ImageField(upload_to="organization/" + str(organization.name) + "/profiles", null=True, blank=True)
+    pio_picture = models.ImageField(upload_to="organization/" + str(organization.name) + "/profiles", null=True, blank=True)
+    g7_picture = models.ImageField(upload_to="organization/" + str(organization.name) + "/profiles", null=True, blank=True)
+    g8_picture = models.ImageField(upload_to="organization/" + str(organization.name) + "/profiles", null=True, blank=True)
+    g9_picture = models.ImageField(upload_to="organization/" + str(organization.name) + "/profiles", null=True, blank=True)
+    g10_picture = models.ImageField(upload_to="organization/" + str(organization.name) + "/profiles", null=True, blank=True)
+    g11_picture = models.ImageField(upload_to="organization/" + str(organization.name) + "/profiles", null=True, blank=True)
+    g12_picture = models.ImageField(upload_to="organization/" + str(organization.name) + "/profiles", null=True, blank=True)
 
 
-    #org_pictures = models.ImageField(upload_to="organization/" + str(name).lower() + "/pictures", null=True)
-    description = models.CharField(max_length=1000, blank=True)
+    @property
+    def is_present(self):
+        if self.school_year > timezone.now().year:
+            return False
+        else:
+            return True
 
     def get_absolute_url(self):
-        return reverse('staff:organizations')
+        return reverse('staff:organization_details', pk=organization.pk)
 
     def __str__(self):
-        return self.name
+        return "Officers of " + self.organization.name + " for school year " + str(self.school_year)
 
 class ResearchPaper(models.Model):
     CATEGORY_CHOICES = (
@@ -89,7 +137,7 @@ class ResearchPaper(models.Model):
     abstract = models.CharField(max_length=10000)
     published_date = models.DateTimeField(default=timezone.now)
     file = models.FileField(upload_to="research_papers/" + str(title).lower(), validators=[FileExtensionValidator(['pdf'])],)
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=50, default=None)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=50, default=None, blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse('staff:research')

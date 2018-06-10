@@ -1,0 +1,157 @@
+{% extends 'base_2.html' %}
+{% load staticfiles %}
+{% block title %}
+  {{ organization.acronym }}
+{% endblock %}
+
+{% block style %}
+
+  #banner .middle.indent
+  {
+    margin: 5em 0 5em 0;
+  }
+  #banner .middle.indent .segment {
+    margin: 5em 0 5em 0;
+  }
+
+  p.ui.description {
+    text-align: justify;
+    text-indent: 50px;
+    padding: 2em;
+  }
+
+  #officer-avatars .description
+  {
+    font-family: 'Raleway Light', sans-serif;
+  }
+
+{% endblock %}
+
+{% block org %}
+  active
+{% endblock %}
+
+{% block main_content %}
+  <div class="ui container vertical stripe segment">
+    <div class="ui segments">
+        <div class="ui segment" id="banner">
+          <div class="ui middle indent centered stackable grid">
+            <div class="row">
+              <div class="ui six wide column">
+                <div class="ui raised center aligned segment">
+                  <h3 class="ui header">{{ object.name }}</h3>
+                </div>
+              </div>
+              <div class="ui four wide column">
+                <img src="{{ object.logo.url }}" alt="" class="ui medium circular image">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui center aligned segment">
+          <p class="ui description">
+            {{ object.description|safe|linebreaksbr }}
+          </p>
+          <div class="ui divider">
+
+          </div>
+          <div class="ui six column grid raised segment"  id="officer-avatars">
+            {% for officer in organization.officers.all %}
+              {% if officer.is_present %}
+              <div class="row">
+                <div class="centered sixteen wide column">
+                    <h2 class="ui header">Officers for school year {{ officer.school_year }}</h2>
+                </div>
+              </div>
+              <div class="ui divider">
+
+              </div>
+            <div class="row">
+              <div class="column">
+                <img src="{% if not officer.pres_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.pres_picture.url }} {% endif %}" alt="President" class="ui small circular image">
+                <div class="description">
+                  {{ officer.president }} <br />President
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.vp_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.vp_picture.url }} {% endif %}" alt="Vice President" class="ui small circular image">
+                <div class="description">
+                  {{ officer.vice_president }} <br />Vice President
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.sec_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.sec_picture.url }} {% endif %}" alt="Secretary" class="ui small circular image">
+                <div class="description">
+                  {{ officer.secretary }} <br />Secretary
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.tres_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.tres_picture.url }} {% endif %}" alt="Treasurer" class="ui small circular image">
+                <div class="description">
+                  {{ officer.treasurer }} <br />Treasurer
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.aud_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.aud_picture.url }} {% endif %}" alt="Auditor" class="ui small circular image">
+                <div class="description">
+                  {{ officer.auditor }} <br />Auditor
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.pio_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.pio_picture.url }} {% endif %}" alt="P.I.O" class="ui small circular image">
+                <div class="description">
+                  {{ officer.pio }} <br />P.I.O
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <img src="{% if not officer.g7_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.g7_picture.url }} {% endif %}" alt="G7 Representative" class="ui small circular image">
+                <div class="description">
+                  {{ officer.g7_rep }} <br />G7 Representative
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.g8_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.g8_picture.url }} {% endif %}" alt="G8 Representative" class="ui small circular image">
+                <div class="description">
+                  {{ officer.g8_rep }} <br />G8 Representative
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.g9_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.g9_picture.url }} {% endif %}" alt="G9 Representative" class="ui small circular image">
+                <div class="description">
+                  {{ officer.g9_rep }} <br />G9 Representative
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.g10_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.g10_picture.url }} {% endif %}" alt="G10 Representative" class="ui small circular image">
+                <div class="description">
+                  {{ officer.g10_rep }} <br />G10 Representative
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.g11_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.g11_picture.url }} {% endif %}" alt="G11 Representative" class="ui small circular image">
+                <div class="description">
+                  {{ officer.g11_rep }} <br />G11 Representative
+                </div>
+              </div>
+              <div class="column">
+                <img src="{% if not officer.g12_picture %} {% static 'img/avatar/tom.jpg' %} {% else %} {{ officer.g12_picture.url }} {% endif %}" alt="G12 Representative" class="ui small circular image">
+                <div class="description">
+                  {{ officer.g12_rep }} <br />G12 Representative
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <div class="row">
+            <div class="column">
+              <h3 class="ui header">No officers yet for this school year</h3>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

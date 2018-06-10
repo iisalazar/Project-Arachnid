@@ -14,13 +14,29 @@ class AnnouncementForm(forms.ModelForm):
 class NewsForm(forms.ModelForm):
     class Meta:
         model = models.News
-        fields = ('author', 'author_additional_info', 'headline', 'headline_image', 'body_text', 'other_image')
+        fields = ('author', 'author_additional_info', 'lead_text', 'headline', 'headline_image', 'cover_photo', 'body_text', 'other_image', 'other_image_label', 'opening')
         widgets = {
             'author': forms.TextInput(attrs={'placeholder': 'Name of the author (not required)'}),
+
             'author_additional_info': forms.TextInput(attrs={'class': 'textinputclass'}),
+
+            'opening': forms.Textarea(attrs={'placeholder': 'Write the opening sentence / paragraph'}),
+
+            'lead_text': forms.Textarea(attrs={'placeholder': 'Write here the lead paragraph/sentence', }),
+
             'headline': forms.Textarea(attrs={'class': 'editable medium-editor-textarea', 'placeholder': 'Write headline'}),
+
             'body_text': forms.Textarea(attrs={'class': 'editable medium-editor-textarea'}),
+
+            'other_image_label': forms.TextInput(attrs={'placeholder': 'Write label for other image'})
         }
+
+LEVEL = (
+    ("Main", "Main"),
+    ("Core Subject", "Core Subject"),
+    ("Social Science", "Social Science"),
+    ("Music and Arts", "Music and Arts"),
+)
 
 class OrganizationForm(forms.ModelForm):
     class Meta:
@@ -28,6 +44,7 @@ class OrganizationForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Name of Organization'}),
+            'category': forms.Select(choices=LEVEL),
             'acronym': forms.TextInput(attrs={'placeholder': 'E.g. RobITech, YAG'}),
             'adviser': forms.TextInput(),
             'president': forms.TextInput(),

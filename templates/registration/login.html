@@ -15,8 +15,13 @@
 				</div>
 				<div class="ui divider"></div>
 				<div class="ui row">
-					<form class="ui form" method="post">
+					<form class="ui form error" method="post">
             {% csrf_token %}
+						{% if form.errors %}
+							<div class="ui error message">
+								Incorrect username or password
+							</div>
+						{% endif %}
 						<div class="field">
 							<label for="username" class="label">Username: </label>
 							<input type="text" name="username" placeholder="Username">
@@ -26,11 +31,14 @@
 							<input type="password" name="password" placeholder="Password">
 						</div>
 						<div class="field">
+							<button type="submit" name="button" class="ui teal button">Login</button>
+						<!--
 							<div class="ui buttons">
 								<button type="submit" class="ui teal button">Login</button>
 								<div class="or"></div>
 								<a href="{% url 'password_change' %}" class="ui green button">Sign Up</a>
 							</div>
+						-->
 						</div>
 					</form>
 				</div>

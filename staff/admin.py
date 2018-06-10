@@ -5,5 +5,6 @@ from . import models
 admin.site.register(models.Announcement)
 admin.site.register(models.News)
 admin.site.register(models.Organization)
+admin.site.register(models.OrganizationOfficer)
 admin.site.register(models.ResearchPaper)
 admin.site.register(models.ResearchProponent)

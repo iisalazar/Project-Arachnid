@@ -1,10 +1,25 @@
 {% extends 'staff/base_staff.html' %}
 
 {% block main_content %}
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Post">
-  </form>
+  <div class="ui container segment">
+    <form class="ui equal width form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="ui field">
+        <label for="title">Title for the announcement</label>
+        {{ form.title }}
+      </div>
+      <div class="ui field">
+        <label for="description">Announcement description</label>
+        {{ form.description }}
+      </div>
+      <div class="ui field">
+        <label for="file">OPTIONAL: File attachment</label>
+        {{ form.file }}
+      </div>      
+      <div class="ui field">
+        <input type="submit" value="Post" class="ui green button">
+      </div>
+    </form>
+  </div>
 
 {% endblock %}

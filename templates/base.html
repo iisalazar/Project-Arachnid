@@ -26,19 +26,19 @@
     <!-- Hidden Sidebar Menu -->
     <div class="ui vertical sidebar inverted menu">
         <div class="item">
-            <a href="index.html">
+            <a href="{% url 'main:index' %}">
             <i class="home icon"></i>
             Home
             </a>
         </div>
         <div class="item">
-            <a href="admissions.html">
+            <a href="{% url 'main:admissions' %}">
             <i class="heartbeat icon"></i>
             Admissions
             </a>
         </div>
         <div class="item">
-            <a href="news.html">
+            <a href="{% url 'main:news' %}">
             <i class="newspaper icon"></i>
             News
             </a>
@@ -50,11 +50,11 @@
               Archives
             </div>
             <div class="content">
-              <a class="item" href="documents.html">
+              <a class="item" href="#">
                 <i class="file pdf icon"></i>
                 Documents
               </a>
-              <a class="item" href="gallery.html">
+              <a class="item" href="#">
                 <i class="images icon"></i>
                 Gallery
               </a>
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="item">
-            <a href="orgs.html">
+            <a href="{% url 'main:organizations' %}">
             <i class="users icon"></i>
             Organizations
             </a>
@@ -74,23 +74,23 @@
               Research
             </div>
             <div class="content">
-              <a class="item" href="appliedScience.html">
+              <a class="item" href="{% url 'main:applied_science' %}">
                 Applied Science
               </a>
-              <a class="item" href="lifeScience.html">
+              <a class="item" href="{% url 'main:life_science' %}">
                 Life Science
               </a>
             </div>
           </div>
         </div>
         <div class="item">
-            <a href="about.html">
+            <a href="{% url 'main:about' %}">
             <i class="universal access icon"></i>
             About
             </a>
         </div>
         <div class="item">
-          <a href="faqs.html">
+          <a href="{% url 'main:faqs' %}">
             <i class="help circle icon"></i>
             FAQs
           </a>
@@ -104,8 +104,8 @@
                 <i class="sidebar icon"></i>
                 Menu
             </a>
-            <a class="header right item" href="index.html">
-                <img class="logo" src="img/logo.png" alt=""> QSHS
+            <a class="header right item" href="{% url 'main:index' %}">
+                <img class="logo" src="{% static 'img/logo.png' %}"> QSHS
             </a>
         </div>
     </div>

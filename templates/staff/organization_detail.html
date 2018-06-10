@@ -22,6 +22,17 @@
           </div>
         </div>
         <div class="row">
+          <div class="column">
+            <form method="get">
+              {% csrf_token %}
+              <label for="school_year">School Year</label>
+              <input type="text" name="school_year">
+              <input type="submit" value="Submit" class="ui green button">
+            </form>
+          </div>
+        </div>
+        {% if org %}
+        <div class="row">
           <table class="ui table">
             <thead>
               <th>Name</th>
@@ -62,6 +73,7 @@
             </tbody>
           </table>
         </div>
+        {% endif %}
         <div class="row">
           <div class="ui six wide right floated column">
             <div class="ui buttons">

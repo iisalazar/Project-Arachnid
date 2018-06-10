@@ -2,6 +2,11 @@
 {% block title %}
   FAQs
 {% endblock %}
+
+{% block org %}
+  active
+{% endblock %}
+
 {% block main_content %}
 	<div class="dimmed pusher">
 	<div class="ui vertical stripe inverted segment">
@@ -12,37 +17,44 @@
 						<h1 class="ui header">Clubs and Organizations</h1>
 					</div>
 					<div class="ui equal width stackable internally celled grid" id="orgs">
+            {% for org in organizations %}
 						<div class="row">
+              {% if org.category == "Main" %}
 							<div class="column">
-								<h3 class="ui labeled icon black button"><i class="users icon"></i>Supreme Student Government</h3>
+								<a class="ui labeled icon black button" href="{% url 'main:organization_details' pk=org.pk %}">
+                  <i class="users icon"></i>
+                  {{ org.name }}
+                </a>
 							</div>
+              {% endif %}
 						</div>
 						<div class="row">
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="rocket icon"></i>TECHNOHUB</button>
-							</div>
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="leaf icon"></i>YES-O</button>
-							</div>
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="calculator icon"></i>SIPNAYAN</button>
-							</div>
+              {% if org.category == "Core Subject" %}
+              <div class="column">
+                <a href="{% url 'main:organization_details' pk=org.pk %}" class="ui labeled icon black button">
+                  {{ org.name }}
+                </a>
+              </div>
+              {% endif %}
 						</div>
+            <div class="row">
+              {% if org.category == "Social Science" %}
+              <div class="column">
+                <a href="{% url 'main:organization_details' pk=org.pk %}" class="ui labeled icon black button">
+                  {{ org.name }}
+                </a>
+              </div>
+              {% endif %}
+            </div>
 						<div class="row">
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="flag icon"></i>BLITZKRIEG</button>
-							</div>
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="write icon"></i>ATV</button>
-							</div>
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="users icon"></i>INTERACT</button>
-							</div>
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="spinner icon"></i>PHILOSCIRE</button>
-							</div>
-						</div>
-						<div class="row">
+              {% if org.category == "Music and Arts" %}
+              <div class="column">
+                <a href="{% url 'main:organization_details' pk=org.pk %}" class="ui labeled icon black button">
+                  {{ org.name }}
+                </a>
+              </div>
+              {% endif %}
+              <!--
 							<div class="column">
 								<button class="ui labeled icon black button"><i class="unmute icon"></i>QSMV</button>
 							</div>
@@ -55,7 +67,9 @@
 							<div class="column">
 								<button class="ui labeled icon black button"><i class="protect icon"></i>ATHLOS</button>
 							</div>
+            -->
 						</div>
+            {% endfor %}
 						<div class="ui horizontal inverted divider"></div>
 					</div>
 				</div>

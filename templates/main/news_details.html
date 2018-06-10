@@ -1,16 +1,65 @@
 {% extends 'base_2.html' %}
+{% block title %}
+  News details
+{% endblock %}
+{% block style %}
+  .news.content .body
+  {
+    text-indent:5em;
+    text-align: left;
+  }
+
+  .news.content .body p
+  {
+    margin: 2em;
+    text-align: left;
+  }
+  .news.meta
+  {
+    text-align: left;
+  }
+  .news.content .body p#catchy-phrase
+  {
+    text-indent: 7em;
+    font-family: Raleway Light, sans-serif;
+  }
+  .news.cover.photo
+  {
+    background: url({{ news.cover_photo.url }}) no-repeat center;
+    height: 200px;
+    width: 100%;
+  }
+{% endblock %}
+
+{% block news %}
+  active
+{% endblock %}
 {% block main_content %}
-  <div id="news_container">
-    <div class="news meta">
-      <p>{{ news.author }}</p>
-      <p>{{ news.published_date|date:"d M, Y"}}</p>
-    </div>
+  <div class="news cover photo">
+
+  </div>
+  <div class="ui vertical stripe segment ">
     <div class="news content">
-      <h1 class="ui header">{{ news.headline|safe}}</h1>
-      <img src="{{ news.headline_image.url }}" alt="headline_image" class="ui headline image">
-      <div class="body">
-        {{ news.body_text|safe }}
+      <div class="ui container">
+        <h1 class="ui header">{{ news.headline|safe}}</h1>
+        <div class="body">
+          <p id="catchy-phrase">
+            <i>
+              {{ news.lead_text }}
+            </i>
+          </p>
+          <p>{{ news.body_text|safe }}</p>
+        </div>
+        <div class="news meta ui compact segment">
+          <p>{% if news.author %}{{ news.author }}{%else%}Anonymous{%endif%}</p>
+          <p>Published: {{ news.published_date|date:"d M, Y"}}</p>
+          <div class="ui divider">
+
+          </div>
+          <p>{{ news.author_additional_info }}</p>
+        </div>
       </div>
-    </div>
+
+      </div>
   </div>
 {% endblock %}
