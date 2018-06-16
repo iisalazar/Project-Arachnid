@@ -64,7 +64,7 @@ class Organization(models.Model):
     acronym = models.CharField(max_length=10)
 
     #org_pictures = models.ImageField(upload_to="organization/" + str(name).lower() + "/pictures", null=True)
-    description = models.CharField(max_length=10000000, blank=True)
+    description = models.CharField(max_length=10000, blank=True)
     def get_absolute_url(self):
         return reverse('staff:organizations')
 
