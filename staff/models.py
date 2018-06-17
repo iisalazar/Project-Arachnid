@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Announcement(models.Model):
     title = models.CharField(max_length=200)
-    description = models.CharField(max_length=500)
+    description = models.TextField()
     file = models.FileField(blank=True, null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'docx'])], upload_to="announcement_documents")
     date_created = models.DateTimeField(default=timezone.now)
 
@@ -25,14 +25,18 @@ class News(models.Model):
     author = models.CharField(max_length=100, blank=True)
     author_additional_info = models.CharField(max_length=100, blank=True)
 
-    lead_text = models.CharField(max_length=10000, blank=True)
-    opening = models.CharField(max_length=10000)
+    lead_text = models.TextField()
+    opening = models.TextField()
+
+    #lead_text = models.CharField(max_length=10000, blank=True)
+    #opening = models.CharField(max_length=10000)
 
     headline = models.CharField(max_length=200)
     headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
 
     cover_photo = models.ImageField(upload_to="news_pictures/%Y/%m/%d/cover", blank=True, null=True)
-    body_text = models.CharField(max_length=10000)
+    body_text = models.TextField()
+    #body_text = models.CharField(max_length=10000)
 
     other_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
     other_image_label = models.CharField(max_length=10000, blank=True, null=True)
@@ -64,7 +68,8 @@ class Organization(models.Model):
     acronym = models.CharField(max_length=10)
 
     #org_pictures = models.ImageField(upload_to="organization/" + str(name).lower() + "/pictures", null=True)
-    description = models.CharField(max_length=10000, blank=True)
+    description = models.TextField()
+    #description = models.CharField(max_length=10000, blank=True)
     def get_absolute_url(self):
         return reverse('staff:organizations')
 
@@ -133,8 +138,10 @@ class ResearchPaper(models.Model):
     )
     Applied = "Applied"
     Life = "Life"
-    title = models.CharField(max_length=10000)
-    abstract = models.CharField(max_length=10000)
+    title = models.TextField()
+    abstract = models.TextField()
+    #title = models.CharField(max_length=10000)
+    #abstract = models.CharField(max_length=10000)
     published_date = models.DateTimeField(default=timezone.now)
     file = models.FileField(upload_to="research_papers/" + str(title).lower(), validators=[FileExtensionValidator(['pdf'])],)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=50, default=None, blank=True, null=True)
