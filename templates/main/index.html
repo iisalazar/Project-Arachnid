@@ -9,7 +9,8 @@
           <div class="ui container">
             <div class="ui green secondary large pointing menu"  id="home-navbar">
                 <a class="item" href="{% url 'main:index' %}"><img class="logo" src="{% static 'img/logo.png' %}"></a>
-                <a class="active item" href="{% url 'main:index' %}">Home</a>
+                <div class="ui right item">
+                    <a class="active item" href="{% url 'main:index' %}">Home</a>
                 <a class="item" href="{% url 'main:admissions' %}">Admissions</a>
                 <a class="item" href="{% url 'main:news' %}">News</a>
                 <div class="ui dropdown item">
@@ -47,6 +48,7 @@
                     </a>
                     {% endif %}
                   </div>
+                </div>
                 </div>
             </div>
           </div>

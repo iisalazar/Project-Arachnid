@@ -1,5 +1,5 @@
 {% extends 'staff/base_staff.html'%}
-{% load hitcount_tags %}
+
 {% block main_content %}
 
   <div class="ui container segment">
@@ -13,7 +13,6 @@
           Announcement
         </td>
         <td>
-          {% get_hit_count for model_news %}
         </td>
       </tbody>
     </table>
