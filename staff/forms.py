@@ -14,13 +14,11 @@ class AnnouncementForm(forms.ModelForm):
 class NewsForm(forms.ModelForm):
     class Meta:
         model = models.News
-        fields = ('author', 'author_additional_info', 'lead_text', 'headline', 'headline_image', 'cover_photo', 'body_text', 'other_image', 'other_image_label', 'opening')
+        fields = ('author', 'author_additional_info', 'lead_text', 'headline', 'headline_image', 'cover_photo', 'body_text', 'other_image', 'other_image_label')
         widgets = {
             'author': forms.TextInput(attrs={'placeholder': 'Name of the author (not required)'}),
 
             'author_additional_info': forms.TextInput(attrs={'class': 'textinputclass'}),
-
-            'opening': forms.Textarea(attrs={'placeholder': 'Write the opening sentence / paragraph'}),
 
             'lead_text': forms.Textarea(attrs={'placeholder': 'Write here the lead paragraph/sentence', }),
 
