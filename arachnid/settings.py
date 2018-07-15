@@ -25,7 +25,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, "media")
 SECRET_KEY = '7p!qsl$xek^x@kl%-ngra+apyw6ge4bjcee&#rugj)jeai(sb5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['dertrockx.pythonanywhere.com', 'localhost', '127.0.0.1']
 
