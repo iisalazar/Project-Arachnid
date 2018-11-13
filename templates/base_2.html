@@ -94,9 +94,8 @@
 
 			<div class="ui large top main menu" id="def-navbar">
 				<div class="ui container">
-					<a class="header item" href="index.html"><img class="logo" src="{% static 'img/logo.png' %}">QSHS</a>
+					<a class="header item" href="{% url 'main:index' %}"><img class="logo" src="{% static 'img/logo.png' %}">QSHS</a>
 					<div class="ui right item">
-						<a class="item" href="{% url 'main:index' %}">Home</a>
 							<a class="{% block admission %} {%endblock%}item" href="{% url 'main:admissions' %}">Admissions</a>
 							<a class="{% block news %} {%endblock%}item" href="{% url 'main:news' %}">News</a>
 							<div class="ui dropdown {% block archives %} {% endblock %}item">
