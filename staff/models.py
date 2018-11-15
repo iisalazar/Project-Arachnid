@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import *
 from django.utils import timezone
 from django.urls import reverse
+
 # Create your models here.
 
 class Announcement(models.Model):
@@ -32,7 +33,7 @@ class News(models.Model):
     #opening = models.CharField(max_length=10000)
 
     headline = models.CharField(max_length=200)
-    headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
+    headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'JPG'])])
 
     cover_photo = models.ImageField(upload_to="news_pictures/%Y/%m/%d/cover", blank=True, null=True)
     body_text = models.TextField()

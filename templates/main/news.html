@@ -17,29 +17,36 @@
 	<br>
 	<div class="ui container">
 		<div class="ui relaxed divided items">
-			{% for news in news %}
-      <div class="item">
-        <div class="ui small image">
-          <img src="{{ news.headline_image.url }}" alt="{{ news.headline }}">
-        </div>
-        <div class="content">
-          <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>
-          <div class="description">
-            {{ news.lead_text }}
+      {% if news %}
+  			{% for news in news %}
+        <div class="item">
+          <div class="ui small image">
+            <img src="" alt="{{ news.headline }}">
           </div>
-          <div class="meta">
-            <p>
-              Published {{ news.published_date|date:"M d, Y" }} by
-              {% if news.author %}
-              {{ news.author }} {% if news.author_additional_info %}-{{ news.author_additional_info }} {% endif %}
-              {% else %}
-              Anonymous
-              {% endif %}
-            </p>
+          <div class="content">
+            <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>
+            <div class="description">
+              {{ news.lead_text }}
+            </div>
+            <div class="meta">
+              <p>
+                Published {{ news.published_date|date:"M d, Y" }} by
+                {% if news.author %}
+                {{ news.author }} {% if news.author_additional_info %}-{{ news.author_additional_info }} {% endif %}
+                {% else %}
+                Anonymous
+                {% endif %}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
+      {% else %}
+        <div class="ui item">
+          <h1 class="warning">No news yet</h1>
+        </div>
+      {% endif %}
+      
 		</div>
 		<br><br>
 	</div>
