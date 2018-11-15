@@ -130,9 +130,13 @@ class OrganizationOfficer(models.Model):
             return False
         else:
             return True
-
+    
+    def get_all_of_them(self):
+        # TODO
+        # Add a method to return all person as a list
+        pass
     def get_absolute_url(self):
-        return reverse('staff:organization_details', pk=organization.pk)
+        return reverse('staff:organization_details', pk=self.organization.pk)
 
     def __str__(self):
         return "Officers of " + self.organization.name + " for school year " + str(self.school_year)
