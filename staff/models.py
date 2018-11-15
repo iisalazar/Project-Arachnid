@@ -7,7 +7,7 @@ from django.urls import reverse
 
 class Announcement(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(max_length=21845)
     file = models.FileField(blank=True, null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'docx'])], upload_to="announcement_documents")
     date_created = models.DateTimeField(default=timezone.now)
 
@@ -27,20 +27,25 @@ class News(models.Model):
     author_additional_info = models.CharField(max_length=100, blank=True)
 
     lead_text = models.TextField()
-    opening = models.TextField()
 
+<<<<<<< HEAD
     #lead_text = models.CharField(max_length=10000, blank=True)
     #opening = models.CharField(max_length=10000)
 
     headline = models.CharField(max_length=200)
     headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'JPG'])])
+=======
+    headline = models.TextField()
+    headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
+>>>>>>> 7d5a88012cdf043ce98e86bf4e52fa210c8abedf
 
     cover_photo = models.ImageField(upload_to="news_pictures/%Y/%m/%d/cover", blank=True, null=True)
     body_text = models.TextField()
-    #body_text = models.CharField(max_length=10000)
+
 
     other_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
-    other_image_label = models.CharField(max_length=10000, blank=True, null=True)
+    other_image_label = models.CharField(max_length=250, blank=True, null=True)
+
 
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
@@ -68,9 +73,9 @@ class Organization(models.Model):
     logo = models.ImageField(upload_to="organization/" + str(name).lower() + "/logo", null=True)
     acronym = models.CharField(max_length=10)
 
-    #org_pictures = models.ImageField(upload_to="organization/" + str(name).lower() + "/pictures", null=True)
-    description = models.TextField()
-    #description = models.CharField(max_length=10000, blank=True)
+
+    description = models.TextField(max_length=5000)
+
     def get_absolute_url(self):
         return reverse('staff:organizations')
 
@@ -139,10 +144,10 @@ class ResearchPaper(models.Model):
     )
     Applied = "Applied"
     Life = "Life"
+
     title = models.TextField()
     abstract = models.TextField()
-    #title = models.CharField(max_length=10000)
-    #abstract = models.CharField(max_length=10000)
+
     published_date = models.DateTimeField(default=timezone.now)
     file = models.FileField(upload_to="research_papers/" + str(title).lower(), validators=[FileExtensionValidator(['pdf'])],)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=50, default=None, blank=True, null=True)

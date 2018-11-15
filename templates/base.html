@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-{% load staticfiles %}
+<!DOCTYPE html> {% load staticfiles %}
 <html>
+
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
-    <meta name="description" content="Quezon Science High School"/>
-    <meta name="author" content="Quezon Science High School"/>
-    <meta name="keywords" content="quezon,science,honor,excellence,service"/>
-
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+    <meta name="description" content="Quezon Science High School" />
+    <meta name="author" content="Quezon Science High School" />
+    <meta name="keywords" content="quezon,science,honor,excellence,service, quezon science high school, qshs" />
     <title>
-      {% block title %}
-
-      {% endblock %}
+        {% block title %} {% endblock %}
     </title>
 
     <link rel="stylesheet" href="{% static 'dist/semantic.css' %}">
@@ -20,6 +17,7 @@
 
 
 </head>
+
 <body id="home">
 
     <!-- Hidden Sidebar Menu -->
@@ -27,73 +25,63 @@
     <div class="ui vertical sidebar inverted menu">
         <div class="item">
             <a href="{% url 'main:index' %}">
-            <i class="home icon"></i>
-            Home
+                <i class="home icon"></i> Home
             </a>
         </div>
         <div class="item">
             <a href="{% url 'main:admissions' %}">
-            <i class="heartbeat icon"></i>
-            Admissions
+                <i class="heartbeat icon"></i> Admissions
             </a>
         </div>
         <div class="item">
             <a href="{% url 'main:news' %}">
-            <i class="newspaper icon"></i>
-            News
+                <i class="newspaper icon"></i> News
             </a>
         </div>
         <div class="item">
-          <div class="ui accordion">
-            <div class="ui inverted title">
-              <i class="ui dropdown icon"></i>
-              Archives
+            <div class="ui accordion">
+                <div class="ui inverted title">
+                    <i class="ui dropdown icon"></i> Archives
+                </div>
+                <div class="content">
+                    <a class="item" href="#">
+                        <i class="file pdf icon"></i> Documents
+                    </a>
+                    <a class="item" href="#">
+                        <i class="images icon"></i> Gallery
+                    </a>
+                </div>
             </div>
-            <div class="content">
-              <a class="item" href="#">
-                <i class="file pdf icon"></i>
-                Documents
-              </a>
-              <a class="item" href="#">
-                <i class="images icon"></i>
-                Gallery
-              </a>
-            </div>
-          </div>
         </div>
         <div class="item">
             <a href="{% url 'main:organizations' %}">
-            <i class="users icon"></i>
-            Organizations
+                <i class="users icon"></i> Organizations
             </a>
         </div>
         <div class="item">
-          <div class="ui accordion">
-            <div class="ui inverted title">
-              <i class="ui dropdown icon"></i>
-              Research
-            </div>
-            <div class="content">
-              <a class="item" href="{% url 'main:applied_science' %}">
+            <div class="ui accordion">
+                <div class="ui inverted title">
+                    <i class="ui dropdown icon"></i> Research
+                </div>
+                <div class="content">
+                    <a class="item" href="{% url 'main:applied_science' %}">
                 Applied Science
               </a>
-              <a class="item" href="{% url 'main:life_science' %}">
+                    <a class="item" href="{% url 'main:life_science' %}">
                 Life Science
               </a>
+                </div>
             </div>
-          </div>
         </div>
         <div class="item">
             <a href="{% url 'main:about' %}">
-            <i class="universal access icon"></i>
-            About
+                <i class="universal access icon"></i> About
             </a>
         </div>
         <div class="item">
-          <a href="{% url 'main:faqs' %}">
-            <i class="help circle icon"></i>
-            FAQs
-          </a>
+            <a href="{% url 'main:faqs' %}">
+                <i class="help circle icon"></i> FAQs
+            </a>
         </div>
     </div>
 
@@ -101,8 +89,7 @@
     <div class="ui top fixed primary inverted menu">
         <div class="ui container">
             <a class="toc item">
-                <i class="sidebar icon"></i>
-                Menu
+                <i class="sidebar icon"></i> Menu
             </a>
             <a class="header right item" href="{% url 'main:index' %}">
                 <img class="logo" src="{% static 'img/logo.png' %}"> QSHS
@@ -110,14 +97,12 @@
         </div>
     </div>
 
-    {% block main_content %}
-
-    {% endblock %}
-    {% include 'main/footer.html'%}
+    {% block main_content %} {% endblock %} {% include 'main/footer.html'%}
 
     <!-- Citing scripts -->
     <script src="{% static 'js/jquery.min.js'%}"></script>
     <script type="text/javascript" src="{% static 'dist/semantic.js'%}"></script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
+
 </html>
