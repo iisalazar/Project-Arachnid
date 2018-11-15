@@ -21,16 +21,7 @@
             <h2>Acronym: {{ organization.acronym }}</h2>
           </div>
         </div>
-        <div class="row">
-          <div class="column">
-            <form method="get">
-              {% csrf_token %}
-              <label for="school_year">School Year</label>
-              <input type="text" name="school_year">
-              <input type="submit" value="Submit" class="ui green button">
-            </form>
-          </div>
-        </div>
+        
         {% if org %}
         <div class="row">
           <table class="ui table">
