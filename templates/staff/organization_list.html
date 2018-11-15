@@ -9,10 +9,11 @@
   <div class="ui container">
     <div class="ui segment">
       <a href="{% url 'staff:create_organization' %}" class="ui green icon labeled button"><i class="ui plus icon"></i>Create Organization</a>
-      <table class="ui celled two column table">
+      <table class="ui celled three column table">
         <thead>
           <th>Name</th>
           <th>Action</th>
+          <th>Staffs and HR</th>
         </thead>
         <tbody>
           {% for org in organizations %}
@@ -25,6 +26,12 @@
                 <a href="{% url 'staff:delete_organization' pk=org.pk%}" class="ui red button">Delete</a>
                 <a href="{% url 'staff:update_organization' pk=org.pk%}" class="ui orange button">Update</a>
                 <a href="{% url 'staff:organization_detail' pk=org.pk %}" class="ui blue button">Details</a>
+              </div>
+            </td>
+            <td>
+              <div class="ui buttons">
+                <a href="{% url 'staff:organization_hr_list' %}" class="ui blue button">Details</a>
+                <a href="{% url 'staff:organization_hr_create' %}" class="ui green button">Add officers</a>
               </div>
             </td>
           </tr>

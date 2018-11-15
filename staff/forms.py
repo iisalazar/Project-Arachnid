@@ -44,6 +44,20 @@ class OrganizationForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'placeholder': 'Name of Organization'}),
             'category': forms.Select(choices=LEVEL),
             'acronym': forms.TextInput(attrs={'placeholder': 'E.g. RobITech, YAG'}),
+            'description': forms.Textarea(),
+        }
+
+CATEGORY_CHOICES = (
+    ("Applied", "Applied Science"),
+    ("Life", "Life Science")
+)
+
+# For organization HR
+class OrganizationHRForm(forms.ModelForm):
+    class Meta:
+        model = models.OrganizationOfficer
+        fields = '__all__'
+        widgets = {
             'adviser': forms.TextInput(),
             'president': forms.TextInput(),
             'vice_president': forms.TextInput(),
@@ -57,13 +71,7 @@ class OrganizationForm(forms.ModelForm):
             'g10_rep': forms.TextInput(),
             'g11_rep': forms.TextInput(),
             'g12_rep': forms.TextInput(),
-            'description': forms.Textarea(),
         }
-
-CATEGORY_CHOICES = (
-    ("Applied", "Applied Science"),
-    ("Life", "Life Science")
-)
 
 class ResearchForm(forms.ModelForm):
     class Meta:

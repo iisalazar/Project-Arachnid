@@ -1,0 +1,36 @@
+{% extends 'staff/base_staff.html' %}
+{% block organization %}
+active
+{% endblock %}
+{% block title %}
+	Organization
+{% endblock %}
+
+{% block main_content %}
+	<div class="ui container">
+		<div class="ui segment">
+			<table class="ui celled two column centered table">
+				<thead>
+					<th>
+						School Year
+					</th>
+					<th>
+						Officers
+					</th>
+				</thead>
+				<tbody>
+					{% for batch in human_resource %}
+						<td>{{ batch.school_year }}</td>
+						<td>
+							<div class="ui buttons">
+								<a href="{% url 'staff:organization_hr_detail' pk=batch.pk %}" class="ui green button">Details</a>
+								<a href="{% url 'staff:organization_hr_detail' pk=batch.pk %}" class="ui orange button">Update</a>
+								<a href="{% url 'staff:organization_hr_delete' pk=batch.pk %}" class="ui red button">Delete</a>
+							</div>
+						</td>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

@@ -30,5 +30,12 @@ urlpatterns = [
     path('research/details/<int:pk>/add_proponent/', views.add_proponent_to_research, name="add_proponent_to_research"),
 
     path('accounts/login/', auth_view.login, name="login"),
-    path('accounts/logout/', auth_view.logout, name="logout", kwargs={'next_page': '/'})
+    path('accounts/logout/', auth_view.logout, name="logout", kwargs={'next_page': '/'}),
+
+    # For the organization hr
+    path('organizations/hr/', views.OrganizationHRListView.as_view(), name="organization_hr_list"),
+    path('organizations/hr/create', views.OrganizationHRCreateView.as_view(), name="organization_hr_create"),
+    path('organizations/hr/delete/<int:pk>/', views.OrganizationHRDeleteView.as_view(), name="organization_hr_delete"),
+    path('organizations/hr/update/<int:pk>/', views.OrganizationHRUpdateView.as_view(), name="organization_hr_update"),
+    path('organizations/hr/details/<int:pk>/', views.OrganizationHRDetailView.as_view(), name="organization_hr_detail")
 ]

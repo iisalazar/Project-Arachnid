@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView, FormView
 from django.urls import reverse_lazy
-from .forms import AnnouncementForm, NewsForm, OrganizationForm, ResearchForm, ResearchProponentForm
-from .models import Announcement, News, Organization, ResearchPaper, ResearchProponent
+from .forms import AnnouncementForm, NewsForm, OrganizationForm, ResearchForm, ResearchProponentForm, OrganizationHRForm
+from .models import Announcement, News, Organization, ResearchPaper, ResearchProponent, OrganizationOfficer
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
@@ -96,6 +96,41 @@ class OrganizationDeleteView(LoginRequiredMixin, DeleteView):
 
 class OrganizationDetailView(LoginRequiredMixin, DetailView):
     model = Organization
+    context_object_name = "organization"
+    pk_url_kwarg = 'pk'
+
+# ----------- For the organization officers --------- #
+
+class OrganizationHRListView(LoginRequiredMixin, ListView):
+    template_name = 'staff/organization_hr_list.html'
+    redirect_field_name = 'staff/index.html'
+    model = OrganizationOfficer
+    context_object_name = 'human_resource'
+    def get_queryset(self):
+        return OrganizationOfficer.objects.order_by('school_year')
+
+class OrganizationHRCreateView(LoginRequiredMixin, CreateView):
+    redirect_field_name = 'staff/index.html'
+    template_name = 'staff/organization_hr_form.html'
+    model = OrganizationOfficer
+    form_class = OrganizationHRForm
+
+
+class OrganizationHRUpdateView(LoginRequiredMixin, UpdateView):
+    redirect_field_name = 'staff/index.html'
+    template_name = 'staff/organization_hr_form.html'
+    model = OrganizationOfficer
+    form_class = OrganizationHRForm
+    pk_url_kwarg = 'pk'
+
+class OrganizationHRDeleteView(LoginRequiredMixin, DeleteView):
+    model = OrganizationOfficer
+    pk_url_kwarg = 'pk'
+    success_url = reverse_lazy('staff:organizations')
+
+class OrganizationHRDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'staff/organization_hr_detail.html'
+    model = OrganizationOfficer
     context_object_name = "organization"
     pk_url_kwarg = 'pk'
 
