@@ -33,9 +33,9 @@ urlpatterns = [
     path('accounts/logout/', auth_view.logout, name="logout", kwargs={'next_page': '/'}),
 
     # For the organization hr
-    path('organizations/hr/', views.OrganizationHRListView.as_view(), name="organization_hr_list"),
-    path('organizations/hr/create', views.OrganizationHRCreateView.as_view(), name="organization_hr_create"),
-    path('organizations/hr/delete/<int:pk>/', views.OrganizationHRDeleteView.as_view(), name="organization_hr_delete"),
-    path('organizations/hr/update/<int:pk>/', views.OrganizationHRUpdateView.as_view(), name="organization_hr_update"),
-    path('organizations/hr/details/<int:pk>/', views.OrganizationHRDetailView.as_view(), name="organization_hr_detail")
+    path('organizations/<organization>/hr/', views.OrganizationHRListView.as_view(), name="organization_hr_list"),
+    path('organizations/<organization>/hr/create', views.OrganizationHRCreateView.as_view(), name="organization_hr_create"),
+    path('organizations/<organization>/hr/delete/<int:pk>/', views.OrganizationHRDeleteView.as_view(), name="organization_hr_delete"),
+    path('organizations/<organization>/hr/update/<int:pk>/', views.OrganizationHRUpdateView.as_view(), name="organization_hr_update"),
+    path('organizations/<organization>/hr/details/<int:pk>/', views.OrganizationHRDetailView.as_view(), name="organization_hr_detail")
 ]

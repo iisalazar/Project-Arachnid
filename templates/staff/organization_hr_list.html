@@ -9,8 +9,12 @@ active
 {% block main_content %}
 	<div class="ui container">
 		<div class="ui segment">
-			<table class="ui celled two column centered table">
+			<a href="{% url 'staff:organizations' %}" class="ui blue button"><i class="angle double left icon"></i>Organization List</a>
+			<table class="ui celled three column centered table">
 				<thead>
+					<th>
+						Organization Name
+					</th>
 					<th>
 						School Year
 					</th>
@@ -20,12 +24,13 @@ active
 				</thead>
 				<tbody>
 					{% for batch in human_resource %}
+						<td>{{ batch.organization }}</td>
 						<td>{{ batch.school_year }}</td>
 						<td>
 							<div class="ui buttons">
-								<a href="{% url 'staff:organization_hr_detail' pk=batch.pk %}" class="ui green button">Details</a>
-								<a href="{% url 'staff:organization_hr_update' pk=batch.pk %}" class="ui orange button">Update</a>
-								<a href="{% url 'staff:organization_hr_delete' pk=batch.pk %}" class="ui red button">Delete</a>
+								<a href="{% url 'staff:organization_hr_detail' pk=batch.pk organization=batch.organization %}" class="ui green button">Details</a>
+								<a href="{% url 'staff:organization_hr_update' organization=batch.organization pk=batch.pk %}" class="ui orange button">Update</a>
+								<a href="{% url 'staff:organization_hr_delete' organization=batch.organization pk=batch.pk %}" class="ui red button">Delete</a>
 							</div>
 						</td>
 					{% endfor %}

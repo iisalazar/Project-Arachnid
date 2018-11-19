@@ -6,7 +6,7 @@ from .models import Announcement, News, Organization, ResearchPaper, ResearchPro
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -107,7 +107,9 @@ class OrganizationHRListView(LoginRequiredMixin, ListView):
     model = OrganizationOfficer
     context_object_name = 'human_resource'
     def get_queryset(self):
-        return OrganizationOfficer.objects.order_by('school_year')
+        organization = get_object_or_404(Organization, name=self.kwargs.get('organization'))
+        print(organization.id)
+        return organization.officers.all()
 
 class OrganizationHRCreateView(LoginRequiredMixin, CreateView):
     redirect_field_name = 'staff/index.html'

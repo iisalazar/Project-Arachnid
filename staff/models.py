@@ -153,7 +153,7 @@ class ResearchPaper(models.Model):
     abstract = models.TextField()
 
     published_date = models.DateTimeField(default=timezone.now)
-    file = models.FileField(upload_to="research_papers/" + str(title).lower(), validators=[FileExtensionValidator(['pdf'])],)
+    file = models.FileField(upload_to="research_papers/{}".format(str(title).lower()), validators=[FileExtensionValidator(['pdf'])],)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=50, default=None, blank=True, null=True)
 
     def get_absolute_url(self):

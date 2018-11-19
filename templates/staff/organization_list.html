@@ -30,8 +30,8 @@
             </td>
             <td>
               <div class="ui buttons">
-                <a href="{% url 'staff:organization_hr_list' %}" class="ui blue button">Details</a>
-                <a href="{% url 'staff:organization_hr_create' %}" class="ui green button">Add officers</a>
+                <a href="{% url 'staff:organization_hr_list' organization=org.name%}" class="ui blue button">Details</a>
+                <a href="{% url 'staff:organization_hr_create' organization=org.name%}" class="ui green button">Add officers</a>
               </div>
             </td>
           </tr>
