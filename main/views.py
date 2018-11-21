@@ -1,13 +1,20 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render
+from django.http import Http404
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView
 from staff.models import Announcement, News, Organization, ResearchPaper
 from django.utils import timezone
 # Create your views here.
 
+
+# Returns a list of announcements and news
+# Does not check if the query result is none
 def index(request):
-    announcements = get_list_or_404(Announcement.objects.order_by('-date_created')[:5])
-    news = get_list_or_404(News.objects.order_by('-published_date')[:5])
+    announcements = list(Announcement.objects.order_by('-date_created')[:5])
+    news = list(News.objects.order_by('-published_date')[:5])
+    #announcements = get_list_or_404(Announcement.objects.order_by('-date_created')[:5])
+    #news = get_list_or_404(News.objects.order_by('-published_date')[:5])
     return render(request, 'main/index.html', {'announcements': announcements, 'news': news})
+
 
 class AnnouncementDetailView(DetailView):
     model = Announcement

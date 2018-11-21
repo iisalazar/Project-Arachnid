@@ -79,13 +79,19 @@
                         Latest News
                       </div>
                       <div class="row segments">
-                        {% for news in news %}
+                        {% if news %}
+                          {% for news in news %}
+                            <div class="ui segment">
+                              <a href="{% url 'main:news_detail' pk=news.pk %}">
+                                {{ news.headline|safe }}
+                              </a>
+                            </div>
+                          {% endfor %}
+                        {% else %}
                           <div class="ui segment">
-                            <a href="{% url 'main:news_detail' pk=news.pk %}">
-                              {{ news.headline|safe }}
-                            </a>
+                            No news yet
                           </div>
-                        {% endfor %}
+                        {% endif %}
                       </div>
                       
                     </div>
@@ -96,7 +102,7 @@
                         Announcements
                       </div>
                       
- ###################### I'M HERE ########################## -->
+ <!--###################### I'M HERE ########################## -->
                         {% for announcement in announcements %}
                           <div class="ui event segment">
                             <div class="content">
@@ -118,10 +124,7 @@
                 </div>
               </div>
 
-<<<<<<< HEAD
-=======
-        
->>>>>>> 7d5a88012cdf043ce98e86bf4e52fa210c8abedf
+
         <!-- ENDORSE -->
         <div class="ui vertical stripe stacked segment" id="enroll">
           <div class="ui center aligned grid container">

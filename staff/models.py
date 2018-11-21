@@ -30,7 +30,7 @@ class News(models.Model):
 
 
     #lead_text = models.CharField(max_length=10000, blank=True)
-    #opening = models.CharField(max_length=10000)
+    opening = models.CharField(max_length=10000, blank=True)
 
     headline = models.CharField(max_length=200)
     headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'JPG'])])
