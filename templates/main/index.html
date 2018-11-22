@@ -3,6 +3,19 @@
 {% block title %}
   Quezon Science High School
 {% endblock %}
+{% block style %}
+  .ui.text.container {
+    margin-top: 0em;
+  }
+  .ui.text.container h1 {
+    font-weight: bold;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px black;
+  }
+  #header_segment .ui.header {
+    float: left;
+  }
+{% endblock %}
 {% block main_content %}
     <div class="dimmed pusher">
         <div class="ui masthead center aligned segment">
@@ -60,14 +73,14 @@
           </div>
         </div>
 
-        <!-- ANNOUNCEMETS -->
+        <!-- ANNOUNCEMENTS -->
 
         <div class="ui feature vertical stripe segments">
-              <div class="ui middle aligned stackable internally celled grid container">
+              <div class="ui middle aligned stackable internally celled grid container" id="header_segment">
                 <div class="row">
                   <div class="center aligned column">
                     <h1 class="ui header">
-                      Announcements
+                      Bulletin Board
                     </h1>
                   </div>
                 </div>
@@ -101,13 +114,11 @@
                       <div class="ui center aligned header">
                         Announcements
                       </div>
-                      
- <!--###################### I'M HERE ########################## -->
                         {% for announcement in announcements %}
                           <div class="ui event segment">
                             <div class="content">
                               <div class="summary">
-                                <a href="#">
+                                <a href="{% url 'staff:view_file' pk=announcement.pk %}"><i class="ui file icon"></i>
                                   {{ announcement.title }}
                                 </a>
                                 <div class="date">

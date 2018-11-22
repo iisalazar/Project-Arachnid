@@ -128,7 +128,7 @@
 /* CSS transfered from HTML */
 
 .masthead.segment .ui.text.container {
-	margin-top: 0em;
+	margin-top: 15em;
 }
 
 .masthead .ui.text.container img.logo
@@ -141,8 +141,7 @@
 .masthead h1.ui.header {
 	font-family: Code Bold;
 	color: #fff;
-	font-size: 40px;
-  font-weight: normal;
+	font-size: 3em;
 }
 
 .masthead h3 {
@@ -246,7 +245,7 @@ researchSection {
 
 
 .ui.footer.segment {
-	background: #326d48;
+	background: #21BA45;
 	/*background: #6fc920*/
   padding: 5em 0em 4em 0em;
 	color: #f5f5f5;

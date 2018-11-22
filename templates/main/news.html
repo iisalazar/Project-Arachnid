@@ -21,7 +21,7 @@
   			{% for news in news %}
         <div class="item">
           <div class="ui small image">
-            <img src="" alt="{{ news.headline }}">
+            <img src="{{ news.headline_image.url }}" alt="">
           </div>
           <div class="content">
             <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>

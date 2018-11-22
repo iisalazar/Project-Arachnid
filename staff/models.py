@@ -70,12 +70,10 @@ class Organization(models.Model):
     )
     name = models.CharField(max_length=100)
     category = models.CharField(choices=LEVEL, max_length=50, blank=True, null=True)
-    logo = models.ImageField(upload_to="organization/" + str(name).lower() + "/logo", null=True)
+    logo = models.ImageField(upload_to="organization/{}/logo".format(name), null=True)
     acronym = models.CharField(max_length=10)
-
-
     description = models.TextField(max_length=5000)
-
+    
     def get_absolute_url(self):
         return reverse('staff:organizations')
 

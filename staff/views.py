@@ -26,7 +26,7 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     form_class = AnnouncementForm
 
 
-@login_required
+
 def view_file(request, pk):
     announcement = get_object_or_404(Announcement, pk=pk)
     response = HttpResponse(content_type='application/pdf')

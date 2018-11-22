@@ -2,28 +2,33 @@
 {% block title %}
   About Us
 {% endblock %}
-
+{% block style %}
+  /*
+    TODO
+    Change the url in production
+  */
+  #about_landing {
+  background: url('static/img/qshs/SHS.jpg') no-repeat center;
+  background-size: 100% 100%;
+  height: 400px;
+  width: 100%;
+  }
+  .ui.text.container {
+    margin-top: 10em;
+  }
+  .ui.text.container h1 {
+    font-size: 4em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px black;
+  }
+{% endblock %}
 {% block main_content %}
-      <div class="ui inverted masthead segment">
-        <div class="ui middle aligned stackable row doubling grid container">
-          <div class="ui two column center aligned row grid" id="about-compartment">
-            <div class="seven wide column">
-              <h1 class="ui inverted header">
-                Project Etits
-              </h1>
-              <div class="ui divider"></div>
-              <div class="ui text">
-                The Official Website of Quezon Science High School
-              </div>
-            </div>
-            <div class="seven wide column">
-              <div class="image">
-                <div class="img">
-                  <img class="ui image" src="img/wireframe/image-text.png" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- TODO: Added a better-looking segment with gradient background and good tiling -->
+      <div class="ui center aligned segment" id="about_landing">
+        <div class="ui text container">
+          <h1 class="ui inverted header">
+            About QSHS
+          </h1>
         </div>
       </div>
 
@@ -31,13 +36,13 @@
         <div class="ui equal width stackable internally celled grid container">
           <div class="center aligned row">
             <div class="column">
-              <h1 class="ui header">Mission</h1>
+              <h2 class="ui header">Mission</h2>
               <p class="description">
                 The Quezon Science High School prepares its students for careers in science and technology and contributes to the development of Quezon Province and the nation, by nurturing them to become proficient professionals and leaders as catalyst of transformation.
               </p>
             </div>
             <div class="column">
-              <h1 class="ui header">Vision</h1>
+              <h2 class="ui header">Vision</h2>
               <p class="description">
                 Quezon Science High School is an institution of excellence in science and technology committed to the holistic development of the individual for the service of God, the province, and the country.
               </p>
@@ -47,7 +52,7 @@
       </div>
       <div class="ui vertical stripe center aligned stacked segment">
         <div class="ui container">
-          <h1 class="ui header">History</h1>
+          <h2 class="ui header">History</h2>
           <p class="ui segment">The building of the Quezon Science High School, which was constructed during Quezon Governor Rafael Nantes' administration, was originally intended to be a science museum but according to Governor David Suarez such plans were dropped due to fiercer competition from other museums based in Metro Manila. In 2010, Gloria Potes, Division of Quezon's then School Division Superintendent, made a suggestion to Suarez to convert the building to a science high school. The building was also planned to be converted to a call center facility but the plan likewise didn't push through due to lack of local manpower. The proposal was accepted since Quezon was the only province in the CALABARZON region not to have a science high school at that time. The school was inaugurated in August 17, 2011. QSHS held its first commencement ceremony last March 2015, having 71 students graduating.</p>
         </div>
       </div>
