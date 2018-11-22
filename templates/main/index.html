@@ -15,6 +15,7 @@
   #header_segment .ui.header {
     float: left;
   }
+  
 {% endblock %}
 {% block main_content %}
     <div class="dimmed pusher">
@@ -84,52 +85,78 @@
                     </h1>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="ui left floated seven wide computer sixteen wide tablet column">
                     <div class="ui raised segment">
-                      <div class="ui center aligned header">
+                      <h3 class="ui center aligned header">
                         Latest News
-                      </div>
-                      <div class="row segments">
+                      </h3>
+                      <div class="ui relaxed items">
                         {% if news %}
                           {% for news in news %}
-                            <div class="ui segment">
-                              <a href="{% url 'main:news_detail' pk=news.pk %}">
-                                {{ news.headline|safe }}
-                              </a>
+                          <div class="item">
+                            <div class="ui small image">
+                              <img src="{{ news.headline_image.url }}">
                             </div>
+                            <div class="content">
+                              <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>
+                              <div class="description">
+                                {{ news.lead_text }}
+                              </div>
+                              <div class="meta">
+                                <p>
+                                  Published {{ news.published_date|date:"M d, Y"}} by 
+                                  {% if news.author %}
+                                    {{ news.author }}
+                                    {% if news.author_addition_info %}
+                                    -{{news.author_aditional_info }}
+                                    {% endif %}
+                                  {% else %}
+                                    Anonymous
+                                  {% endif %}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                           {% endfor %}
                         {% else %}
-                          <div class="ui segment">
-                            No news yet
-                          </div>
+                          <h3>No news yet</h3>
                         {% endif %}
                       </div>
-                      
                     </div>
                   </div>
                   <div class="ui right floated six wide computer eight wide centered tablet column">
                     <div class="ui raised segment">
-                      <div class="ui center aligned header">
+                      <h3 class="ui center aligned header">
                         Announcements
-                      </div>
-                        {% for announcement in announcements %}
-                          <div class="ui event segment">
+                      </h3>
+                      <div class="ui relaxed items">
+                        {% if announcements %}
+                          {% for announcement in announcements %}
+                          <div class="item">
+                            <div class="ui small image">
+                              <img src="{% static 'img/stock/macaw-poly.jpg' %}">
+                            </div>
                             <div class="content">
-                              <div class="summary">
-                                <a href="{% url 'staff:view_file' pk=announcement.pk %}"><i class="ui file icon"></i>
+                              <a href="{% url 'staff:view_file' pk=announcement.pk %}" class="header">
                                   {{ announcement.title }}
-                                </a>
-                                <div class="date">
-                                  {{ announcement.date_created }}
-                                </div>
+                              </a>
+                              <div class="description">
+                                {{ news.lead_text }}
+                              </div>
+                              <div class="meta">
+                                <p>
+                                  Published {{ announcement.date_created|date:"M d, Y"}}
+                                </p>
                               </div>
                             </div>
                           </div>
-                        {% endfor %}
+                          {% endfor %}
+                        {% else %}
+                          <h3>No announcements yet</h3>
+                        {% endif %}
                       </div>
-
+                      </div>
                     </div>
                   </div>
                 </div>
