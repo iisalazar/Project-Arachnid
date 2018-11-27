@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django_cleanup',
     'main',
     'staff',
-    'reset_migrations'
+    'reset_migrations',
+    'archives'
 ]
 
 MIDDLEWARE = [
