@@ -1,0 +1,31 @@
+{% extends 'album/base.html' %}
+{% load staticfiles %}
+{% block content %}
+  <h2 style="text-align:center;">Album section</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Title</td>
+        <td>Action</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for album in albums %}
+      <tr>
+        <td>
+          {{ album.title }}
+        </td>
+        <td>
+          <a href="#" class="btn btn-warning">Update</a>
+          <a href="{% url 'album:album' album=album.title%}" class="btn btn-success">Details</a>
+          <a href="#" class="btn btn-danger">Delete Album</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

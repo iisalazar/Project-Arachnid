@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form id="album_form" method="POST" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+		{% for hidden in albumForm.hidden_fields %}
+			{{ hidden }}
+		{% endfor %}
+
+		{% for field in albumForm %}
+			{{ field }} </br>
+		{% endfor %}
+
+		{{ formset.management_form }}
+		{% for form in formset %}
+			{{ form }}
+		{% endfor %}
+		<input type="submit" name="submit" value="Submit">
+	</form>
+</body>
+</html>
