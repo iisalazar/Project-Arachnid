@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from album import views as album_views
 from django.contrib.auth import views as auth_view
 
 app_name = 'staff'
@@ -37,5 +38,8 @@ urlpatterns = [
     path('organizations/<organization>/hr/create', views.OrganizationHRCreateView.as_view(), name="organization_hr_create"),
     path('organizations/<organization>/hr/delete/<int:pk>/', views.OrganizationHRDeleteView.as_view(), name="organization_hr_delete"),
     path('organizations/<organization>/hr/update/<int:pk>/', views.OrganizationHRUpdateView.as_view(), name="organization_hr_update"),
-    path('organizations/<organization>/hr/details/<int:pk>/', views.OrganizationHRDetailView.as_view(), name="organization_hr_detail")
+    path('organizations/<organization>/hr/details/<int:pk>/', views.OrganizationHRDetailView.as_view(), name="organization_hr_detail"),
+    # for the albums section
+    path('albums/', album_views.AlbumListView.as_view(), name="albums")
+
 ]

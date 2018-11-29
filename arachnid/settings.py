@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'main',
     'staff',
     'reset_migrations',
+    'album'
 ]
 
 MIDDLEWARE = [
