@@ -19,9 +19,9 @@ def image_upload_method(instance, filename):
     return 'albums/{album}/{photo}'.format(album=instance.album, photo=filename)
 
 class Photo(models.Model):
-    album = models.ForeignKey(Album, on_delete=models.CASCADE, blank=True, null=True)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, blank=True, null=True, related_name="photos")
     file = models.ImageField(upload_to=image_upload_method, blank=True, null=True)
     date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.file
+        return self.file.name
