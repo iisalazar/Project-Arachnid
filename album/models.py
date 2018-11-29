@@ -16,7 +16,7 @@ class Album(models.Model):
         return self.title
 
 def image_upload_method(instance, filename):
-    return 'albums/{album}/{photo}'.format(album=instance.album, photo=filename)
+    return 'albums/{album}/{photo}'.format(album=instance.album.slug, photo=filename)
 
 class Photo(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE, blank=True, null=True, related_name="photos")

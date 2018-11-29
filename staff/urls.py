@@ -40,6 +40,6 @@ urlpatterns = [
     path('organizations/<organization>/hr/update/<int:pk>/', views.OrganizationHRUpdateView.as_view(), name="organization_hr_update"),
     path('organizations/<organization>/hr/details/<int:pk>/', views.OrganizationHRDetailView.as_view(), name="organization_hr_detail"),
     # for the albums section
-    
+    path('albums/', include('album.urls', namespace="album"))
 
 ]

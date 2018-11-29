@@ -23,7 +23,7 @@ class PhotosListView(LoginRequiredMixin, ListView):
     context_object_name = 'photos'
     def get_queryset(self):
         album = get_object_or_404(Album, slug=self.kwargs.get('album'))
-        data = {'album': album.title, 'photos': album.photos.all()}
+        data = {'album_slug': album.slug, 'photos': album.photos.all()}
         return data
 
 class PhotoUploadView(LoginRequiredMixin, View):
