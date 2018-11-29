@@ -6,8 +6,9 @@
   <div class="ui raised segment">
     <div class="ui grid">
       <div class="row">
-        <div class="center aligned column">
-          <h1 class="ui header">List of Albums Posted</h1>
+        <div class="column">
+          <h1 class="ui centered header">List of Albums Posted</h1>
+          <a href="{% url 'staff:create_album' %}" class="ui orange button">Create an Album</a>
         </div>
       </div>
       <div class="row">
@@ -23,7 +24,7 @@
             <tr>
                 <td>{{ album.title }}</td>
                 <td>
-                  <a href="{% url 'album:photos' album=album.slug %}" class="ui green button">Details</a>
+                  <a href="{% url 'staff:photos' album=album.slug %}" class="ui green button">Details</a>
                 </td>
             </tr>
 

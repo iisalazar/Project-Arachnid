@@ -3,54 +3,81 @@
 {% block main_content %}
   <div class="ui raised segment">
     <div class="ui grid">
-      <div class="ui basic modal">
-        <div class="ui icon header">
-          <i class="upload icon"></i>
-          Uploading images
-        </div>
-        <div class="content">
-          <div class="ui teal progress" id="progress">
-            <div class="bar"></div>
-            <div class="label" style="color:white;"></div>
-          </div>
-        </div>
-        <div class="actions">
-          <div class="ui red cancel inverted button" id="cancel_button">
-            <i class="remove icon"></i>
-            Cancel Upload
-          </div>
-          <div class="ui green ok inverted button" id="confirm_button">
-            <i class="checkmark icon"></i>
-            Confirm
-          </div>
-        </div>
-      </div>
       <div class="row">
         <div class="column">
+          <div class="ui blue button" id="upload-photos">
+            <i class="upload icon"></i>Upload photos
+          </div>
           <input id="fileupload" name="file" type="file" multiple accept="image/*"
-            data-url = "{% url 'album:upload_photo' album=photos.album_slug %}"
+            data-url = "{% url 'staff:upload_photo' album=photos.album_slug %}"
+            style="display:none;"
             data-form-data='{"csrfmiddlewaretoken" : "{{ csrf_token }}"}'>
           <h3>{{ photos.album}}</h3>
         </div>
       </div>
       <div class="row">
         <div class="column">
-          <h3 class="ui header">Recently Uploaded</h3>
-          <div class="gallery recently uploaded">
-            asdsa
+          <div class="ui container segment">
+            <h2 class="ui header">Recently Uploaded</h2>
+            <div class="ui divider">
+
+            </div>
+            <div class="gallery recently uploaded">
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="column">
-          {% for photo in photos.photos %}
-            <img src="{{ photo.file.url }}" alt="" width="250">
-          {% endfor %}
+          <div class="ui container segment">
+            <h2 class="ui header">Pictures in this album</h2>
+            <div class="ui divider"></div>
+            <table class="ui celled padded table">
+              <thead >
+                <tr>
+                  <td>
+                    Picture
+                  </td>
+                  <td>
+                    Action
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for photo in photos.photos %}
+                <tr>
+                  <td>
+                    <img src="{{ photo.file.url }}" alt="" width="250">
+                  </td>
+                  <td>
+                    <a href="{% url 'staff:delete_photo' album=photo.album.slug pk=photo.pk %}" class="ui red button">
+                      <i class="remove icon">
+                      </i>Delete
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
+  <!-- MODAL -->
+  <div class="ui basic modal">
+    <div class="ui icon header">
+      <i class="upload icon"></i>
+      Uploading images
+    </div>
+    <div class="content">
+      <div class="ui teal progress" id="progress">
+        <div class="bar"></div>
+        <div class="label" style="color:white;"></div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
 {% block javascript %}
   <script type="text/javascript" src="{% static 'js/jquery.ui.widget.js' %}"></script>

@@ -39,7 +39,12 @@ urlpatterns = [
     path('organizations/<organization>/hr/delete/<int:pk>/', views.OrganizationHRDeleteView.as_view(), name="organization_hr_delete"),
     path('organizations/<organization>/hr/update/<int:pk>/', views.OrganizationHRUpdateView.as_view(), name="organization_hr_update"),
     path('organizations/<organization>/hr/details/<int:pk>/', views.OrganizationHRDetailView.as_view(), name="organization_hr_detail"),
+
     # for the albums section
-    path('albums/', include('album.urls', namespace="album"))
+    path('albums/', album_views.AlbumListView.as_view(), name="albums"),
+    path('albums/create', album_views.AlbumCreateView.as_view(), name="create_album"),
+    path('albums/<slug:album>/photos/delete/<int:pk>/', album_views.PhotoDeleteView.as_view(), name="delete_photo"),
+    path('albums/<slug:album>/photos', album_views.PhotosListView.as_view(), name="photos"),
+    path('albums/<slug:album>/photos/upload', album_views.PhotoUploadView.as_view(), name="upload_photo")
 
 ]

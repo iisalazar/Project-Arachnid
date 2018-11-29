@@ -22,7 +22,7 @@ urlpatterns = [
     path('', include('main.urls', namespace="main")),
     path('staff/', include('staff.urls', namespace="staff")),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('albums/', include('album.urls', namespace="album"))
+    #path('albums/', include('album.urls', namespace="album"))
 ]
 
 from django.conf import settings

@@ -1,0 +1,15 @@
+{% extends 'staff/base_staff.html' %}
+{% block main_content %}
+  <div class="ui container">
+    <div class="ui segment">
+      <form class="ui form" method="post">
+        {% csrf_token %}
+        <h3>Are you sure you want to delete {{ object }}?</h3>
+        <div class="ui buttons">
+          <a href="{% url 'staff:photos' album=object.album.slug %}" class="ui green button">No</a>
+          <input type="submit" value="Confirm" class="ui red button">
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
