@@ -23,7 +23,7 @@
         <a href="{% url 'staff:index' %}" class="header item">Dashboard</a>
         <div class="right item">
           <a href="{% url 'staff:announcements' %}" class="{% block announcement%} {%endblock%}item">Announcements</a>
-          <a href="{% url 'staff:albums' %}" class="{% block album %} {%endblock%}item">Albums</a>
+          <a href="{% url 'album:albums' %}" class="{% block album %} {%endblock%}item">Albums</a>
           <a href="{% url 'staff:news' %}" class="{% block news %} {%endblock%}item">News</a>
           <a href="{% url 'staff:organizations' %}" class="{% block organization %} {% endblock %}item">Organizations</a>
           <a href="{% url 'staff:research' %}" class="{% block research %} {%endblock%}item">Research</a>

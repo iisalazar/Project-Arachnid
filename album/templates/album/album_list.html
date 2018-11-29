@@ -11,8 +11,24 @@
         </div>
       </div>
       <div class="row">
-        <table class="">
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <td>Album</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for album in albums %}
+            <tr>
+                <td>{{ album.title }}</td>
+                <td>
+                  <a href="{% url 'album:photos' album=album.slug %}" class="ui green button">Details</a>
+                </td>
+            </tr>
 
+            {% endfor %}
+          </tbody>
         </table>
       </div>
     </div>

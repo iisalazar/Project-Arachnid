@@ -7,7 +7,7 @@ class Album(models.Model):
     title = models.CharField(max_length=120, unique=True)
     description = models.CharField(max_length=300)
     date = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField(allow_unicode=True, unique=True)
+    slug = models.SlugField(allow_unicode=True, unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
