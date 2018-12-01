@@ -24,8 +24,9 @@ active
 				</thead>
 				<tbody>
 					{% for batch in human_resource %}
+					<tr>
 						<td>{{ batch.organization }}</td>
-						<td>{{ batch.school_year }}</td>
+						<td>{{ batch.school_year }} {{ batch.president }} {{ batch.adviser }}</td>
 						<td>
 							<div class="ui buttons">
 								<a href="{% url 'staff:organization_hr_detail' pk=batch.pk organization=batch.organization %}" class="ui green button">Details</a>
@@ -33,6 +34,7 @@ active
 								<a href="{% url 'staff:organization_hr_delete' organization=batch.organization pk=batch.pk %}" class="ui red button">Delete</a>
 							</div>
 						</td>
+					</tr>
 					{% endfor %}
 				</tbody>
 			</table>

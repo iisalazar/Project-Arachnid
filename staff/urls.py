@@ -43,6 +43,7 @@ urlpatterns = [
     # for the albums section
     path('albums/', album_views.AlbumListView.as_view(), name="albums"),
     path('albums/create', album_views.AlbumCreateView.as_view(), name="create_album"),
+    path('albums/delete/<int:pk>/', album_views.AlbumDeleteView.as_view(), name="album_delete"),
     path('albums/<slug:album>/photos/delete/<int:pk>/', album_views.PhotoDeleteView.as_view(), name="delete_photo"),
     path('albums/<slug:album>/photos', album_views.PhotosListView.as_view(), name="photos"),
     path('albums/<slug:album>/photos/upload', album_views.PhotoUploadView.as_view(), name="upload_photo")

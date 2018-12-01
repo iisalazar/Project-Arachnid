@@ -42,13 +42,14 @@ class OrganizationListView(ListView):
     model = Organization
     context_object_name = "organizations"
     def get_queryset(self):
-        return Organization.objects.all
+        return Organization.objects.all()
 
 class OrganizationDetailView(DetailView):
     template_name = 'main/orgs_detail.html'
     model = Organization
     context_object_name = "organization"
     pk_url_kwarg = "pk"
+    
 
 
 

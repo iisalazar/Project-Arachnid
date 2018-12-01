@@ -12,25 +12,27 @@
         </div>
       </div>
       <div class="row">
-        <table class="ui celled table">
-          <thead>
-            <tr>
-              <td>Album</td>
-              <td>Action</td>
-            </tr>
-          </thead>
-          <tbody>
-            {% for album in albums %}
-            <tr>
-                <td>{{ album.title }}</td>
-                <td>
-                  <a href="{% url 'staff:photos' album=album.slug %}" class="ui green button">Details</a>
-                </td>
-            </tr>
-
-            {% endfor %}
-          </tbody>
-        </table>
+        <div class="column">
+          <table class="ui two column celled table">
+            <thead>
+              <tr>
+                <td>Album</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for album in albums %}
+              <tr>
+                  <td>{{ album.title }}</td>
+                  <td>
+                    <a href="{% url 'staff:photos' album=album.slug %}" class="ui green button">Details</a>
+                    <a href="{% url 'staff:album_delete' pk=album.pk %}" class="ui red button">Delete</a>
+                  </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

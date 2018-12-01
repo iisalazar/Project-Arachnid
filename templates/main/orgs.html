@@ -9,72 +9,35 @@
 
 {% block main_content %}
 	<div class="dimmed pusher">
-	<div class="ui vertical stripe inverted segment">
-		<div class="ui container">
-			<div class="ui vertical stripe center aligned stacked segment">
-				<div class="ui center alinged container">
-					<div class="ui horizontal section divider inverted">
-						<h1 class="ui header">Clubs and Organizations</h1>
-					</div>
-					<div class="ui equal width stackable internally celled grid" id="orgs">
-            {% for org in organizations %}
-						<div class="row">
-              {% if org.category == "Main" %}
-							<div class="column">
-								<a class="ui labeled icon black button" href="{% url 'main:organization_details' pk=org.pk %}">
-                  <i class="users icon"></i>
-                  {{ org.name }}
-                </a>
-							</div>
-              {% endif %}
-						</div>
-						<div class="row">
-              {% if org.category == "Core Subject" %}
-              <div class="column">
-                <a href="{% url 'main:organization_details' pk=org.pk %}" class="ui labeled icon black button">
-                  {{ org.name }}
-                </a>
+    <div class="ui vertical stripe segment">
+      <div class="ui container">
+        <div class="ui horizontal section divider inverted">
+          <h1 class="ui header">School-Recognized Organizations</h1>
+        </div>
+        <div class="ui relaxed divided items">
+          {% for org in organizations %}
+            <div class="ui item">
+              <div class="ui small image">
+                <img src="{{ org.logo.url }}" alt="">
               </div>
-              {% endif %}
-						</div>
-            <div class="row">
-              {% if org.category == "Social Science" %}
-              <div class="column">
-                <a href="{% url 'main:organization_details' pk=org.pk %}" class="ui labeled icon black button">
+              <div class="content">
+                <a href="{% url 'main:organization_details' pk=org.pk %}" class="ui header">
                   {{ org.name }}
                 </a>
+                <div class="meta">
+                  {{ org.category }}
+                </div>
+                <div class="description">
+                  {{ org.description|truncatechars:100 }}
+                </div>
+                <div class="other description">
+                  <a href="{% url 'main:organization_details' pk=org.pk %}" class="ui inverted green button">Details</a>
+                </div>
               </div>
-              {% endif %}
             </div>
-						<div class="row">
-              {% if org.category == "Music and Arts" %}
-              <div class="column">
-                <a href="{% url 'main:organization_details' pk=org.pk %}" class="ui labeled icon black button">
-                  {{ org.name }}
-                </a>
-              </div>
-              {% endif %}
-              <!--
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="unmute icon"></i>QSMV</button>
-							</div>
-							<div class="column">
-								<button class="ui labeled icon black button"> <i class="paint brush icon"></i>YAG</button>
-							</div>
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="music icon"></i>MELODICO</button>
-							</div>
-							<div class="column">
-								<button class="ui labeled icon black button"><i class="protect icon"></i>ATHLOS</button>
-							</div>
-            -->
-						</div>
-            {% endfor %}
-						<div class="ui horizontal inverted divider"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 </div>
 {% endblock %}

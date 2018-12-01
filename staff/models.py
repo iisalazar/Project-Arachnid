@@ -90,7 +90,7 @@ class OrganizationOfficer(models.Model):
     school_year = models.PositiveIntegerField(validators=[
         MinValueValidator(2018),
         MaxValueValidator(timezone.now().year)
-        ], choices=SY_CHOICES,
+        ], choices=SY_CHOICES
     )
 
     adviser = models.CharField(max_length=100)

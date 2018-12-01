@@ -56,7 +56,7 @@ CATEGORY_CHOICES = (
 class OrganizationHRForm(forms.ModelForm):
     class Meta:
         model = models.OrganizationOfficer
-        fields = '__all__'
+        exclude  = ('organization', )
         widgets = {
             'adviser': forms.TextInput(),
             'president': forms.TextInput(),

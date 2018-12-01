@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView, FormView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .forms import AnnouncementForm, NewsForm, OrganizationForm, ResearchForm, ResearchProponentForm, OrganizationHRForm
 from .models import Announcement, News, Organization, ResearchPaper, ResearchProponent, OrganizationOfficer
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -116,6 +116,13 @@ class OrganizationHRCreateView(LoginRequiredMixin, CreateView):
     template_name = 'staff/organization_hr_form.html'
     model = OrganizationOfficer
     form_class = OrganizationHRForm
+    success_url = reverse_lazy('staff:organizations')
+    def form_valid(self, form):
+        organization = get_object_or_404(Organization, name=self.kwargs.get('organization'))
+        officer = form.save(commit=False)
+        officer.organization = organization
+        officer.save()
+        return HttpResponseRedirect(reverse('staff:organizations'))
 
 
 class OrganizationHRUpdateView(LoginRequiredMixin, UpdateView):

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Glider practice</title>
+    <link rel="stylesheet" type="text/css" href="glider.css">
+  </head>
+  <body>
+    <div class="glider-contain">
+      <div class="glider">
+        <div>your content here</div>
+        <div>your content here</div>
+        <div>your content here</div>
+        <div>your content here</div>
+      </div>
+
+      <button role="button" aria-label="Previous" class="glider-prev">«</button>
+      <button role="button" aria-label="Next" class="glider-next">»</button>
+      <div role="tablist" class="dots"></div>
+    </div>
+    <script src="glider.js"></script>
+    <script type="text/javascript">
+      window.addEventListener('load', function(){
+        document.querySelector('.glider').Glider({
+          slidesToShow: 4,
+        })
+      })
+    </script>
+
+  </body>
+</html>

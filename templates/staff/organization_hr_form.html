@@ -9,18 +9,18 @@
     <div class="ui segment">
       {% if object %}
       <div class="ui orange right ribbon label">
-        Updating an organization
+        Updating Officers
       </div>
       {% else %}
       <div class="ui red right ribbon label">
-        New Organization
+        New Officers
       </div>
       {% endif %}
       <div class="ui attached segment">
         {% if object %}
           <h3 class="ui header">Update {{ object }}</h3>
         {% else %}
-          <h3 class="ui header">Create A New Organization</h3>
+          <h3 class="ui header">Create A New Batch of Officers</h3>
         {% endif %}
         {% if form.errors %}
         <div class="ui warning message">
@@ -30,24 +30,7 @@
       </div>
       <form class="ui equal width attached fluid segment form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="ui fields">
-          <div class="ui field">
-            <label for="name">Name of Organization</label>
-            {{ form.name }}
-          </div>
-          <div class="ui field">
-            <label for="acronym">Acronym</label>
-            {{ form.acronym }}
-          </div>
-          <div class="ui field">
-            <label for="">Logo</label>
-            {{ form.logo }}
-          </div>
-        </div>
-        <div class="ui field">
-          <label for="description">Description</label>
-          {{ form.description }}
-        </div>
+        {{ form.as_p }}
         {% if object %}
         <input type="submit" value="Update" class="ui orange inverted button">
         {% else %}

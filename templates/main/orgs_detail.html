@@ -24,7 +24,6 @@
   {
     font-family: 'Raleway Light', sans-serif;
   }
-
 {% endblock %}
 
 {% block org %}
@@ -33,17 +32,21 @@
 
 {% block main_content %}
   <div class="ui container vertical stripe segment">
+    <a href="{% url 'main:organizations' %}" class="ui orange icon button">
+      <i class="left double angle icon"></i>
+      Go back
+    </a>
     <div class="ui segments">
         <div class="ui segment" id="banner">
           <div class="ui middle indent centered stackable grid">
             <div class="row">
-              <div class="ui six wide column">
+              <div class="ui six wide computer sixteen wide tablet column">
                 <div class="ui raised center aligned segment">
                   <h3 class="ui header">{{ object.name }}</h3>
                 </div>
               </div>
-              <div class="ui four wide column">
-                <img src="{{ object.logo.url }}" alt="" class="ui medium circular image">
+              <div class="ui four wide computer sixteen wide tablet column">
+                <img src="{{ object.logo.url }}" alt="" class="ui centered medium circular image">
               </div>
             </div>
           </div>

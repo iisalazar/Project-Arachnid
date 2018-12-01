@@ -22,12 +22,21 @@ class AlbumTemplateView(TemplateView):
 
 class AlbumList(View):
     def get(self, *args, **kwargs):
-        albums = get_list_or_404(Album)
+        albums = Album.objects.order_by('-date')
+        data = []
         for album in albums:
-            print(album.slug)
-        albums_serialized = serializers.serialize('json', albums)
+            alb = {}
+            photo = get_list_or_404(Photo, album=album)
+            alb['name'] = album.title
+            alb['slug'] = album.slug
+            alb['date_created'] = album.date
+            alb['description'] = album.description
+            alb['first_photo'] = photo[0].file.url
+            data.append(alb)
+
+        print(data)
         #pprint(json.dumps(albums_serialized))
-        return JsonResponse(albums_serialized, safe=False)
+        return JsonResponse({'data' : data})
 
 class PhotoList(View):
     def get(self, *args, **kwargs):
@@ -50,6 +59,10 @@ class AlbumCreateView(LoginRequiredMixin, CreateView):
     form_class = AlbumForm
     success_url = reverse_lazy('staff:albums')
 
+class AlbumDeleteView(LoginRequiredMixin, DeleteView):
+    model = Album
+    pk_url_kwarg = 'pk'
+    success_url = reverse_lazy('staff:albums')
 
 class AlbumListView(LoginRequiredMixin, ListView):
     redirect_field_name = 'album/albums.html'
