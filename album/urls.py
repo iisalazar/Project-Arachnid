@@ -4,10 +4,7 @@ from . import views
 app_name = 'album'
 
 urlpatterns = [
-'''
-    path('', views.AlbumListView.as_view(), name="albums"),
-    path('<slug:album>/photos', views.PhotosListView.as_view(), name="photos"),
-    path('<slug:album/photos/delete/<int:pk>/', views.PhotoDeleteView.as_view(), name="delete_photo"),
-    path('<slug:album>/photos/upload', views.PhotoUploadView.as_view(), name="upload_photo")
-'''
+    path('', views.AlbumTemplateView.as_view(), name="albums"),
+    path('lists/', views.AlbumList.as_view(), name="albums_list"),
+    path('photos/list', views.PhotoList.as_view(), name="photos_list")
 ]

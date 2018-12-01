@@ -1,0 +1,11 @@
+#!/bin/bash
+# NOTE: This script was created because the developer was too lazy to run the migrations command manually
+echo "Enter name of app to migrate (leave blank for 'migrate' only)"
+read app
+if [ -n "$app" ]; then
+	echo "Migrating $app"
+	python manage.py makemigrations $app
+else
+	echo "Migrating entire project"
+	python manage.py migrate
+fi

@@ -13,7 +13,7 @@
 
 		{% endblock %}
 	</title>
-	
+
 
 	<link rel="stylesheet" href="{% static 'dist/semantic.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
@@ -121,10 +121,10 @@
 							<a class="{% block faq %} {% endblock %} item" href="{% url 'main:faqs' %}">FAQs</a>
 							{% if user.is_authenticated %}
 							<a href="{% url 'admin:index' %}" class="ui item">Admin</a>
-							<a href="{% url 'staff:index' %}" class="item">Staff</a>
+							<a href="{% url 'staff:index' %}" class="item">Faculty/Staff</a>
 							<a href="{% url 'staff:logout' %}" class="item">Logout</a>
 							{% else %}
-							<a href="{% url 'staff:login' %}" class="item">Staff</a>
+							<a href="{% url 'staff:login' %}" class="item">Faculty/Staff</a>
 							{% endif %}
 					</div>
 				</div>
@@ -138,6 +138,8 @@
 		<script src="{% static 'js/jquery.min.js'%}"></script>
 		<script type="text/javascript" src="{% static 'dist/semantic.js'%}"></script>
 		<script src="{% static 'js/script.js' %}"></script>
+		{% block javascript %}
+		{% endblock %}
 
 </body>
 </html>

@@ -22,3 +22,15 @@
 .grid .row .header {
 	text-align: center;
 }
+
+@media only screen and (max-width: 1024){
+	.ui.login.segment {
+		margin: 0;
+	}
+	.ui.signup.segment {
+		margin: 0;
+	}
+	.label {
+		font-size: 100px;
+	}
+}

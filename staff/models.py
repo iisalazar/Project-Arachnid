@@ -73,7 +73,7 @@ class Organization(models.Model):
     logo = models.ImageField(upload_to="organization/{}/logo".format(name), null=True)
     acronym = models.CharField(max_length=10)
     description = models.TextField(max_length=5000)
-    
+
     def get_absolute_url(self):
         return reverse('staff:organizations')
 
@@ -128,7 +128,7 @@ class OrganizationOfficer(models.Model):
             return False
         else:
             return True
-    
+
     def get_all_of_them(self):
         # TODO
         # Add a method to return all person as a list
@@ -171,4 +171,3 @@ class ResearchProponent(models.Model):
 
     def __str__(self):
         return self.first_name + self.last_name
-

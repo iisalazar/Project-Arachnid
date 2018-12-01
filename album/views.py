@@ -1,14 +1,49 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import JsonResponse
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from django.views import View
 from django.http import JsonResponse # For the image view
 from django.contrib.auth.mixins import LoginRequiredMixin # For authentication
 from .forms import PhotoForm, AlbumForm
 from .models import Photo, Album
+from pprint import pprint
+from django.core import serializers
+import json
+
+import os # For returning the appropriate file name, not the directory + filename
 # Create your views here.
 
+
+# For the public
+
+class AlbumTemplateView(TemplateView):
+    template_name = 'album/albums.html'
+
+class AlbumList(View):
+    def get(self, *args, **kwargs):
+        albums = get_list_or_404(Album)
+        for album in albums:
+            print(album.slug)
+        albums_serialized = serializers.serialize('json', albums)
+        #pprint(json.dumps(albums_serialized))
+        return JsonResponse(albums_serialized, safe=False)
+
+class PhotoList(View):
+    def get(self, *args, **kwargs):
+        photos = get_list_or_404(Photo)
+        data = []
+        for photo in photos:
+            image = {}
+            image['album'] = photo.album.pk
+            image['file'] = photo.file.url
+            image['date'] = photo.date
+            data.append(image)
+        pprint(data)
+        return JsonResponse({'data': data})
+        #return ("Hello world")
+
+# For the admin panel
 class AlbumCreateView(LoginRequiredMixin, CreateView):
     template_name = 'album/album_create.html'
     model = Album
@@ -18,7 +53,7 @@ class AlbumCreateView(LoginRequiredMixin, CreateView):
 
 class AlbumListView(LoginRequiredMixin, ListView):
     redirect_field_name = 'album/albums.html'
-    template_name = 'album/albums.html'
+
     model = Album
     context_object_name = 'albums'
     def get_queryset(self):
@@ -42,7 +77,7 @@ class PhotoUploadView(LoginRequiredMixin, View):
             album = get_object_or_404(Album, slug=self.kwargs.get('album'))
             photo.album = album
             photo.save()
-            data = {'is_valid': True, 'url' : photo.file.url, 'name' : photo.file.name }
+            data = {'is_valid': True, 'url' : photo.file.url, 'name' : os.path.split(photo.file.name)[1] }
         else:
             data = {'is_valid' : False}
 

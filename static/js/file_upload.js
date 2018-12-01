@@ -11,7 +11,9 @@ $(function () {
     sequentialUploads: true,  /* 1. SEND THE FILES ONE BY ONE */
     start: function (e) {  /* 2. WHEN THE UPLOADING PROCESS STARTS, SHOW THE MODAL */
       $(".ui.basic.modal").modal("show");
-
+      var segment = document.getElementById('uploaded-segments');
+      segment.style.display = 'block'; // to show the segments section
+      $(".ui.placeholder.segment .ui.icon.header#image-null-holder").remove();
     },
     stop: function (e) {  /* 3. WHEN THE UPLOADING PROCESS FINALIZE, HIDE THE MODAL */
       $(".ui.basic.modal").modal("hide");
@@ -33,12 +35,13 @@ $(function () {
       });
       }
     },
-
     done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
 
       if (data.result.is_valid) {
 				console.log(data.result.url);
-        $('.gallery.recently.uploaded').append("<img src='" + data.result.url + "' width='200'>");
+        //$('#recently-uploaded .ui.icon.header').append("<img src='" + data.result.url + "' width='200'>");
+
+        $('#recently-uploaded .ui.segments').append('<div class="ui segment">Uploaded <a href="#">'+ data.result.name +'</a></div>');
       }
 			else {
 				console.log("fuck");

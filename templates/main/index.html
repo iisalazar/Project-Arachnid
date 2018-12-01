@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-  Quezon Science High School
+  Home - QSHS
 {% endblock %}
 {% block style %}
   .ui.text.container {
@@ -15,7 +15,7 @@
   #header_segment .ui.header {
     float: left;
   }
-  
+
 {% endblock %}
 {% block main_content %}
     <div class="dimmed pusher">
@@ -33,7 +33,7 @@
     							<div class="menu">
     								<a class="item" href="#">Documents</a>
     								<div class="ui divider"></div>
-    								<a class="item" href="#">Images</a>
+    								<a class="item" href="{% url 'album:albums' %}">Images</a>
     							</div>
     						</div>
                 <a class="item" href="{% url 'main:organizations' %}">Organizations</a>
@@ -53,12 +53,12 @@
                     {% if user.is_authenticated %}
                     <a class="ui inverted green button" href="{% url 'staff:index' %}">
                         <i class="universal access icon"></i>
-                        Staff
+                        Faculty/Staff
                     </a>
                     {% else %}
                     <a class="ui inverted green button" href="{% url 'staff:login' %}">
                         <i class="sign in icon"></i>
-                        Log in
+                        Faculty/Staff
                     </a>
                     {% endif %}
                   </div>
@@ -85,80 +85,119 @@
                     </h1>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="ui left floated seven wide computer sixteen wide tablet column">
-                    <div class="ui raised segment">
-                      <h3 class="ui center aligned header">
-                        Latest News
-                      </h3>
-                      <div class="ui relaxed items">
+                <div class="ui row segment">
+                  <div class="eight wide column">
+                    <h3 class="ui center aligned header">Latest News</h3>
+                  </div>
+                  <div class="ui middle aligned padded internally celled grid stackable container">
+                    <div class="row">
+                      <div class="ui eight wide computer sixteen wide tablet column">
                         {% if news %}
-                          {% for news in news %}
-                          <div class="item">
-                            <div class="ui small image">
-                              <img src="{{ news.headline_image.url }}">
+                          <div class="ui fluid card">
+                            <div class="image">
+                              <img src="{{ news.0.headline_image.url }}" alt="">
                             </div>
                             <div class="content">
-                              <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>
-                              <div class="description">
-                                {{ news.lead_text }}
-                              </div>
-                              <div class="meta">
-                                <p>
-                                  Published {{ news.published_date|date:"M d, Y"}} by 
-                                  {% if news.author %}
-                                    {{ news.author }}
-                                    {% if news.author_addition_info %}
-                                    -{{news.author_aditional_info }}
-                                    {% endif %}
-                                  {% else %}
-                                    Anonymous
-                                  {% endif %}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          {% endfor %}
-                        {% else %}
-                          <h3>No news yet</h3>
-                        {% endif %}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="ui right floated six wide computer eight wide centered tablet column">
-                    <div class="ui raised segment">
-                      <h3 class="ui center aligned header">
-                        Announcements
-                      </h3>
-                      <div class="ui relaxed items">
-                        {% if announcements %}
-                          {% for announcement in announcements %}
-                          <div class="item">
-                            <div class="ui small image">
-                              <img src="{% static 'img/stock/macaw-poly.jpg' %}">
-                            </div>
-                            <div class="content">
-                              <a href="{% url 'staff:view_file' pk=announcement.pk %}" class="header">
-                                  {{ announcement.title }}
+                              <a href="{% url 'main:news_detail' pk=news.0.pk %}" class="header">
+                                {{ news.0.headline|safe }}
                               </a>
-                              <div class="description">
-                                {{ news.lead_text }}
-                              </div>
                               <div class="meta">
-                                <p>
-                                  Published {{ announcement.date_created|date:"M d, Y"}}
-                                </p>
+                                <span>{{ news.0.published_date|date:"M d, Y" }}</span>
+                              </div>
+                              <div class="description">
+                                {{ news.0.lead_text|safe }}
                               </div>
                             </div>
                           </div>
-                          {% endfor %}
-                        {% else %}
-                          <h3>No announcements yet</h3>
                         {% endif %}
                       </div>
+                      <div class="ui six wide computer sixteen wide tablet right floated column">
+                        <div class="ui relaxed items">
+                          {% if news %}
+                            {% for news in news %}
+                              <div class="item">
+                                <div class="ui small image">
+                                  <img src="{{ news.headline_image.url }}" alt="">
+                                </div>
+                                <div class="content">
+                                  <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>
+                                  <div class="meta">
+                                    {{ news.published_date|date:"M d, Y"}}
+                                  </div>
+                                  <div class="description">
+                                    {{ news.lead_text|truncatechars:100 }}
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          {% else %}
+                            <div class="item">
+                              No news yet
+                            </div>
+                          {% endif %}
+                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div class="ui row segment">
+                  <div class="eight wide column">
+                    <h3 class="ui center aligned header">Announcements</h3>
+                  </div>
+                  <div class="ui middle aligned padded internally celled grid stackable container">
+                    <div class="row">
+                      <div class="ui eight wide computer sixteen wide tablet column">
+                        {% if announcements %}
+                          <div class="ui fluid card">
+                            <div class="image">
+                              <img src="{% static 'img/stock/macaw-poly.jpg' %}" alt="">
+                            </div>
+                            <div class="content">
+                              <a href="{% url 'main:news_detail' pk=announcements.0.pk %}" class="header">
+                                {{ announcements.0.title|safe }}
+                              </a>
+                              <div class="meta">
+                                <span>{{ announcements.0.date_created|date:"M d, Y" }}</span>
+                              </div>
+                              <div class="description">
+                                {{ announcements.0.description }}
+                              </div>
+                            </div>
+                          </div>
+                        {% endif %}
+                      </div>
+                      <div class="ui six wide computer sixteen wide tablet right floated column">
+                        <div class="ui relaxed items">
+                          {% if announcements %}
+                            {% for announcement in announcements %}
+                              <div class="item">
+                                <div class="ui small image">
+                                  <img src="{% static 'img/stock/macaw-poly.jpg' %}" alt="">
+                                </div>
+                                <div class="content">
+                                  <a href="{% url 'staff:view_file' pk=announcement.pk %}" class="header">
+                                      {{ announcement.title }}
+                                  </a>
+                                  <div class="meta">
+                                    Published {{ announcement.date_created|date:"M d, Y"}}
+                                  </div>
+                                  <div class="description">
+                                    {{ announcement.description }}
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          {% else %}
+                            <div class="item">
+                              No news yet
+                            </div>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 </div>
               </div>
 
