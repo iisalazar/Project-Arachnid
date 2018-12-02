@@ -21,6 +21,8 @@
 		{% block style %}
 		{% endblock %}
 	</style>
+	{% block linkstyle %}
+	{% endblock %}
 </head>
 <body>
 
@@ -28,52 +30,68 @@
 	<div class="ui vertical sidebar inverted menu">
 			<div class="item">
 					<a href="{% url 'main:index' %}">
-					<i class="home icon"></i>
-					Home
+							<i class="home icon"></i> Home
 					</a>
 			</div>
 			<div class="item">
 					<a href="{% url 'main:admissions' %}">
-					<i class="heartbeat icon"></i>
-					Admissions
+							<i class="heartbeat icon"></i> Admissions
 					</a>
 			</div>
 			<div class="item">
 					<a href="{% url 'main:news' %}">
-					<i class="newspaper icon"></i>
-					News
+							<i class="newspaper icon"></i> News
 					</a>
 			</div>
-			<div class="ui dropdown item">
-				Archives
-				<i class="ui dropdown icon"></i>
-				<div class="menu">
-					<a class="item" href="#">Documents</a>
-					<div class="ui divider"></div>
-					<a class="item" href="#">Images</a>
-				</div>
+			<div class="item">
+				<a href="{% url 'album:albums' %}">
+						<i class="images icon"></i> Gallery
+				</a>
+				<!--
+					<div class="ui accordion">
+							<div class="ui inverted title">
+									<i class="ui dropdown icon"></i> Archives
+							</div>
+							<div class="content">
+									<a class="item" href="#">
+											<i class="file pdf icon"></i> Documents
+									</a>
+									<a class="item" href="{% url 'album:albums' %}">
+											<i class="images icon"></i> Gallery
+									</a>
+							</div>
+					</div>
+				-->
 			</div>
-			<a class="item" href="{% url 'main:organizations' %}">Organizations</a>
-			<div class="ui dropdown item">
-				Research
-				<i class="ui dropdown icon"></i>
-				<div class="menu">
-					<a class="item" href="appliedScience.html">Applied Science</a>
-					<div class="ui divider"></div>
-					<a class="item" href="lifeScience.html">Life Science</a>
-				</div>
+			<div class="item">
+					<a href="{% url 'main:organizations' %}">
+							<i class="users icon"></i> Organizations
+					</a>
+			</div>
+			<div class="item">
+					<div class="ui accordion">
+							<div class="ui inverted title">
+									<i class="ui dropdown icon"></i> Research
+							</div>
+							<div class="content">
+									<a class="item" href="{% url 'main:applied_science' %}">
+							Applied Science
+						</a>
+									<a class="item" href="{% url 'main:life_science' %}">
+							Life Science
+						</a>
+							</div>
+					</div>
 			</div>
 			<div class="item">
 					<a href="{% url 'main:about' %}">
-					<i class="universal access icon"></i>
-					About
+							<i class="universal access icon"></i> About
 					</a>
 			</div>
 			<div class="item">
-				<a href="{% url 'main:faqs' %}">
-					<i class="help circle icon"></i>
-					FAQs
-				</a>
+					<a href="{% url 'main:faqs' %}">
+							<i class="help circle icon"></i> FAQs
+					</a>
 			</div>
 	</div>
 
@@ -98,15 +116,17 @@
 					<div class="ui right item">
 							<a class="{% block admission %} {%endblock%}item" href="{% url 'main:admissions' %}">Admissions</a>
 							<a class="{% block news %} {%endblock%}item" href="{% url 'main:news' %}">News</a>
-							<div class="ui dropdown {% block archives %} {% endblock %}item">
+							<a class="{% block album %} {% endblock %}item" href="{% url 'album:albums' %}">Album</a>
+							<!--<div class="ui dropdown {% block archives %} {% endblock %}item">
 								Archives
 								<i class="ui dropdown icon"></i>
 								<div class="menu">
 									<a class="{% block archive_documents %} {% endblock %}item" href="#">Documents</a>
 									<div class="ui divider"></div>
-									<a class="{% block archive_images %} {% endblock %}item" href="#">Images</a>
+									<a class="{% block archive_images %} {% endblock %}item" href="{% url 'album:albums' %}">Images</a>
 								</div>
 							</div>
+						-->
 							<div class="ui dropdown {% block research %} {%endblock%}item">
 								Research
 								<i class="ui dropdown icon"></i>
@@ -130,9 +150,10 @@
 				</div>
 			</div>
 
-			{% block main_content %}
+				{% block main_content %}
 
-			{% endblock %}
+				{% endblock %}
+
 
 			{% include 'main/footer.html' %}
 		<script src="{% static 'js/jquery.min.js'%}"></script>

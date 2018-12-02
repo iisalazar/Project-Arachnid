@@ -1,8 +1,13 @@
 {% extends 'base_2.html' %}
+{% block album %}
+active
+{% endblock album %}
 {% block main_content %}
 <div class="ui container">
-  <div class="ui segment">
-    <h1>Albums</h1>
+  <div class="ui vertical stripe stackable segment">
+    <div class="ui horizontal section divider inverted">
+      <h1 class="ui header">Albums</h1>
+    </div>
     <div class="ui three stackable special cards" id="album">
 
     </div>
@@ -27,8 +32,11 @@
       let album_name = value['name']
       let album_description = value['description']
       let photo = value['first_photo']
-      d = '<div class="ui card"><div class="blurring dimmable image"><div class="ui blurring dimmer"><div class="content"><div class="center"><div class="ui inverted button">View Album</div></div></div></div><img src="{0}" alt=""></div><div class="content"><div class="header">{1}</div></div></div>'.format(photo, album_name)
-      console.log(d);
+      var album_slug = value['slug']
+      console.log('album_slug')
+      var url = album_slug +"/photos"
+      console.log(url)
+      d = '<div class="ui card"><div class="blurring dimmable image"><div class="ui blurring dimmer"><div class="content"><div class="center"><a class="ui inverted button" href="{2}">View Album</a></div></div></div><img src="{0}" alt=""></div><div class="content"><div class="header">{1}</div></div></div>'.format(photo, album_name,url)
       $("#album").append(d);
       $('.ui.three.stackable.special.cards .image').dimmer({on: 'hover'});
     }
@@ -36,7 +44,6 @@
       url: 'lists/',
       dataType: 'json',
       success: function(data){
-        console.log(data);
         data['data'].forEach(generateAlbum);
       }
     });

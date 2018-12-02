@@ -97,5 +97,7 @@ $(document).ready(function() {
           author: 'empty'
         }
       });
-
+      if (window.matchMedia('(max-width: 768px)').matches){
+        console.log("Fuck");
+      }
 });

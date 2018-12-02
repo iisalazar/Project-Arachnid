@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'main',
     'staff',
     'reset_migrations',
-    'album'
+    'album',
+    'django_js_routing',
 ]
 
 MIDDLEWARE = [

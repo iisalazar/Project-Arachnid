@@ -1,0 +1,120 @@
+{% extends 'base_2.html' %}
+{% load staticfiles %}
+{% block album %}
+active
+{% endblock album %}
+{% block linkstyle %}
+  <link rel="stylesheet" href="{% static 'css/glider.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="ui container">
+  <a href="{% url 'album:albums' %}" class="ui orange button icon">
+    <i class="left double angle icon"></i>
+    Go Back
+  </a>
+  <div class="ui segment">
+    <div class="ui horizontal section divider inverted">
+      <h1 class="ui header" id="album-header"></h1>
+    </div>
+    <div class="glider-contain multiple">
+      <button type="button" name="button" class="glider-prev">
+        <i class="ui left double angle icon"></i>
+      </button>
+      <div class="glider">
+
+      </div>
+      <button type="button" name="button" class="glider-next">
+        <i class="ui right double angle icon"></i>
+      </button>
+      <div id="dots" class="glider-dots">
+
+      </div>
+    </div>
+    <p class="ui description" id='album-description'>
+
+    </p>
+    <p class="meta" id="album-meta">
+
+    </p>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+  <script type="text/javascript" src="{% static 'js/glider.js' %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      function generatePictures(value, index, array){
+        var file = value.file
+        var text = `<div class="ui fluid raised card">
+          <div class="ui image">
+            <img src="` + file + `" alt="" id="carousel-image">
+          </div>
+        </div>
+        `
+        console.log(text);
+        $('.glider').append(text);
+      }
+      $.ajax({
+          url: 'photos/list',
+          dataType: 'json',
+          generateJS : function addJS(){
+            new Glider(document.querySelector('.glider'), {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              draggable: true,
+              scrollLock: true,
+              dots: '#dots',
+              arrows : {
+                prev : '.glider-prev',
+                next: '.glider-next'
+              },
+              responsive : [{
+                breakpoint: 1024,
+                settings: {
+                  scrollLock: true,
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                }
+              },
+              {
+                breakpoint: 768,
+                settings: {
+                  scrollLock: true,
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                }
+              }
+              ]
+            })
+          },
+          success: function(data){
+            data.data.forEach(generatePictures);
+
+            var header = document.getElementById('album-header');
+            var description = document.getElementById('album-description')
+            var date = document.getElementById('album-meta')
+
+            console.log(data.data[0].date)
+            var new_date = new Date(data.data[0].date)
+            var month = function(date) {
+              const months = [
+              "January", "February", "March", "April", "May",
+              "June", "July", "August", "September", "October",
+              "November", "December"
+              ]
+              return (months[date.getMonth()])
+            }
+            console.log("Month: "+ month(new_date));
+
+            console.log("New date: " + month(new_date) + " " + new_date.getDate() + ", " + new_date.getFullYear())
+
+            date.innerText = "Uploaded on " + month(new_date) + " " + new_date.getDate() + ", " + new_date.getFullYear()
+            header.innerText = data.data[0].album_title
+            description.innerText = data.data[0].album_description
+            this.generateJS();
+          }
+        });
+    });
+  </script>
+{% endblock %}

@@ -38,17 +38,27 @@ class AlbumList(View):
         #pprint(json.dumps(albums_serialized))
         return JsonResponse({'data' : data})
 
+class PhotoTemplateView(TemplateView):
+    template_name = 'album/photos.html'
+    def get(self, *args, **kwargs):
+        #print(args)
+        print(kwargs['album'])
+        return super().get(*args, **kwargs)
+
 class PhotoList(View):
     def get(self, *args, **kwargs):
         photos = get_list_or_404(Photo)
         data = []
         for photo in photos:
-            image = {}
-            image['album'] = photo.album.pk
-            image['file'] = photo.file.url
-            image['date'] = photo.date
-            data.append(image)
-        pprint(data)
+            if photo.album.slug == kwargs['album']:
+                image = {}
+                image['album_description'] = photo.album.description
+                image['album'] = photo.album.pk
+                image['album_title'] = photo.album.title
+                image['file'] = photo.file.url
+                image['date'] = photo.album.date.strftime('%Y-%m-%d %H:%M:%S %Z')
+                data.append(image)
+        #pprint(data)
         return JsonResponse({'data': data})
         #return ("Hello world")
 

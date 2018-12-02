@@ -46,7 +46,7 @@
 	width: 100%;
 	height: 70px;
 	opacity: 1;
-	border-radius: 10px;
+
 	/*margin-top: 10px;*/
 }
 
@@ -56,7 +56,6 @@
 
 #home-navbar .item{
 	font-family: Raleway Light;
-	color:white;
 }
 
 .ui.header {
@@ -105,7 +104,7 @@
 }
 
 
-
+/*
 .masthead.segment {
 	background: linear-gradient(
       rgba(0, 0, 0, 0.8),
@@ -115,6 +114,8 @@
 	min-height: 800px;
 	background-attachment: fixed;
 }
+*/
+
 
 .masthead .logo.item img {
   margin-right: 1em;
@@ -128,7 +129,7 @@
 /* CSS transfered from HTML */
 
 .masthead.segment .ui.text.container {
-	margin-top: 15em;
+	margin-top: 10em;
 }
 
 .masthead .ui.text.container img.logo
@@ -286,6 +287,13 @@ a:hover.back-to-top {
 }
 
 
+#banner-text {
+	display: none;
+}
+
+#img-slides {
+	margin-top: 10em;
+}
 /*Customized css*/
 
 @media only screen and (max-width: 1024px) {
@@ -311,15 +319,18 @@ a:hover.back-to-top {
 
 @media only screen and (max-width: 768px) {
 
-
+	#img-slides {
+		display: none;
+	}
   .masthead.segment {
-      min-height: 600px;
+      min-height: 400px;
+			background: #326d48;
 			width: 100%:
     }
-
-		.masthead .ui.text.container {
-			margin-top: 15em;
+		#banner-text {
+			margin-top: 5em
 		}
+
 
 	.masthead h1.ui.header {
 	  font-size: 35px;

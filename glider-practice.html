@@ -4,26 +4,91 @@
     <meta charset="utf-8">
     <title>Glider practice</title>
     <link rel="stylesheet" type="text/css" href="glider.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css">
   </head>
   <body>
-    <div class="glider-contain">
+    <div class="glider-contain multiple">
+      <button type="button" name="button" class="glider-prev">
+        <i class="ui left double angle icon"></i>
+      </button>
       <div class="glider">
-        <div>your content here</div>
-        <div>your content here</div>
-        <div>your content here</div>
-        <div>your content here</div>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
+        <figure>
+          <blockquote>
+            lkjdkasjdksajdkasjdka
+          </blockquote>
+        </figure>
       </div>
+      <button type="button" name="button" class="glider-next">
+        <i class="ui right double angle icon"></i>
+      </button>
+      <div id="dots" class="glider-dots">
 
-      <button role="button" aria-label="Previous" class="glider-prev">«</button>
-      <button role="button" aria-label="Next" class="glider-next">»</button>
-      <div role="tablist" class="dots"></div>
+      </div>
     </div>
+
     <script src="glider.js"></script>
     <script type="text/javascript">
-      window.addEventListener('load', function(){
-        document.querySelector('.glider').Glider({
-          slidesToShow: 4,
-        })
+      new Glider(document.querySelector('.glider'), {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        draggable: true,
+        dots: '#dots',
+        arrows : {
+          prev : '.glider-prev',
+          next: '.glider-next'
+        },
+        responsive : [{
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 5,
+            slidesToScroll: 5,
+          }
+        }]
       })
     </script>
 

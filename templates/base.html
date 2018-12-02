@@ -11,10 +11,12 @@
     <title>
         {% block title %} {% endblock %}
     </title>
-    
+
 
     <link rel="stylesheet" href="{% static 'dist/semantic.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    {% block linkstyle %}
+    {% endblock %}
     <style type="text/css">{% block style %} {% endblock %}</style>
 
 </head>
@@ -39,7 +41,12 @@
                 <i class="newspaper icon"></i> News
             </a>
         </div>
+
         <div class="item">
+          <a href="{% url 'album:albums' %}">
+              <i class="images icon"></i> Gallery
+          </a>
+          <!--
             <div class="ui accordion">
                 <div class="ui inverted title">
                     <i class="ui dropdown icon"></i> Archives
@@ -48,11 +55,12 @@
                     <a class="item" href="#">
                         <i class="file pdf icon"></i> Documents
                     </a>
-                    <a class="item" href="#">
+                    <a class="item" href="{% url 'album:albums' %}">
                         <i class="images icon"></i> Gallery
                     </a>
                 </div>
             </div>
+          -->
         </div>
         <div class="item">
             <a href="{% url 'main:organizations' %}">
@@ -104,6 +112,8 @@
     <script src="{% static 'js/jquery.min.js'%}"></script>
     <script type="text/javascript" src="{% static 'dist/semantic.js'%}"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    {% block javascript %}
+    {% endblock %}
 </body>
 
 </html>

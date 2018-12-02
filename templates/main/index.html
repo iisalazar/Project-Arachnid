@@ -17,16 +17,26 @@
   }
 
 {% endblock %}
+{% block linkstyle %}
+<link rel="stylesheet" href="{% static 'css/glider.css' %}">
+{% endblock %}
 {% block main_content %}
     <div class="dimmed pusher">
         <div class="ui masthead center aligned segment">
-          <div class="ui container">
-            <div class="ui green secondary large pointing menu"  id="home-navbar">
-                <a class="item" href="{% url 'main:index' %}"><img class="logo" src="{% static 'img/logo.png' %}"></a>
+
+            <div class="ui green secondary large menu"  id="home-navbar">
+                <a class="item" href="{% url 'main:index' %}">
+                  <div class="ui header">
+                    <img class="logo" src="{% static 'img/logo.png' %}">
+                    QSHS
+                  </div>
+                </a>
                 <div class="ui right item">
                     <a class="active item" href="{% url 'main:index' %}">Home</a>
                 <a class="item" href="{% url 'main:admissions' %}">Admissions</a>
                 <a class="item" href="{% url 'main:news' %}">News</a>
+                <a class="item" href="{% url 'album:albums' %}">Album</a>
+                <!--
                 <div class="ui dropdown item">
     							Archives
     							<i class="ui dropdown icon"></i>
@@ -36,6 +46,7 @@
     								<a class="item" href="{% url 'album:albums' %}">Images</a>
     							</div>
     						</div>
+                -->
                 <a class="item" href="{% url 'main:organizations' %}">Organizations</a>
                 <div class="ui dropdown item">
     							Research
@@ -65,14 +76,38 @@
                 </div>
                 </div>
             </div>
-          </div>
-          <div class="ui text container">
-            <h1 class="ui header">Quezon Science High School</h1>
-            <div class="ui horizontal section divider">
-                <h3>Honorem | Excellencia | Servitium</h3>
+            <div class="ui text container" id="banner-text">
+              <h1 class="ui header">Quezon Science High School</h1>
+              <div class="ui horizontal section divider">
+                  <h3>Honorem | Excellencia | Servitium</h3>
+              </div>
             </div>
           </div>
-        </div>
+            <div class="glider-contain multiple" style="margin-top: 0em;" id="img-slides">
+              <button type="button" name="button" class="glider-prev">
+                <i class="ui left angle icon"></i>
+              </button>
+              <div class="glider" style="height: 400px">
+                  <div class="ui small image">
+                    <img src="{% static 'img/qshs/Dorm 2.jpg' %}" alt="">
+                  </div>
+                  <div class="ui small image">
+                    <img src="{% static 'img/7.jpg' %}" alt="">
+                  </div>
+                  <div class="ui small image">
+                    <img src="{% static 'img/5.jpeg' %}" alt="">
+                  </div>
+              </div>
+              <button type="button" name="button" class="glider-next">
+                <i class="ui right angle icon"></i>
+              </button>
+              <div id="dots" class="glider-dots">
+
+              </div>
+            </div>
+
+
+
 
         <!-- ANNOUNCEMENTS -->
 
@@ -94,9 +129,9 @@
                       <div class="ui eight wide computer sixteen wide tablet column">
                         {% if news %}
                           <div class="ui fluid card">
-                            <div class="image">
+                            <a class="image" href="{% url 'main:news_detail' pk=news.0.pk %}">
                               <img src="{{ news.0.headline_image.url }}" alt="">
-                            </div>
+                            </a>
                             <div class="content">
                               <a href="{% url 'main:news_detail' pk=news.0.pk %}" class="header">
                                 {{ news.0.headline|safe }}
@@ -116,9 +151,9 @@
                           {% if news %}
                             {% for news in news %}
                               <div class="item">
-                                <div class="ui small image">
+                                <a class="ui small image" href="{% url 'main:news_detail' pk=news.pk %}">
                                   <img src="{{ news.headline_image.url }}" alt="">
-                                </div>
+                                </a>
                                 <div class="content">
                                   <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>
                                   <div class="meta">
@@ -150,9 +185,9 @@
                       <div class="ui eight wide computer sixteen wide tablet column">
                         {% if announcements %}
                           <div class="ui fluid card">
-                            <div class="image">
+                            <a class="image" href="#">
                               <img src="{% static 'img/stock/macaw-poly.jpg' %}" alt="">
-                            </div>
+                            </a>
                             <div class="content">
                               <a href="{% url 'main:news_detail' pk=announcements.0.pk %}" class="header">
                                 {{ announcements.0.title|safe }}
@@ -172,9 +207,9 @@
                           {% if announcements %}
                             {% for announcement in announcements %}
                               <div class="item">
-                                <div class="ui small image">
+                                <a class="ui small image" href="#">
                                   <img src="{% static 'img/stock/macaw-poly.jpg' %}" alt="">
-                                </div>
+                                </a>
                                 <div class="content">
                                   <a href="{% url 'staff:view_file' pk=announcement.pk %}" class="header">
                                       {{ announcement.title }}
@@ -220,4 +255,32 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/glider.js' %}"></script>
+<script type="text/javascript">
+  $(window).resize(function(){
+    if (window.matchMedia('(max-width: 768px)').matches){
+      $('#banner-text').show();
+      $('#img-slides').hide();
+    }
+    else{
+      $('#banner-text').hide();
+      $('#img-slides').show();
+    }
+});
+
+  new Glider(document.querySelector('.glider'), {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    draggable: true,
+    scrollLock: true,
+    dots: '#dots',
+    arrows : {
+      prev : '.glider-prev',
+      next: '.glider-next'
+    },
+  })
+</script>
 {% endblock %}
