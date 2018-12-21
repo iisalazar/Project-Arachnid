@@ -6,25 +6,26 @@
 			<div class="three wide column">
 					<h3 class="ui inverted header">SECTIONS</h3>
 					<div class="ui inverted link list">
-						<a class="item" href="{% url 'main:index' %}">Home</a>
-						<a class="item" href="{% url 'main:admissions' %}">Admissions</a>
-						<a class="item" href="{% url 'main:news' %}">News</a>
-						<div class="item">
+						<a class="item upper-bound-list" href="{% url 'main:index' %}">Home</a>
+						<a class="item upper-bound-list" href="{% url 'main:admissions' %}">Admissions</a>
+						<a class="item upper-bound-list" href="{% url 'main:news' %}">News</a>
+						<div class="item upper-bound-list">
 							Archives
-							<div class="ui inverted link list">
-								<a class="item" href="documents.html">Documents</a>
+							<div class="ui list">
+								<a class="item lower-bound-list" href="documents.html">Documents</a>
+								<a class="item lower-bound-list" href="{% url 'album:albums' %}">Album</a>
 							</div>
 						</div>
-						<a class="item" href="{% url 'main:organizations' %}">Organizations</a>
-						<div class="item">
+						<a class="item upper-bound-list" href="{% url 'main:organizations' %}">Organizations</a>
+						<div class="item upper-bound-list">
 							Research
 							<div class="ui list">
-								<a class="item" href="appliedScience.html">Applied Science</a>
-								<a class="item" href="lifeScience.html">Life Science</a>
+								<a class="item lower-bound-list" href="{% url 'main:applied_science' %}">Applied Science</a>
+								<a class="item lower-bound-list" href="{% url 'main:life_science' %}">Life Science</a>
 							</div>
 						</div>
-						<a class="item" href="{% url 'main:about' %}">About</a>
-						<a class="item" href="{% url 'main:faqs' %}">FAQs</a>
+						<a class="item upper-bound-list" href="{% url 'main:about' %}">About</a>
+						<a class="item upper-bound-list" href="{% url 'main:faqs' %}">FAQs</a>
 					</div>
 			</div>
 			<div class="four wide column">

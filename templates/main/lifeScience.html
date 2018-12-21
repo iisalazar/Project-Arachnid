@@ -1,4 +1,5 @@
 {% extends 'base_2.html' %}
+{% load staticfiles %}
 {% block title %}
   Life Science
 {% endblock %}
@@ -12,13 +13,12 @@
 	<br>
 
 	<div class="ui container">
-			<div class="ui secondary pointing menu">
-				<a class="item" href="{% url 'main:applied_science' %}">Physical Science</a>
-				<a class="active item" href="{% url 'main:life_science' %}">Life Science</a>
-			</div>
 				<div class="ui relaxed divided items">
           {% for paper in research_paper %}
 					<div class="item">
+            <div class="ui small image">
+              <img src="{% static 'img/avatar/tom.jpg' %}" alt="">
+            </div>
 						<div class="content">
 							<a class="ui header" href="{% url 'main:life_science_detail' pk=paper.pk %}">{{ paper.title }}</a>
 							<div class="meta">
