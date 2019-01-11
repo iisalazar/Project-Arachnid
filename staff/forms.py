@@ -1,6 +1,6 @@
 from django import forms
 from . import models
-
+from django.core import validators
 class AnnouncementForm(forms.ModelForm):
     class Meta:
         model = models.Announcement
@@ -28,6 +28,8 @@ class NewsForm(forms.ModelForm):
 
             'other_image_label': forms.TextInput(attrs={'placeholder': 'Write label for other image'})
         }
+    
+        
 
 LEVEL = (
     ("Main", "Main"),

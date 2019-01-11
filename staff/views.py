@@ -28,14 +28,20 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
 
 
 def view_file(request, pk):
+    from arachnid.settings import BASE_DIR
     announcement = get_object_or_404(Announcement, pk=pk)
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="{}.pdf"'.format(announcement.file)
+    file = BASE_DIR + announcement.file.url
+    f = open(file, 'w+b')
+    f.seek(0)
+    pdf = f.read()
+    f.close()
+    return HttpResponse(file, 'application/pdf')
+    #response['Content-Disposition'] = 'attachment; filename="{}.pdf"'.format(announcement.file)
 
-    p = canvas.Canvas(response)
-    p.showPage()
-    p.save()
-    return response
+    #p = canvas.Canvas(response)
+    #p.showPage()
+    #p.save()
+    #return response
 
 # ------------------- News Views ------------------- #
 

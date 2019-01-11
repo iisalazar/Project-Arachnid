@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import *
 from django.utils import timezone
 from django.urls import reverse
-
+from django.utils.html import strip_tags
 # Create your models here.
 
 class Announcement(models.Model):
@@ -22,28 +22,30 @@ class Announcement(models.Model):
     def __str__(self):
         return self.title
 
+def news_image_handler(instance, filename):
+    _instance = instance
+    headline = strip_tags(instance.headline)
+    return "news/{year}/{headline}/{filename}".format(year=timezone.now().year, headline=headline, filename=filename)
+
 class News(models.Model):
     author = models.CharField(max_length=100, blank=True)
     author_additional_info = models.CharField(max_length=100, blank=True)
 
     lead_text = models.TextField()
 
-
     #lead_text = models.CharField(max_length=10000, blank=True)
     opening = models.CharField(max_length=10000, blank=True)
 
     headline = models.CharField(max_length=200)
-    headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'JPG'])])
+    # Saves the image to /media/news/YEAR-CREATED/HEADLINE/
+    headline_image = models.ImageField(upload_to=news_image_handler, blank=True, null=True, validators=[FileExtensionValidator(['png', 'jpeg', 'jpg', 'JPG'])])
 
-    headline = models.TextField()
-    headline_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
-
-
-    cover_photo = models.ImageField(upload_to="news_pictures/%Y/%m/%d/cover", blank=True, null=True)
+    # Saves the image to /media/news/YEAR-CREATED/HEADLINE/
+    cover_photo = models.ImageField(upload_to=news_image_handler, blank=True, null=True)
     body_text = models.TextField()
 
-
-    other_image = models.ImageField(upload_to="news_pictures/%Y/%m/%d", blank=True, null=True)
+    # Saves the image to /media/news/YEAR-CREATED/HEADLINE/
+    other_image = models.ImageField(upload_to=news_image_handler, blank=True, null=True)
     other_image_label = models.CharField(max_length=250, blank=True, null=True)
 
 

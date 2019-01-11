@@ -21,7 +21,7 @@
 			    		</td>
 			    		<td>
 								{% if announcement.file %}
-			    			<a href="{% url 'staff:view_file' pk=announcement.pk %}"><i class="ui file icon"></i> {{ announcement.file.url }}</a>
+			    			<a href="{{ announcement.file.url }}"><i class="ui file icon"></i> {{ announcement.file.url }}</a>
 								{% else %}
 								No file attached
 								{%endif%}

@@ -2,6 +2,22 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 
+from io import BytesIO
+from PIL import Image
+from django.core.files import File
+
+from django.core.exceptions import ValidationError
+
+def compress(image):
+    im = Image.open(image)
+    # create a BytesIO object
+    im_io = BytesIO() 
+    # save image to BytesIO object
+    im.save(im_io, 'JPEG', quality=70) 
+    # create a django-friendly Files object
+    new_image = File(im_io, name=image.name)
+    return new_image
+
 # Create your models here.
 class Album(models.Model):
     title = models.CharField(max_length=120, unique=True)
@@ -25,3 +41,12 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.file.name
+
+    def save(self, *args, **kwargs):
+        try:
+            new_image = compress(self.file)
+            self.file = new_image
+        except IOError as error:
+            print(error)
+            raise ValidationError('Invalid Image Format')
+        return super().save(*args, **kwargs)
