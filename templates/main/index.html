@@ -56,7 +56,18 @@
     						</div>
                 <a class="item" href="{% url 'main:about' %}">About</a>
                 <a class="item" href="{% url 'main:faqs' %}">FAQs</a>
+
                 <div class="right menu">
+                  <div class="ui dropdown item">
+                    Community
+                    <i class="ui dropdown icon"></i>
+                    <div class="menu">
+                      <a href="#" class="item">Student</a>
+                      <a href="#" class="item">Faculty</a>
+                      <a href="#" class="item">Admin</a>
+                    </div>
+                  </div>
+                  <!--
                   <div class="item">
                     {% if user.is_authenticated %}
                     <a class="ui inverted green button" href="{% url 'staff:index' %}">
@@ -69,6 +80,7 @@
                         Faculty/Staff
                     </a>
                     {% endif %}
+                  -->
                   </div>
                 </div>
                 </div>
