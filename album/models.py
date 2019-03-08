@@ -1,13 +1,15 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from django.core.exceptions import ValidationError
 
+# For image compression
 from io import BytesIO
 from PIL import Image
 from django.core.files import File
 
-from django.core.exceptions import ValidationError
 
+# To compress images
 def compress(image):
     im = Image.open(image)
     # create a BytesIO object
