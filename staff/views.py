@@ -1,8 +1,20 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView, FormView
 from django.urls import reverse_lazy, reverse
-from .forms import AnnouncementForm, NewsForm, OrganizationForm, ResearchForm, ResearchProponentForm, OrganizationHRForm
-from .models import Announcement, News, Organization, ResearchPaper, ResearchProponent, OrganizationOfficer
+
+from announcements.forms import AnnouncementForm
+from news.forms import NewsForm
+from organizations.forms import OrganizationForm, OrganizationHRForm
+from research.forms import ResearchForm, ResearchProponentForm
+
+
+from announcements.models import Announcement
+from news.models import News
+from organizations.models import Organization, OrganizationOfficer
+from research.models import ResearchPaper, ResearchProponent
+
+# from .forms import AnnouncementForm, NewsForm, OrganizationForm, ResearchForm, ResearchProponentForm, OrganizationHRForm
+# from .models import Announcement, News, Organization, ResearchPaper, ResearchProponent, OrganizationOfficer
 from django.contrib.auth.mixins import LoginRequiredMixin
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
@@ -108,7 +120,7 @@ class OrganizationDetailView(LoginRequiredMixin, DetailView):
 # ----------- For the organization officers --------- #
 
 class OrganizationHRListView(LoginRequiredMixin, ListView):
-    template_name = 'staff/organization_hr_list.html'
+    template_name = 'organizations/organization_hr_list.html'
     redirect_field_name = 'staff/index.html'
     model = OrganizationOfficer
     context_object_name = 'human_resource'
@@ -119,7 +131,7 @@ class OrganizationHRListView(LoginRequiredMixin, ListView):
 
 class OrganizationHRCreateView(LoginRequiredMixin, CreateView):
     redirect_field_name = 'staff/index.html'
-    template_name = 'staff/organization_hr_form.html'
+    template_name = 'organizations/organization_hr_form.html'
     model = OrganizationOfficer
     form_class = OrganizationHRForm
     success_url = reverse_lazy('staff:organizations')
@@ -133,7 +145,7 @@ class OrganizationHRCreateView(LoginRequiredMixin, CreateView):
 
 class OrganizationHRUpdateView(LoginRequiredMixin, UpdateView):
     redirect_field_name = 'staff/index.html'
-    template_name = 'staff/organization_hr_form.html'
+    template_name = 'organizations/organization_hr_form.html'
     model = OrganizationOfficer
     form_class = OrganizationHRForm
     pk_url_kwarg = 'pk'
@@ -144,7 +156,7 @@ class OrganizationHRDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('staff:organizations')
 
 class OrganizationHRDetailView(LoginRequiredMixin, DetailView):
-    template_name = 'staff/organization_hr_detail.html'
+    template_name = 'organizations/organization_hr_detail.html'
     model = OrganizationOfficer
     context_object_name = "organization"
     pk_url_kwarg = 'pk'

@@ -1,7 +1,18 @@
 from django.shortcuts import render
 from django.http import Http404
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView
-from staff.models import Announcement, News, Organization, ResearchPaper
+
+from announcements.forms import AnnouncementForm
+from news.forms import NewsForm
+from organizations.forms import OrganizationForm, OrganizationHRForm
+from research.forms import ResearchForm, ResearchProponentForm
+
+
+from announcements.models import Announcement
+from news.models import News
+from organizations.models import Organization, OrganizationOfficer
+from research.models import ResearchPaper, ResearchProponent
+
 from django.utils import timezone
 # Create your views here.
 

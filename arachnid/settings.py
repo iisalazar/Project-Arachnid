@@ -50,8 +50,13 @@ INSTALLED_APPS = [
     'django_cleanup',
     'main',
     'staff',
-    'reset_migrations',
     'album',
+    'announcements',
+    'news',
+    'organizations',
+    'research',
+    # Third party apps
+    'reset_migrations',
     'django_js_routing',
 ]
 
