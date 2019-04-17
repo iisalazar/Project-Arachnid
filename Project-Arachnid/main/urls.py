@@ -23,12 +23,13 @@ urlpatterns = [
     path('organizations/details/<int:pk>', views.OrganizationDetailView.as_view(), name="organization_details"),
 
 
-    path('life_science', views.LifeListView.as_view(), name="life_science"),
+    path('life_science', views.LifeRedirectView.as_view(), name="life_science"),
+    path('life_science/page/<int:page>', views.LifeListView.as_view(), name="life_science_paged"),
     path('life_science/details/<int:pk>', views.LifeDetailView.as_view(),name="life_science_detail"),
 
-    path('applied_science', views.AppliedListView.as_view(),name="applied_science"),
+    path('applied_science', views.AppliedRedirectView.as_view(),name="applied_science"),
+    path('applied_science/page/<int:page>', views.AppliedListView.as_view(), name="applied_science_paged"),
     path('applied_science/details/<int:pk>', views.AppliedDetailView.as_view(),name="applied_science_detail"),
-
 
     path('about',
         views.AboutView.as_view(),

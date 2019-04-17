@@ -30,8 +30,8 @@ urlpatterns = [
     path("research/details/<int:pk>/", views.ResearchDetailView.as_view(), name="research_detail"),
     path('research/details/<int:pk>/add_proponent/', views.add_proponent_to_research, name="add_proponent_to_research"),
 
-    path('accounts/login/', auth_view.login, name="login"),
-    path('accounts/logout/', auth_view.logout, name="logout", kwargs={'next_page': '/'}),
+    path('accounts/login/', auth_view.LoginView.as_view(), name="login"),
+    path('accounts/logout/', auth_view.LogoutView.as_view(), name="logout", kwargs={'next_page': '/'}),
 
     # For the organization hr
     path('organizations/<organization>/hr/', views.OrganizationHRListView.as_view(), name="organization_hr_list"),
