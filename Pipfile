@@ -6,17 +6,15 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-cffi = "1.11.5"
-django-cleanup = "2.1.0"
-django-js-routing = "1.0.4"
-django-reset-migrations = "0.3.1"
-gunicorn = "19.9.0"
-pycparser = "2.19"
-pytz = "2018.4"
-reportlab = "3.5.9"
-Django = "2.0.5"
-Pillow = "5.3.0"
-mysqlclient = "*"
+django = "*"
+django-cleanup = "*"
+django-reset-migrations = "*"
+gunicorn = "*"
+pillow = "*"
+pycparser = "*"
+pytz = "*"
+reportlab = "*"
+cffi = "*"
 
 [requires]
 python_version = "3.5"
