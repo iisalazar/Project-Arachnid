@@ -117,9 +117,6 @@
 
 
 
-
-        <!-- ANNOUNCEMENTS -->
-
         <div class="ui feature vertical stripe segments">
               <div class="ui middle aligned stackable internally celled grid container" id="header_segment">
                 <div class="row">
@@ -136,20 +133,20 @@
                   <div class="ui middle aligned padded internally celled grid stackable container">
                     <div class="row">
                       <div class="ui eight wide computer sixteen wide tablet column">
-                        {% if news %}
+                        {% if latest_news %}
                           <div class="ui fluid card">
-                            <a class="image" href="{% url 'main:news_detail' pk=news.0.pk %}">
-                              <img src="{{ news.0.headline_image.url }}" alt="">
+                            <a class="image" href="{% url 'main:news_detail' pk=latest_news.pk %}">
+                              <img src="{{ latest_news.headline_image.url }}" alt="">
                             </a>
                             <div class="content">
-                              <a href="{% url 'main:news_detail' pk=news.0.pk %}" class="header">
-                                {{ news.0.headline|safe|truncatechars:100 }}
+                              <a href="{% url 'main:news_detail' pk=latest_news.pk %}" class="header">
+                                {{ latest_news.headline|safe|truncatechars:100 }}
                               </a>
                               <div class="meta">
-                                <span>{{ news.0.published_date|date:"M d, Y" }}</span>
+                                <span>{{ latest_news.published_date|date:"M d, Y" }}</span>
                               </div>
                               <div class="description">
-                                {{ news.0.lead_text|safe|truncatechars:100 }}
+                                {{ latest_news.lead_text|safe|truncatechars:100 }}
                               </div>
                             </div>
                           </div>
@@ -192,20 +189,20 @@
                   <div class="ui middle aligned padded internally celled grid stackable container">
                     <div class="row">
                       <div class="ui eight wide computer sixteen wide tablet column">
-                        {% if announcements %}
+                        {% if latest_announcement %}
                           <div class="ui fluid card">
                             <a class="image" href="#">
                               <img src="{% static 'img/stock/macaw-poly.jpg' %}" alt="">
                             </a>
                             <div class="content">
-                              <a href="{% url 'main:announcement_detail' pk=announcements.0.pk %}" class="header">
-                                {{ announcements.0.title|safe }}
+                              <a href="{% url 'main:announcement_detail' pk=latest_announcement.pk %}" class="header">
+                                {{ latest_announcement0.title|safe }}
                               </a>
                               <div class="meta">
-                                <span>{{ announcements.0.date_created|date:"M d, Y" }}</span>
+                                <span>{{ latest_announcement.date_created|date:"M d, Y" }}</span>
                               </div>
                               <div class="description">
-                                {{ announcements.0.description }}
+                                {{ latest_announcement.description|truncatechars:50 }}
                               </div>
                             </div>
                           </div>
@@ -227,7 +224,7 @@
                                     Published {{ announcement.date_created|date:"M d, Y"}}
                                   </div>
                                   <div class="description">
-                                    {{ announcement.description }}
+                                    {{ announcement.description|truncatechars:50 }}
                                   </div>
                                 </div>
                               </div>

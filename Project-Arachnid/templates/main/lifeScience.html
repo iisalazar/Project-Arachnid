@@ -14,22 +14,20 @@
 
 	<div class="ui container">
 	    <div class="ui grid">
-	      <div class="row">
-	        <div class="column left floated">
+	        <div class="row">
 	          {% if papers.has_previous %}
-	            <a class="ui green button" href="{% url 'main:life_science_paged' page=papers.previous_page_number %}">
-	              Prev
-	            </a>
+	          <a class="ui column left floated six wide computer sixteen wide tablet green button"
+	          href="{% url 'main:life_science_paged' page=papers.previous_page_number %}">
+	            Previous Page
+	          </a>
 	          {% endif %}
-	        </div>
-	        <div class="column right floated">
 	          {% if papers.has_next %}
-	            <a class="ui green button" href="{% url 'main:life_science_paged' page=papers.next_page_number %}">
-	              Next
-	            </a>
+	          <a class="ui column right floated six wide computer sixteen wide tablet green button"
+	          href="{% url 'main:life_science_paged' page=papers.next_page_number %}">
+	            Next Page
+	          </a>
 	          {% endif %}
 	        </div>
-	      </div>
 	    </div>
 		<div class="ui relaxed divided items">
           {% for paper in papers %}

@@ -23,9 +23,17 @@ from django.utils import timezone
 def index(request):
     announcements = list(Announcement.objects.order_by('-date_created')[:5])
     news = list(News.objects.order_by('-published_date')[:5])
+    announcement_latest = announcements.pop(0)
+    news_latest = news.pop(0)
     #announcements = get_list_or_404(Announcement.objects.order_by('-date_created')[:5])
     #news = get_list_or_404(News.objects.order_by('-published_date')[:5])
-    return render(request, 'main/index.html', {'announcements': announcements, 'news': news})
+    data = {
+            'announcements': announcements, 
+            'news': news,
+            'latest_announcement' : announcement_latest,
+            'latest_news' : news_latest
+            }
+    return render(request, 'main/index.html', data)
 
 class AnnouncementRedirectView(RedirectView):
     pattern_name = 'main:announcement_list'

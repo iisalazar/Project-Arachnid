@@ -15,6 +15,8 @@ pycparser = "*"
 pytz = "*"
 reportlab = "*"
 cffi = "*"
+faker = "*"
+names = "*"
 
 [requires]
 python_version = "3.5"
