@@ -143,13 +143,13 @@
                             </a>
                             <div class="content">
                               <a href="{% url 'main:news_detail' pk=news.0.pk %}" class="header">
-                                {{ news.0.headline|safe }}
+                                {{ news.0.headline|safe|truncatechars:100 }}
                               </a>
                               <div class="meta">
                                 <span>{{ news.0.published_date|date:"M d, Y" }}</span>
                               </div>
                               <div class="description">
-                                {{ news.0.lead_text|safe }}
+                                {{ news.0.lead_text|safe|truncatechars:100 }}
                               </div>
                             </div>
                           </div>
@@ -164,7 +164,7 @@
                                   <img src="{{ news.headline_image.url }}" alt="">
                                 </a>
                                 <div class="content">
-                                  <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe }}</a>
+                                  <a href="{% url 'main:news_detail' pk=news.pk %}" class="header">{{ news.headline|safe|truncatechars:100 }}</a>
                                   <div class="meta">
                                     {{ news.published_date|date:"M d, Y"}}
                                   </div>
@@ -198,7 +198,7 @@
                               <img src="{% static 'img/stock/macaw-poly.jpg' %}" alt="">
                             </a>
                             <div class="content">
-                              <a href="{% url 'main:news_detail' pk=announcements.0.pk %}" class="header">
+                              <a href="{% url 'main:announcement_detail' pk=announcements.0.pk %}" class="header">
                                 {{ announcements.0.title|safe }}
                               </a>
                               <div class="meta">

@@ -34,6 +34,11 @@
 					</a>
 			</div>
 			<div class="item">
+				<a href="{% url 'main:announcements' %}">
+					Announcements
+				</a>
+			</div>
+			<div class="item">
 					<a href="{% url 'main:admissions' %}">
 							<i class="heartbeat icon"></i> Admissions
 					</a>
@@ -108,7 +113,10 @@
 			<div class="ui large top main menu" id="def-navbar">
 				<div class="ui container">
 					<a class="header item" href="{% url 'main:index' %}"><img class="logo" src="{% static 'img/logo.png' %}">QSHS</a>
-					<div class="ui right item">
+						<div class="ui right item">
+							<a href="{% url 'main:announcements' %}" class="{% block announcement %} {% endblock %}item">
+								Announcements
+							</a>
 							<a class="{% block admission %} {%endblock%}item" href="{% url 'main:admissions' %}">Admissions</a>
 							<a class="{% block news %} {%endblock%}item" href="{% url 'main:news' %}">News</a>
 

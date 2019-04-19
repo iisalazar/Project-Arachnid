@@ -1,0 +1,58 @@
+{% extends 'base_2.html' %}
+{% load staticfiles %}
+{% block title %}
+	Announcements
+{% endblock %}
+{% block announcement %}
+  active
+{% endblock %}
+{% block main_content %}
+	<div class="ui vertical stripe raised segment">
+		<div class="ui stackable grid container">
+			<div class="row centered">
+				<h1 class="ui header">Announcements</h1>
+			</div>
+			<div class="row">
+	        {% if announcements.has_previous %}
+	        <a class="ui column left floated six wide computer sixteen wide tablet green button"
+	        href="{% url 'main:announcement_list' page=announcements.previous_page_number %}">
+	        	Previous Page
+	        </a>
+	        {% endif %}
+	        {% if announcements.has_next %}
+	        <a class="ui column right floated six wide computer sixteen wide tablet green button"
+	        href="{% url 'main:announcement_list' page=announcements.next_page_number %}">
+	        	Next Page
+	        </a>
+	        {% endif %}
+	      </div>
+			<div class="row">
+				<div class="ui column link divided items">
+				{% for announcement in announcements %}
+					<div class="item">
+						<div class="image">			  
+							<img src="{% static 'img/stock/macaw-poly.jpg' %}">
+						</div>
+						<div class="content">
+						  <a class="header" href="{% url 'main:announcement_detail' pk=announcement.pk %}">
+						  	{{ announcement.title }}
+							</a>
+						  <div class="meta">
+						    <span>Description</span>
+						  </div>
+						  <div class="description">
+						    <p>
+						    	{{ announcement.description }}
+						    </p>
+						  </div>
+						  <div class="extra">
+						    {{ announcement.date_created|date:"M d, Y"}}
+						  </div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

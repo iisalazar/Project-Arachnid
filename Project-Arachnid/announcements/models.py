@@ -20,4 +20,4 @@ class Announcement(models.Model):
     def get_absolute_url(self):
         return reverse('staff:announcements')
     def __str__(self):
-        return self.title
+        return "Announcement no {}".format(self.pk)

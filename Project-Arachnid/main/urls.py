@@ -6,6 +6,14 @@ app_name = 'main'
 urlpatterns = [
     path('', views.index, name='index'),
 
+    path('announcements', views.AnnouncementRedirectView.as_view(), name="announcements"),
+    
+    path('announcements/page/<int:page>/', views.AnnouncementListView.as_view(), name="announcement_list"),
+
+    path('announcements/details/<int:pk>/', 
+            views.AnnouncementDetailView.as_view(), 
+            name="announcement_detail"),
+
     path('admissions',
         views.AdmissionView.as_view(),
         name="admissions"),

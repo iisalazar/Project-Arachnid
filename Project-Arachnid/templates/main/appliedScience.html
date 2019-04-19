@@ -13,40 +13,58 @@
 	<br>
 
 	<div class="ui container">
-				<div class="ui relaxed divided items">
-					{% for paper in research_paper %}
-					<div class="item">
-						<div class="ui small image">
-							<img src="{% static 'img/avatar/tom.jpg' %}" alt="">
-						</div>
-						<div class="content">
-							<a class="ui header" href="{% url 'main:applied_science_detail' pk=paper.pk %}">{{ paper.title }}</a>
-							<div class="meta">
-								<p>
-									{% for proponent in paper.proponents.all %}
-		                {{ proponent.first_name|slice:"1"}}.{{ proponent.middle_name|slice:"1"}}. {{ proponent.last_name }},
-		              {% empty %}
-		                No Proponents
-		              {% endfor %}
-								</p>
-								<p>Published on {{ paper.published_date|date:"d M, Y"}}</p>
-							</div>
-							<div class="description">
-								{{ paper.abstract|truncatechars:200 }}
-							</div>
-							<div class="extra">
-								<div class="ui label blue">
-									Applied / Physical
-								</div>
-								<a class="ui right floated orange button" href="{% url 'main:applied_science_detail' pk=paper.pk %}">
-                  Details
-                  <i class="ui right arrow icon"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					{% endfor %}
+		<div class="ui grid">
+	      <div class="row">
+	        <div class="column left floated">
+	          {% if papers.has_previous %}
+	            <a class="ui green button" href="{% url 'main:applied_science_paged' page=papers.previous_page_number %}">
+	              Prev
+	            </a>
+	          {% endif %}
+	        </div>
+	        <div class="column right floated">
+	          {% if papers.has_next %}
+	            <a class="ui green button" href="{% url 'main:applied_science_paged' page=papers.next_page_number %}">
+	              Next
+	            </a>
+	          {% endif %}
+	        </div>
+	      </div>
+	    </div>
+		<div class="ui relaxed divided items">
+			{% for paper in papers %}
+			<div class="item">
+				<div class="ui small image">
+					<img src="{% static 'img/avatar/tom.jpg' %}" alt="">
 				</div>
+				<div class="content">
+					<a class="ui header" href="{% url 'main:applied_science_detail' pk=paper.pk %}">{{ paper.title }}</a>
+					<div class="meta">
+						<p>
+							{% for proponent in paper.proponents.all %}
+                {{ proponent.first_name|slice:"1"}}.{{ proponent.middle_name|slice:"1"}}. {{ proponent.last_name }},
+              {% empty %}
+                No Proponents
+              {% endfor %}
+						</p>
+						<p>Published on {{ paper.published_date|date:"d M, Y"}}</p>
+					</div>
+					<div class="description">
+						{{ paper.abstract|truncatechars:200 }}
+					</div>
+					<div class="extra">
+						<div class="ui label blue">
+							Applied / Physical
+						</div>
+						<a class="ui right floated orange button" href="{% url 'main:applied_science_detail' pk=paper.pk %}">
+          Details
+          <i class="ui right arrow icon"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
     </div>
 </div>
 {% endblock %}

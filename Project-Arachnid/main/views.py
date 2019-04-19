@@ -27,8 +27,31 @@ def index(request):
     #news = get_list_or_404(News.objects.order_by('-published_date')[:5])
     return render(request, 'main/index.html', {'announcements': announcements, 'news': news})
 
+class AnnouncementRedirectView(RedirectView):
+    pattern_name = 'main:announcement_list'
+    permanent = True
+    query_string = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        kwargs['page'] = 1
+        return super().get_redirect_url(*args, **kwargs)
+
+
+class AnnouncementListView(ListView):
+    template_name = 'main/announcement_list.html'
+    model = Announcement
+    context_object_name = "announcements"
+    paginated_by = 10
+
+    def get_queryset(self, *args, **kwargs):
+        announcements = Announcement.objects.all().order_by('-date_created')
+        page_no = self.kwargs.get('page')
+        paginator = Paginator(announcements, self.paginated_by)
+        page = paginator.page(page_no)
+        return page
 
 class AnnouncementDetailView(DetailView):
+    template_name = 'main/announcement_detail.html'
     model = Announcement
     context_object_name = "announcement"
     pk_url_kwarg = 'pk'
@@ -93,13 +116,13 @@ class AppliedRedirectView(RedirectView):
 class AppliedListView(ListView):
     template_name = 'main/appliedScience.html'
     model = ResearchPaper
-    context_object_name = "research_paper"
-    paginated_by = '10'
+    context_object_name = "papers"
+    
 
     def get_queryset(self):
         papers = ResearchPaper.objects.filter(category="Applied").order_by('-published_date')
         page_no = self.kwargs.get('page')
-        paginator = Paginator(papers, self.paginated_by)
+        paginator = Paginator(papers, 5)
         page = paginator.page(page_no)
 
         return page
@@ -122,15 +145,15 @@ class LifeRedirectView(RedirectView):
 class LifeListView(ListView):
     template_name = 'main/lifeScience.html'
     model = ResearchPaper
-    context_object_name = "research_paper"
-    paginated_by = '10'
+    context_object_name = "papers"
+    
 
     def get_queryset(self):
         papers = ResearchPaper.objects.filter(category="Life").order_by('-published_date')
         page_no = self.kwargs.get('page')
-        paginator = Paginator(papers, self.paginated_by)
+        paginator = Paginator(papers, 5)
         page = paginator.page(page_no)
-        
+
         return page
 
 class LifeDetailView(DetailView):

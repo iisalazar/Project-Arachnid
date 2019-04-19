@@ -13,8 +13,26 @@
 	<br>
 
 	<div class="ui container">
-				<div class="ui relaxed divided items">
-          {% for paper in research_paper %}
+	    <div class="ui grid">
+	      <div class="row">
+	        <div class="column left floated">
+	          {% if papers.has_previous %}
+	            <a class="ui green button" href="{% url 'main:life_science_paged' page=papers.previous_page_number %}">
+	              Prev
+	            </a>
+	          {% endif %}
+	        </div>
+	        <div class="column right floated">
+	          {% if papers.has_next %}
+	            <a class="ui green button" href="{% url 'main:life_science_paged' page=papers.next_page_number %}">
+	              Next
+	            </a>
+	          {% endif %}
+	        </div>
+	      </div>
+	    </div>
+		<div class="ui relaxed divided items">
+          {% for paper in papers %}
 					<div class="item">
             <div class="ui small image">
               <img src="{% static 'img/avatar/tom.jpg' %}" alt="">

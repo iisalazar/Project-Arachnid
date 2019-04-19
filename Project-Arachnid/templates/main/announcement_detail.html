@@ -1,19 +1,32 @@
 {% extends 'base_2.html' %}
+{% load staticfiles %}
 {% block title %}
   Announcement
 {% endblock %}
+{% block announcement %}
+  active
+{% endblock %}
+
 {% block main_content %}
-  <div class="ui container segments">
-    <div class="ui segment stackable grid">
-      <div class="row">
-        <div class="ui left floated center aligned four wide column">
+  <div class="ui vertical stripe raised segment">
+    <div class="ui grid container">
+      <div class="centered row">
+        <h1 class="ui header">
           {{ announcement.title }}
-        </div>
+        </h1>
+      </div>
+      <div class="centered row">
+        <img src="{% static 'img/stock/macaw-poly.jpg' %}" style="height: 400px">
       </div>
       <div class="row">
-        <div class="ui center aligned eight wide computer sixteen wide tablet column">
+        <p class="description">
           {{ announcement.description }}
-        </div>
+        </p>
+      </div>
+      <div class="row">
+        <a href="{{ announcement.file }}" class="ui sixteen wide tablet column green button">
+          Download Attached File
+        </a>
       </div>
     </div>
   </div>
