@@ -9,6 +9,9 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('announcements/', views.AnnouncementListView.as_view(), name='announcements'),
     path('announcements/create/', views.AnnouncementCreateView.as_view(), name="create_announcement"),
+    path('announcements/update/<int:pk>/', views.AnnouncementUpdateView.as_view(), name="update_announcement"),
+    path('announcements/delete/<int:pk>/', views.AnnouncementDeleteView.as_view(), name="delete_announcement"),
+    path('announcements/details/<int:pk>/', views.AnnouncementDetailView.as_view(), name="detailed_announcement"),
     path('announcements/view/<int:pk>/', views.view_file, name="view_file"),
 
     path('news/', views.NewsListView.as_view(), name="news"),

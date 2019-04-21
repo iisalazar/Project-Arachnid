@@ -14,20 +14,48 @@
 			<div class="column">
 				<div class="ui segment">
 			    <table class="ui celled two column table">
-			    	{% for announcement in announcements %}
-			    	<tr>
-			    		<td>
-			    			{{ announcement.title }}
-			    		</td>
-			    		<td>
-								{% if announcement.file %}
-			    			<a href="{{ announcement.file.url }}"><i class="ui file icon"></i> {{ announcement.file.url }}</a>
-								{% else %}
-								No file attached
-								{%endif%}
-			    		</td>
-			    	</tr>
-			    	{% endfor %}
+			    	<th>
+			    		<tr>
+			    			<th class="eight wide">
+			    				Title
+			    			</th>
+			    			<th class="four wide">
+			    				Action
+			    			</th>
+			    			<th class="four wide">
+			    				File attached
+			    			</th>
+			    		</tr>
+			    	</th>
+			    	<tbody>
+			    		{% for announcement in announcements %}
+				    	<tr>
+				    		<td>
+				    			{{ announcement.title }}
+				    		</td>
+				    		<td>
+								<div class="ui buttons">
+									<a href="{% url 'staff:detailed_announcement' pk=announcement.pk %}" class="ui green button">
+										View
+									</a>
+									<a href="{% url 'staff:update_announcement' pk=announcement.pk %}" class="ui orange button">
+										Update
+									</a>
+									<a href="{% url 'staff:delete_announcement' pk=announcement.pk %}" class="ui red button">
+										Delete
+									</a>
+								</div>
+				    		</td>
+				    		<td>
+				    			{% if announcement.file %}
+				    			<a href="{{ announcement.file.url }}" class="ui green button">
+				    				See file attached
+				    			</a>
+				    			{% endif %}
+				    		</td>
+				    	</tr>
+				    	{% endfor %}
+			    	</tbody>
 			    </table>
 
 			  </div>

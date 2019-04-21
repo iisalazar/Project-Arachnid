@@ -37,6 +37,21 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     model = Announcement
     form_class = AnnouncementForm
 
+class AnnouncementUpdateView(LoginRequiredMixin, UpdateView):
+    redirect_filed_name = 'staff/announcement_list.html'
+    model = Announcement
+    form_class = AnnouncementForm
+    pk_url_kwargs = 'pk'
+
+class AnnouncementDeleteView(LoginRequiredMixin, DeleteView):
+    model = Announcement
+    success_url = reverse_lazy('staff:announcements')
+    pk_url_kwarg = 'pk'
+
+class AnnouncementDetailView(LoginRequiredMixin, DetailView):
+    model = Announcement
+    context_object_name = 'announcement'
+    pk_url_kwarg = 'pk'
 
 
 def view_file(request, pk):

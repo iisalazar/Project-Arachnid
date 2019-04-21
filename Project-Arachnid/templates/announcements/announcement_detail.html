@@ -1,0 +1,44 @@
+{% extends 'staff/base_staff.html' %}
+{% block announcement %}
+active
+{% endblock %}
+{% block main_content %}
+	<div class="ui raised segment container">
+		<div class="ui stackable equal width grid container">
+			<div class="row">
+				<table class="ui celled table">
+					<thead>
+						<tr>
+							<th class="six wide">
+								Title
+							</th>
+							<th class="ten wide">
+								Description
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<h3 class="center aligned header">
+									{{ announcement.title }}
+								</h3>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<a href="{% url 'staff:detailed_announcement' pk=announcement.pk %}" class="ui green button column">
+					See File Attached	
+				</a>
+				<a href="{% url 'staff:update_announcement' pk=announcement.pk %}" class="ui orange button column">
+					Update Announcement
+				</a>
+				<a href="{% url 'staff:delete_announcement' pk=announcement.pk %}" class="ui red button column">
+					Delete Announcement
+				</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
