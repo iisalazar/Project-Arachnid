@@ -15,7 +15,6 @@
   #header_segment .ui.header {
     float: left;
   }
-
 {% endblock %}
 {% block linkstyle %}
 <link rel="stylesheet" href="{% static 'css/glider.css' %}">
@@ -33,78 +32,77 @@
                 </a>
                 <div class="ui right item">
                     <a class="active item" href="{% url 'main:index' %}">Home</a>
-                <a class="item" href="{% url 'main:admissions' %}">Admissions</a>
-                <a class="item" href="{% url 'main:news' %}">News</a>
-                <div class="ui dropdown {% block archives %} {% endblock %}item">
-                  Archives
-                  <i class="ui dropdown icon"></i>
-                  <div class="menu">
-                    <a class="{% block archive_documents %} {% endblock %}item" href="#">Documents</a>
-                    <div class="ui divider"></div>
-                    <a class="{% block album %} {% endblock %}item" href="{% url 'album:albums' %}">Album</a>
-                  </div>
-                </div>
-                <a class="item" href="{% url 'main:organizations' %}">Organizations</a>
-                <div class="ui dropdown item">
-    							Research
-    							<i class="ui dropdown icon"></i>
-    							<div class="menu">
-    								<a class="item" href="{% url 'main:applied_science' %}">Applied Science</a>
-    								<div class="ui divider"></div>
-    								<a class="item" href="{% url 'main:life_science' %}">Life Science</a>
-    							</div>
-    						</div>
-                <a class="item" href="{% url 'main:about' %}">About</a>
-                <a class="item" href="{% url 'main:faqs' %}">FAQs</a>
-
-                <div class="right menu">
-                  <div class="ui dropdown item">
-                    Community
+                  <a class="item" href="{% url 'main:admissions' %}">Admissions</a>
+                  <a class="item" href="{% url 'main:news' %}">News</a>
+                  <div class="ui dropdown {% block archives %} {% endblock %}item">
+                    Archives
                     <i class="ui dropdown icon"></i>
                     <div class="menu">
-                      <a href="#" class="item">Student</a>
-                      <a href="#" class="item">Faculty</a>
-                      <a href="#" class="item">Admin</a>
+                      <a class="{% block archive_documents %} {% endblock %}item" href="#">Documents</a>
+                      <div class="ui divider"></div>
+                      <a class="{% block album %} {% endblock %}item" href="{% url 'album:albums' %}">Album</a>
                     </div>
                   </div>
-                  <!--
-                  <div class="item">
-                    {% if user.is_authenticated %}
-                    <a class="ui inverted green button" href="{% url 'staff:index' %}">
-                        <i class="universal access icon"></i>
-                        Faculty/Staff
-                    </a>
-                    {% else %}
-                    <a class="ui inverted green button" href="{% url 'staff:login' %}">
-                        <i class="sign in icon"></i>
-                        Faculty/Staff
-                    </a>
-                    {% endif %}
-                  -->
+                  <a class="item" href="{% url 'main:organizations' %}">Organizations</a>
+                  <div class="ui dropdown item">
+      							Research
+      							<i class="ui dropdown icon"></i>
+      							<div class="menu">
+      								<a class="item" href="{% url 'main:applied_science' %}">Applied Science</a>
+      								<div class="ui divider"></div>
+      								<a class="item" href="{% url 'main:life_science' %}">Life Science</a>
+      							</div>
+      						</div>
+                  <a class="item" href="{% url 'main:about' %}">About</a>
+                  <a class="item" href="{% url 'main:faqs' %}">FAQs</a>
+
+                  <div class="right menu">
+                    <div class="ui dropdown item">
+                      Community
+                      <i class="ui dropdown icon"></i>
+                      <div class="menu">
+                        <a href="#" class="item">Student</a>
+                        <a href="#" class="item">Faculty</a>
+                        <a href="#" class="item">Admin</a>
+                      </div>
+                    </div>
+                    <!--
+                    <div class="item">
+                      {% if user.is_authenticated %}
+                      <a class="ui inverted green button" href="{% url 'staff:index' %}">
+                          <i class="universal access icon"></i>
+                          Faculty/Staff
+                      </a>
+                      {% else %}
+                      <a class="ui inverted green button" href="{% url 'staff:login' %}">
+                          <i class="sign in icon"></i>
+                          Faculty/Staff
+                      </a>
+                      {% endif %}
+                    -->
+                    </div>
                   </div>
                 </div>
+                <div class="ui text container" id="banner-text">
+                  <h1 class="ui header">Quezon Science High School</h1>
+                  <div class="ui horizontal section divider">
+                      <h3>Honorem | Excellencia | Servitium</h3>
+                  </div>
                 </div>
             </div>
-            <div class="ui text container" id="banner-text">
-              <h1 class="ui header">Quezon Science High School</h1>
-              <div class="ui horizontal section divider">
-                  <h3>Honorem | Excellencia | Servitium</h3>
-              </div>
-            </div>
-          </div>
             <div class="glider-contain multiple" style="margin-top: 0em;" id="img-slides">
               <button type="button" name="button" class="glider-prev">
                 <i class="ui left angle icon"></i>
               </button>
               <div class="glider" style="height: 400px">
-                  <div class="ui small image">
+                  <div class="ui small image" style="background-size: cover;background-position: 50%;">
                     <img src="{% static 'img/qshs/Dorm 2.jpg' %}" alt="">
                   </div>
                   <div class="ui small image">
-                    <img src="{% static 'img/7.jpg' %}" alt="">
+                    <img src="{% static 'img/qshs/Cafeteria.jpg' %}" alt="">
                   </div>
                   <div class="ui small image">
-                    <img src="{% static 'img/5.jpeg' %}" alt="">
+                    <img src="{% static 'img/qshs/Lobby.jpg' %}" alt="">
                   </div>
               </div>
               <button type="button" name="button" class="glider-next">
@@ -114,6 +112,7 @@
 
               </div>
             </div>
+          </div>          
 
 
 
