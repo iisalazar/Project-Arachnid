@@ -1,0 +1,28 @@
+version: "2"
+services:
+  app:
+      restart: always
+      build: . # Current directory!
+      command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && gunicorn --timeout=30 --workers=2 --bind 0.0.0.0:8000 arachnid.wsgi:application"
+      volumes:
+        - .:/app
+      ports:
+        - "3000:8000"
+      depends_on:
+        - db
+
+  db:
+    image: mysql:latest
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+        - "./mysql:/var/lib/mysql"
+    ports:
+        - "3306:3306"
+    restart: always
+    environment:
+        - MYSQL_HOST=localhost
+        - MYSQL_ROOT_HOST=%
+        - MYSQL_ROOT_PASSWORD=D@RKR#V$L%T^&N
+        - MYSQL_DATABASE=Arachnid
+        - MYSQL_USER=arachnid
+        - MYSQL_PASSWORD=D@RKR#V$L%T^&N

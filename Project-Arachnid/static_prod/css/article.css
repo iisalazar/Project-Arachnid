@@ -1,0 +1,28 @@
+@font-face{
+	font-family: "Raleway Light";
+	src: local(Raleway Light), url("../fonts/Raleway-Light.ttf");
+	src: url("../fonts/Raleway-Light.ttf?#iefix") format("truetype");
+}
+@font-face{
+	font-family: "Raleway Thin";
+	src: local(Raleway Thin), url("../fonts/Raleway-Thin.ttf");
+	src: url("../fonts/Raleway-Thin.ttf?#iefix") format("truetype");
+}
+@font-face{
+	font-family: "Code Bold";
+	src: local(Code Bold), url("../fonts/code-bold.otf");
+	src: url("../fonts/code-bold.otf?#iefix") format("opentype");
+}
+@font-face{
+	font-family: "Code Light";
+	src: local(Code Light), url("../fonts/code-light.otf");
+	src: url("../fonts/code-light.otf?#iefix") format("opentype");
+}
+
+#article-box{
+	padding-top:9em;
+	padding-bottom: 7em;
+}
+#article-title{
+	font-family: Raleway Thin;
+}

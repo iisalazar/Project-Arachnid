@@ -97,17 +97,16 @@ WSGI_APPLICATION = 'arachnid.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        #'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
         # name of the database you will be using
-        #'NAME': 'dertrockx$staff',
-        #'USER': 'dertrockx',
-        #'PASSWORD': 'D@RKR#V$L%T^&N',
-        #'HOST': 'dertrockx.mysql.pythonanywhere-services.com',
-        #'OPTIONS': {
-            #'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        #}
+        'NAME': 'Arachnid',
+        'USER': 'arachnid',
+        'PASSWORD': 'D@RKR#V$L%T^&N',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': { 'charset' : 'utfmb4'}
 
     }
 }
@@ -150,6 +149,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static_prod")
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
