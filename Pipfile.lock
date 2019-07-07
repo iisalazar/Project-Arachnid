@@ -56,7 +56,7 @@
                 "sha256:bb407d0bb46395ca1241f829f5bd03f7e482f97f7d1936e26e98dacb201ed4ec"
             ],
             "index": "pypi",
-            "version": "==2.2.1"
+            "version": ">=2.2.3"
         },
         "django-cleanup": {
             "hashes": [
