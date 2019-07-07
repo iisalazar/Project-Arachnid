@@ -23,11 +23,12 @@ This serves as the official repository for QSHS's official website
 4. if you use pip, run 
    ```shell
 	pip install -r requirements.txt
-	```
+```
 4.5 if you use pipenv, run
-	```shell
+```shell
 	pipenv shell
 	pipenv install
-	```
+```
+
 5. ```cd``` to "Project-Arachnid"
 6. Run python manage.py runserver
