@@ -19,15 +19,21 @@
         <img src="{% static 'img/stock/macaw-poly.jpg' %}" style="height: 400px">
       </div>
       <div class="row">
-        <p class="description">
-          {{ announcement.description }}
-        </p>
+        <div class="ui sixteen wide column">
+          <div class="ui raised segment">
+            <p class="description">
+              {{ announcement.description }}
+            </p>
+          </div>
+        </div>  
       </div>
+      {% if announcement.file.url %}
       <div class="row">
-        <a href="{{ announcement.file }}" class="ui sixteen wide tablet column green button">
+        <a href="{{ announcement.file.url }}" class="ui sixteen wide tablet column green button">
           Download Attached File
         </a>
       </div>
     </div>
+    {% endif %}
   </div>
 {% endblock %}

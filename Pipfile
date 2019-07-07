@@ -17,6 +17,7 @@ reportlab = "*"
 cffi = "*"
 faker = "*"
 names = "*"
+django-js-routing = "*"
 
 [requires]
 python_version = "3.5"
