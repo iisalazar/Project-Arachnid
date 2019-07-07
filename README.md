@@ -20,10 +20,12 @@ This serves as the official repository for QSHS's official website
 1. clone repo
 2. install pip or pipenv
 3. ```cd``` to directory
-4. if you use pip, run ```shell
+4. if you use pip, run 
+   ```shell
 	pip install -r requirements.txt
 	```
-4.5 if you use pipenv, run```shell
+4.5 if you use pipenv, run
+	```shell
 	pipenv shell
 	pipenv install
 	```
