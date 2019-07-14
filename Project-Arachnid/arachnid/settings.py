@@ -165,11 +165,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 STATIC_URL = '/static/'
-<<<<<<< HEAD
 
-=======
-STATIC_ROOT = os.path.join(BASE_DIR, "static_prod")
->>>>>>> ff7e695538e9347d9291a8e4d84eec607ff2f02e
+
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
