@@ -3,7 +3,7 @@ services:
   app:
     restart: always
     build: .
-    command: bash -c "cd ./Project-Arachnid && python3 manage.py collectstatic --no-input && python3 manage.py migrate && gunicorn --timeout=30 --workers=2 --bind 0.0.0.0:8000 arachnid.wsgi:application"
+    command: bash -c "cd ./Project-Arachnid && python3 manage.py collectstatic --no-input && python3 manage.py makemigrations && python3 manage.py migrate && gunicorn --timeout=30 --workers=2 --bind 0.0.0.0:8000 arachnid.wsgi:application"
     volumes:
       - .:/code
       - static-volume:/code/Project-Arachnid/static

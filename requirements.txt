@@ -5,7 +5,7 @@ django-js-routing==1.0.4
 django-reset-migrations==0.3.1
 Faker==1.0.7
 gunicorn==19.9.0
-mysqlclient==1.4.2.post1
+mysqlclient==1.4.2
 names==0.3.0
 Pillow==6.1.0
 pycparser==2.19
