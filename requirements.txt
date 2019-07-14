@@ -1,5 +1,5 @@
 cffi==1.12.3
-Django==2.2.1
+Django>=2.2.3
 django-cleanup==3.2.0
 django-js-routing==1.0.4
 django-reset-migrations==0.3.1
