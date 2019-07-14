@@ -1,0 +1,30 @@
+.ui.container
+{
+  margin: 0 20em 0 20em;
+}
+.news.content .body
+{
+  text-indent:5em;
+  text-align: left;
+}
+
+.news.content .body p
+{
+  margin: 2em;
+  text-align: left;
+}
+.news.meta
+{
+  text-align: left;
+}
+.news.content .body p#catchy-phrase
+{
+  text-indent: 7em;
+  font-family: Raleway Light, sans-serif;
+}
+.news.cover.photo
+{
+  background: url({{ news.cover_photo.url }}) no-repeat center;
+  height: 200px;
+  width: 100%;
+}

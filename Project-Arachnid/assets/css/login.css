@@ -1,0 +1,36 @@
+* {
+	font-family: 'Roboto'
+}
+
+.label {
+	font-size: 1000px;
+}
+
+.ui.login.segment
+{
+	margin: 10em 35em 10em 35em;
+	border: 1px solid;
+}
+
+.ui.signup.segment
+{
+	margin: 5em 20em 5em 20em;
+	border: 2px solid;
+}
+
+
+.grid .row .header {
+	text-align: center;
+}
+
+@media only screen and (max-width: 1024){
+	.ui.login.segment {
+		margin: 0;
+	}
+	.ui.signup.segment {
+		margin: 0;
+	}
+	.label {
+		font-size: 100px;
+	}
+}

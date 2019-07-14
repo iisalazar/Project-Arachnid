@@ -23,8 +23,14 @@ from django.utils import timezone
 def index(request):
     announcements = list(Announcement.objects.order_by('-date_created')[:5])
     news = list(News.objects.order_by('-published_date')[:5])
-    announcement_latest = announcements.pop(0)
-    news_latest = news.pop(0)
+    if len(announcements) > 0:
+        announcement_latest = announcements.pop(0)
+    else:
+        announcement_latest = None
+    if len(news) > 0:
+        news_latest = news.pop(0) or None
+    else:
+        news_latest = None
     #announcements = get_list_or_404(Announcement.objects.order_by('-date_created')[:5])
     #news = get_list_or_404(News.objects.order_by('-published_date')[:5])
     data = {
