@@ -1,0 +1,21 @@
+#about-compartment{
+	padding-top: 5em;
+	margin-top: 5em;
+}
+
+
+.orgTemplate .segment
+{
+  font-family: Raleway;
+}
+
+.orgTemplate .segment article {
+
+  margin: 0 4em;
+  width: 50%;
+}
+
+.orgTemplate .segment aside {
+  margin: 0 4em;
+  height: auto;
+}

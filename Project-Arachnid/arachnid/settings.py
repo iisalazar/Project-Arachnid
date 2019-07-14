@@ -34,7 +34,8 @@ ALLOWED_HOSTS = [
                 'localhost',
                 '127.0.0.1',
                 '10.42.0.1',
-                '192.168.43.36'
+                '192.168.43.36',
+                'app'
                 ]
 
 
@@ -94,7 +95,8 @@ WSGI_APPLICATION = 'arachnid.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
+'''
+For development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -111,7 +113,21 @@ DATABASES = {
 
     }
 }
-
+'''
+# For Production
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME' : 'django_app',
+        'USER' : 'django_app',
+        'PASSWORD' : 'django_app123',
+        'HOST': 'db',
+        'PORT' : '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4'
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -148,8 +164,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]

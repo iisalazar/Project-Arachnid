@@ -13,6 +13,7 @@ RUN pip install pip -U
 ADD requirements.txt /code/
 
 # Install dependencies
-
+RUN apt-get update
+RUN apt-get install python3-dev default-libmysqlclient-dev -y
 RUN pip install -r requirements.txt
 ADD . /code/

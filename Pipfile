@@ -18,6 +18,7 @@ cffi = "*"
 faker = "*"
 names = "*"
 django-js-routing = "*"
+mysqlclient = "*"
 
 [requires]
 python_version = "3.5"

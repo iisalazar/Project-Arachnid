@@ -3,8 +3,49 @@ services:
   app:
     restart: always
     build: .
-    command: "python3 ./Project-Arachnid/manage.py runserver 0.0.0.0:8000"
+    command: bash -c "cd ./Project-Arachnid && python3 manage.py collectstatic --no-input && python3 manage.py migrate && gunicorn --timeout=30 --workers=2 --bind 0.0.0.0:8000 arachnid.wsgi:application"
     volumes:
       - .:/code
+      - static-volume:/code/Project-Arachnid/static
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    networks:
+      - web_network
+      - db_network
+  db:
+    image: mysql:latest
+    command: "mysqld --default-authentication-plugin=mysql_native_password"
+    volumes:
+      - "./mysql:/var/lib/mysql"
     ports:
-      - "8000:8000"
+      - "3306:3306"
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret123
+      - MYSQL_DATABASE=django_app
+      - MYSQL_USER=django_app
+      - MYSQL_PASSWORD=django_app123
+    networks:
+      - db_network
+  nginx:
+    image: nginx:latest
+    ports:
+      - "3000:8000"
+    volumes:
+      - static-volume:/code/Project-Arachnid/assets
+      - ./config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - web_network
+
+networks:
+  web_network:
+    driver: bridge
+  db_network:
+    driver: bridge
+
+volumes:
+  static-volume:
